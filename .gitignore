@@ -11,13 +11,14 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-*.pem
-*.jks
-*.keystore
-.env*
-security.txt
-auth.json
-service-account*.json
+# Temporarily tracking secure files for laptop migration
+# *.pem
+# *.jks
+# *.keystore
+# .env*
+# security.txt
+# auth.json
+# service-account*.json
 
 # IntelliJ related
 *.iml
