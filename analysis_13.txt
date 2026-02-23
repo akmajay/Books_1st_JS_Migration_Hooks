@@ -1,0 +1,107 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.66 available)
+  app_links 6.4.1 (7.0.0 available)
+  characters 1.4.0 (1.4.1 available)
+  confetti 0.7.0 (0.8.0 available)
+  connectivity_plus 6.1.5 (7.0.0 available)
+  firebase_core 3.15.2 (4.4.0 available)
+  firebase_core_web 2.24.1 (3.4.0 available)
+  firebase_messaging 15.2.10 (16.1.1 available)
+  firebase_messaging_platform_interface 4.6.10 (4.7.6 available)
+  firebase_messaging_web 3.10.10 (4.1.2 available)
+  flutter_local_notifications 18.0.1 (20.1.0 available)
+  flutter_local_notifications_linux 5.0.0 (7.0.0 available)
+  flutter_local_notifications_platform_interface 8.0.0 (10.0.0 available)
+  flutter_slidable 3.1.2 (4.0.3 available)
+  geocoding 3.0.0 (4.0.0 available)
+  geocoding_android 3.3.1 (5.0.0 available)
+  geocoding_platform_interface 3.2.0 (5.0.0 available)
+  go_router 14.8.1 (17.1.0 available)
+  google_fonts 6.3.3 (8.0.1 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.7 available)
+  google_sign_in_ios 5.9.0 (6.3.0 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.0 available)
+  intl 0.19.0 (0.20.2 available)
+  matcher 0.12.17 (0.12.18 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.17.0 (1.18.1 available)
+  mobile_scanner 6.0.11 (7.1.4 available)
+  share_plus 10.1.4 (12.0.1 available)
+  share_plus_platform_interface 5.0.2 (6.1.0 available)
+  test_api 0.7.7 (0.7.9 available)
+  timezone 0.10.1 (0.11.0 available)
+  url_launcher_ios 6.4.0 (6.4.1 available)
+Got dependencies!
+34 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Analyzing JayGanga Books...                                     
+
+warning - Unused import: '../services/auth_service.dart' - lib\providers\search_provider.dart:6:8 - unused_import
+warning - Unused import: '../services/book_service.dart' - lib\router\app_router.dart:36:8 - unused_import
+warning - Unused import: '../services/chat_service.dart' - lib\router\app_router.dart:37:8 - unused_import
+warning - Unused import: '../services/transaction_service.dart' - lib\router\app_router.dart:38:8 - unused_import
+warning - Unused import: '../../../utils/validators.dart' - lib\screens\auth\steps\mobile_number_step.dart:4:8 - unused_import
+warning - The value of the field '_serverError' isn't used - lib\screens\auth\steps\mobile_number_step.dart:25:11 - unused_field
+   info - Use 'whereType' to select elements of a given type - lib\screens\book\edit_book_screen.dart:70:32 - prefer_iterable_wheretype
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\screens\book\edit_book_screen.dart:169:15 - deprecated_member_use
+warning - Unused import: '../../models/app_error.dart' - lib\screens\chat\chat_detail_screen.dart:8:8 - unused_import
+warning - Unused import: '../../widgets/shared/paginated_list_view.dart' - lib\screens\chat\chat_detail_screen.dart:13:8 - unused_import
+  error - The getter 'instance' isn't defined for the type 'ChatService' - lib\screens\chat\chat_list_screen.dart:23:47 - undefined_getter
+   info - 'expand' is deprecated and shouldn't be used. This field is superseded by the more generic get<T>(keyPath) method.
+You can access the expanded record models and fields using dot-notation similar to the regular record fields:
+record.get<String>("expand.user.email");
+record.get<RecordModel>("expand.user");
+record.get<List<RecordModel>>("expand.products"); - lib\screens\chat\chat_list_screen.dart:47:36 - deprecated_member_use
+   info - 'expand' is deprecated and shouldn't be used. This field is superseded by the more generic get<T>(keyPath) method.
+You can access the expanded record models and fields using dot-notation similar to the regular record fields:
+record.get<String>("expand.user.email");
+record.get<RecordModel>("expand.user");
+record.get<List<RecordModel>>("expand.products"); - lib\screens\chat\chat_list_screen.dart:48:34 - deprecated_member_use
+  error - The returned type 'Null' isn't returnable from a 'RecordModel' function, as required by the closure's context - lib\screens\chat\chat_list_screen.dart:50:27 - return_of_invalid_type_from_closure
+  error - The named parameter 'scrollController' isn't defined - lib\screens\home\home_screen.dart:193:15 - undefined_named_parameter
+warning - Unused import: '../../models/app_error.dart' - lib\screens\profile\edit_profile_screen.dart:17:8 - unused_import
+   info - The private field _isLoading could be 'final' - lib\screens\profile\edit_profile_screen.dart:38:8 - prefer_final_fields
+warning - The value of the field '_isLoading' isn't used - lib\screens\profile\edit_profile_screen.dart:38:8 - unused_field
+  error - The getter 'instance' isn't defined for the type 'BookService' - lib\screens\profile\manage_listings_screen.dart:40:47 - undefined_getter
+  error - The named parameter 'onDelete' is required, but there's no corresponding argument - lib\screens\profile\manage_listings_screen.dart:87:37 - missing_required_argument
+  error - The named parameter 'onMarkSold' is required, but there's no corresponding argument - lib\screens\profile\manage_listings_screen.dart:87:37 - missing_required_argument
+  error - The named parameter 'onRelist' is required, but there's no corresponding argument - lib\screens\profile\manage_listings_screen.dart:87:37 - missing_required_argument
+warning - The value of the field '_txnService' isn't used - lib\screens\profile\transactions_list_screen.dart:20:28 - unused_field
+warning - Unused import: 'package:provider/provider.dart' - lib\screens\profile\wishlist_screen.dart:3:8 - unused_import
+  error - The getter 'items' isn't defined for the type 'SearchProvider' - lib\screens\search\search_screen.dart:201:40 - undefined_getter
+  error - The getter 'items' isn't defined for the type 'SearchProvider' - lib\screens\search\search_screen.dart:205:18 - undefined_getter
+  error - The named parameter 'type' isn't defined - lib\screens\search\search_screen.dart:209:9 - undefined_named_parameter
+  error - Invalid constant value - lib\screens\search\search_screen.dart:209:15 - invalid_constant
+  error - Undefined name 'EmptyStateType' - lib\screens\search\search_screen.dart:209:15 - undefined_identifier
+  error - The getter 'items' isn't defined for the type 'SearchProvider' - lib\screens\search\search_screen.dart:219:32 - undefined_getter
+  error - The getter 'isGrid' isn't defined for the type 'SearchProvider' - lib\screens\search\search_screen.dart:222:37 - undefined_getter
+  error - The getter 'isGrid' isn't defined for the type 'SearchProvider' - lib\screens\search\search_screen.dart:232:30 - undefined_getter
+  error - The getter 'isGrid' isn't defined for the type 'SearchProvider' - lib\screens\search\search_screen.dart:236:28 - undefined_getter
+  error - The named parameter 'onDelete' is required, but there's no corresponding argument - lib\screens\search\search_screen.dart:242:22 - missing_required_argument
+  error - The named parameter 'onMarkSold' is required, but there's no corresponding argument - lib\screens\search\search_screen.dart:242:22 - missing_required_argument
+  error - The named parameter 'onRelist' is required, but there's no corresponding argument - lib\screens\search\search_screen.dart:242:22 - missing_required_argument
+warning - Unused import: 'package:pocketbase/pocketbase.dart' - lib\screens\sell\sell_book_screen.dart:3:8 - unused_import
+   info - Use 'whereType' to select elements of a given type - lib\screens\sell\sell_book_screen.dart:25:33 - prefer_iterable_wheretype
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\widgets\forms\app_chip_selector.dart:43:65 - deprecated_member_use
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\widgets\forms\app_dropdown_field.dart:24:7 - deprecated_member_use
+  error - The getter 'instance' isn't defined for the type 'BookService' - lib\widgets\home\book_grid.dart:38:47 - undefined_getter
+  error - The method 'getCurrentPosition' isn't defined for the type 'LocationService' - lib\widgets\home\book_grid.dart:51:39 - undefined_method
+warning - The value of the local variable 'userId' isn't used - lib\widgets\home\book_grid.dart:74:19 - unused_local_variable
+  error - The named parameter 'defaultValue' isn't defined - lib\widgets\home\book_grid.dart:85:53 - undefined_named_parameter
+  error - The named parameter 'defaultValue' isn't defined - lib\widgets\home\book_grid.dart:86:53 - undefined_named_parameter
+  error - The named parameter 'isWishlisted' isn't defined - lib\widgets\home\book_grid.dart:100:11 - undefined_named_parameter
+  error - Target of URI doesn't exist: '../../widgets/shared/photo_picker.dart' - lib\widgets\sell\book_form.dart:12:8 - uri_does_not_exist
+  error - Undefined name 'AppValidators' - lib\widgets\sell\book_form.dart:125:26 - undefined_identifier
+  error - Undefined name 'AppValidators' - lib\widgets\sell\book_form.dart:132:26 - undefined_identifier
+  error - Undefined name 'AppValidators' - lib\widgets\sell\book_form.dart:185:26 - undefined_identifier
+  error - The method 'PhotoPicker' isn't defined for the type 'BookFormState' - lib\widgets\sell\book_form.dart:209:15 - undefined_method
+  error - Undefined name 'AppValidators' - lib\widgets\sell\book_form.dart:300:24 - undefined_identifier
+  error - Undefined name 'AppValidators' - lib\widgets\sell\book_form.dart:301:15 - undefined_identifier
+  error - Undefined name 'AppValidators' - lib\widgets\sell\book_form.dart:302:15 - undefined_identifier
+  error - The named parameter 'onPressed' isn't defined - lib\widgets\sell\book_form.dart:323:9 - undefined_named_parameter
+   info - Unnecessary use of multiple underscores - lib\widgets\shared\paginated_list_view.dart:228:26 - unnecessary_underscores
+   info - Unnecessary use of multiple underscores - lib\widgets\shared\paginated_list_view.dart:235:24 - unnecessary_underscores
+

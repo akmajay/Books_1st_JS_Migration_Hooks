@@ -1,0 +1,228 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "purpose": "Examples of bad prompts and their correct alternatives for Flutter + PocketBase",
+        "usage": "Manager AI uses this to avoid generating poor prompts"
+    },
+    "anti_patterns": [
+        {
+            "id": "AP001",
+            "category": "scope",
+            "name": "Kitchen Sink Prompt",
+            "bad_prompt": "Build me a complete social media app with auth, posts, comments, chat, notifications, and admin panel",
+            "why_bad": [
+                "Too many features at once",
+                "Context window will overflow",
+                "AI will make assumptions about every feature",
+                "Result will be incomplete and broken"
+            ],
+            "good_prompt": "Create the Flutter project structure. Set up folder organization for: screens, widgets, services, models, providers. Don't add any functionality yet.",
+            "principle": "ONE thing per prompt"
+        },
+        {
+            "id": "AP002",
+            "category": "vagueness",
+            "name": "Vague Request",
+            "bad_prompt": "Add authentication",
+            "why_bad": [
+                "No auth method specified (email? Google? Apple?)",
+                "No file locations given",
+                "No PocketBase collection reference",
+                "AI will guess everything"
+            ],
+            "good_prompt": "Create a login screen at lib/screens/auth/login_screen.dart using PocketBase email/password auth. Include: email TextField, password TextField with obscureText, login button, link to signup. Use existing PocketBase service from lib/services/pocketbase_service.dart. Handle errors: wrong credentials, network error.",
+            "principle": "Be SPECIFIC about files, behavior, and constraints"
+        },
+        {
+            "id": "AP003",
+            "category": "vagueness",
+            "name": "Aesthetic Vagueness",
+            "bad_prompt": "Make it look good",
+            "why_bad": [
+                "Subjective, no clear target",
+                "AI will pick random styles",
+                "Inconsistent with existing theme"
+            ],
+            "good_prompt": "Style the login screen with: dark theme (background Color(0xFF1A1A1A)), rounded InputDecoration (borderRadius 12), subtle elevation on card (4), Inter font family, blue primary button (Color(0xFF3B82F6)). Match the existing theme from lib/config/theme.dart.",
+            "principle": "Specify exact visual requirements"
+        },
+        {
+            "id": "AP004",
+            "category": "missing_constraints",
+            "name": "No Protection",
+            "bad_prompt": "Fix the button widget",
+            "why_bad": [
+                "May rewrite entire widget",
+                "May change working functionality",
+                "May restructure widget tree"
+            ],
+            "good_prompt": "In lib/widgets/primary_button.dart, fix the onPressed callback not triggering. ONLY modify the GestureDetector/InkWell handler. DO NOT change: the button styling, the size parameters, or the loading state logic. Keep all existing functionality.",
+            "principle": "Always say what NOT to change"
+        },
+        {
+            "id": "AP005",
+            "category": "missing_constraints",
+            "name": "No File Scope",
+            "bad_prompt": "Add a dark mode toggle",
+            "why_bad": [
+                "May create files anywhere",
+                "May modify existing theme files",
+                "No clear location specified"
+            ],
+            "good_prompt": "Create a theme toggle widget at lib/widgets/theme_toggle.dart. It should: use Provider to read/toggle ThemeMode, render a sun/moon IconButton, animate between icons. Create ONLY this file, do not modify any other files.",
+            "principle": "Specify exact file paths"
+        },
+        {
+            "id": "AP006",
+            "category": "missing_context",
+            "name": "No Stack Context",
+            "bad_prompt": "Create a service for fetching posts",
+            "why_bad": [
+                "Which backend? PocketBase? Direct API?",
+                "What model class to use?",
+                "What error handling pattern?"
+            ],
+            "good_prompt": "CONTEXT: Flutter app using PocketBase Dart SDK, Provider for state management.\n\nCreate PostService at lib/services/post_service.dart that:\n- Uses PocketBase client from lib/services/pocketbase_service.dart\n- getAll(): Fetches from 'posts' collection, returns List<Post>\n- getById(String id): Fetches single post with expand for user relation\n- Uses Post model from lib/models/post.dart\n- All methods return proper error handling with try-catch",
+            "principle": "Always provide stack context"
+        },
+        {
+            "id": "AP007",
+            "category": "missing_context",
+            "name": "No Existing Code Reference",
+            "bad_prompt": "Add a new screen for settings",
+            "why_bad": [
+                "What layout exists?",
+                "What widgets to reuse?",
+                "What navigation pattern?"
+            ],
+            "good_prompt": "Create settings screen at lib/screens/settings/settings_screen.dart. Follow the pattern from lib/screens/profile/profile_screen.dart: use the same AppScaffold wrapper, same ListTile styling, same AppBar configuration. Import existing widgets from lib/widgets/, don't create new ones.",
+            "principle": "Reference existing patterns"
+        },
+        {
+            "id": "AP008",
+            "category": "no_verification",
+            "name": "Missing Test Step",
+            "bad_prompt": "Implement the post creation flow",
+            "why_bad": [
+                "How to verify it works?",
+                "No test commands given",
+                "No success criteria"
+            ],
+            "good_prompt": "Implement post creation in lib/screens/posts/create_post_screen.dart.\n\nREQUIREMENTS:\n- Text field for content\n- Category dropdown\n- Image picker button\n- Submit to PocketBase 'posts' collection\n\nSELF-CHECK:\n1. Run flutter analyze — 0 issues\n2. Run the app, navigate to create post screen\n3. Fill form and submit — record appears in PocketBase admin\n4. Confirm in chat: 'Post creation working. Zero errors.'",
+            "principle": "Always include self-verification"
+        },
+        {
+            "id": "AP009",
+            "category": "wrong_granularity",
+            "name": "Too Fine Grained",
+            "bad_prompt": "Add a const for the primary color",
+            "why_bad": [
+                "Wastes a prompt cycle",
+                "Could be part of larger task",
+                "Inefficient workflow"
+            ],
+            "good_prompt": "Create a theme configuration file at lib/config/theme.dart with: AppTheme class containing lightTheme and darkTheme ThemeData, color constants (primary, secondary, error, success, background, surface), text theme with Inter font family, custom InputDecoration theme.",
+            "principle": "Group related micro-tasks"
+        },
+        {
+            "id": "AP010",
+            "category": "wrong_granularity",
+            "name": "Multi-file Without Planning",
+            "bad_prompt": "Rename PostModel to Article across the codebase",
+            "why_bad": [
+                "No mapping phase",
+                "Will miss files",
+                "Inconsistent renames"
+            ],
+            "good_prompt": "PHASE 1 - MAPPING ONLY:\n\nSearch the codebase and list ALL .dart files containing 'PostModel'. Group by:\n- Model definitions\n- Service files\n- Screen files\n- Widget files\n- Provider files\n\nDO NOT make any changes yet. Output the complete list and wait for my approval.",
+            "principle": "Multi-file = mapping first, then batched edits"
+        },
+        {
+            "id": "AP011",
+            "category": "error_handling",
+            "name": "No Error Handling Requirement",
+            "bad_prompt": "Create a function to fetch user data",
+            "why_bad": [
+                "Only happy path coded",
+                "Network errors ignored",
+                "No loading/error states in UI"
+            ],
+            "good_prompt": "Create fetchUser method in lib/services/user_service.dart:\n\nMUST INCLUDE:\n- Try-catch wrapping the PocketBase call\n- Return type: Future<User?> with null on error\n- Handle: ClientException for network errors, 404 for not found\n- Log errors with debugPrint in development\n- Throw custom AppException for production error messages",
+            "principle": "Explicitly require error handling"
+        },
+        {
+            "id": "AP012",
+            "category": "types",
+            "name": "No Model Class Requirement",
+            "bad_prompt": "Create the post widget",
+            "why_bad": [
+                "May use dynamic maps instead of typed models",
+                "No model class reference",
+                "Runtime type errors later"
+            ],
+            "good_prompt": "Create PostCard widget at lib/widgets/post_card.dart.\n\nTYPE REQUIREMENTS:\n- Accept Post model from lib/models/post.dart as required parameter\n- Use strict Dart types, no 'dynamic'\n- Define callback types: VoidCallback onTap, Function(String) onReport\n- Export the widget for reuse",
+            "principle": "Require proper Dart types and model classes"
+        },
+        {
+            "id": "AP013",
+            "category": "dependencies",
+            "name": "Unknown Dependencies",
+            "bad_prompt": "Add form validation",
+            "why_bad": [
+                "Which approach? Built-in? Package?",
+                "May install unnecessary packages",
+                "May conflict with existing approach"
+            ],
+            "good_prompt": "Add form validation to the login screen using Flutter's built-in Form and TextFormField.\n\nVALIDATION RULES:\n- Email: RegExp for valid email format\n- Password: min 8 chars, at least 1 uppercase, 1 number\n\nShow inline error text below each field using TextFormField.validator.",
+            "principle": "Specify exact approach and packages"
+        },
+        {
+            "id": "AP014",
+            "category": "pocketbase_specific",
+            "name": "Wrong PocketBase API Version",
+            "bad_prompt": "Create a hook to send notifications when a post is created",
+            "why_bad": [
+                "May use deprecated dao API",
+                "May use wrong hook signature",
+                "No version specification"
+            ],
+            "good_prompt": "Create PocketBase hook at pb_hooks/notify_on_post.pb.js:\n\nCONTEXT: PocketBase v0.23+, use $app API (NOT legacy dao).\n\nHook type: onRecordAfterCreateSuccess for 'posts' collection.\nLogic: Extract post data → build FCM payload → send to topic.\nUse $app.findRecordById() for lookups.\n\nDO NOT use dao.FindRecordById() (deprecated).",
+            "principle": "Always specify PocketBase v0.23+ and $app API"
+        },
+        {
+            "id": "AP015",
+            "category": "sequence",
+            "name": "Wrong Order",
+            "bad_prompt": "Add the delete button to the post card",
+            "bad_context": "When the PostCard widget doesn't exist yet",
+            "why_bad": [
+                "Prerequisite missing",
+                "Will create broken code",
+                "Dependencies not satisfied"
+            ],
+            "good_prompt": "BEFORE THIS: Ensure PostCard widget exists at lib/widgets/post_card.dart with: post data display, category tag, media preview.\n\nTHEN: Add delete IconButton to PostCard that calls PostService.delete(post.id) with confirmation dialog.",
+            "principle": "Follow correct dependency order"
+        }
+    ],
+    "quick_reference": {
+        "always_include": [
+            "Stack context (Flutter + PocketBase)",
+            "Exact file paths (lib/screens/...)",
+            "What to create/modify",
+            "What NOT to change",
+            "Dart type requirements",
+            "Error handling requirements",
+            "Self-verification steps",
+            "PocketBase version (v0.23+)"
+        ],
+        "never_do": [
+            "Multiple features in one prompt",
+            "Vague aesthetic requests",
+            "Multi-file without mapping",
+            "Skip self-verification step",
+            "Assume AI knows the codebase",
+            "Use deprecated PocketBase API",
+            "Mix state management approaches"
+        ]
+    }
+}

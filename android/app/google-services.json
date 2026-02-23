@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1091198645080",
+    "project_id": "jayganga-books",
+    "storage_bucket": "jayganga-books.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091198645080:android:29111d16133bbe13366b2d",
+        "android_client_info": {
+          "package_name": "com.jayganga.books"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVq48LVgub8lthTP7OJDq9OE72PIajG3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

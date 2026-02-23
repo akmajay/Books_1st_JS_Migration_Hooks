@@ -1,0 +1,835 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "purpose": "18-phase development sequence for Flutter + PocketBase apps",
+        "usage": "Manager AI follows this phase order when generating prompts. Skips phases not needed."
+    },
+    "phases": [
+        {
+            "id": "PHASE_00",
+            "name": "PocketBase VPS Setup",
+            "order": 0,
+            "type": "🔧 BACKEND",
+            "prompt_style": "exact_code",
+            "description": "Coding agent SSHs into VPS directly and deploys PocketBase, assigns domain, configures Nginx reverse proxy and SSL",
+            "prerequisites": [],
+            "estimated_prompts": 1,
+            "tasks": [
+                {
+                    "id": "00_01",
+                    "name": "Deploy PocketBase to VPS",
+                    "template_id": "PT_PB_VPS",
+                    "description": "Coding agent SSHs into VPS, downloads binary, creates systemd service, sets up Nginx reverse proxy, SSL, and superuser — all executed directly by the agent",
+                    "output": "PocketBase running at https://domain.com with Admin UI accessible"
+                }
+            ],
+            "verification": "curl https://domain.com/api/health returns 200",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_01",
+            "name": "Foundation",
+            "order": 1,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Create Flutter project, set up folder structure and basic configuration",
+            "prerequisites": [
+                "PHASE_00"
+            ],
+            "estimated_prompts": 4,
+            "tasks": [
+                {
+                    "id": "01_01",
+                    "name": "Create Flutter Project",
+                    "template_id": "PT001",
+                    "description": "Initialize Flutter app with proper folder organization",
+                    "output": "Flutter project with lib/screens, lib/widgets, lib/services, lib/models, lib/config"
+                },
+                {
+                    "id": "01_02",
+                    "name": "Configure Dependencies",
+                    "template_id": "PT002",
+                    "description": "Add all required packages to pubspec.yaml",
+                    "output": "pubspec.yaml with pocketbase, provider/riverpod, go_router, etc."
+                },
+                {
+                    "id": "01_03",
+                    "name": "PocketBase SDK Connection",
+                    "template_id": "PT003",
+                    "description": "Create PocketBase service with environment config",
+                    "output": "PocketBase client configured and connecting to server"
+                },
+                {
+                    "id": "01_04",
+                    "name": "Environment Configuration",
+                    "template_id": "PT056",
+                    "description": "Set up dev/staging/prod environment switching with dart-define",
+                    "output": "Environment config with different PocketBase URLs per environment"
+                }
+            ],
+            "verification": "flutter run starts without errors, PocketBase health check passes",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_02",
+            "name": "PocketBase Collections",
+            "order": 2,
+            "type": "🔧 BACKEND",
+            "prompt_style": "exact_code",
+            "description": "Create all database collections, fields, and relations in PocketBase",
+            "prerequisites": [
+                "PHASE_01"
+            ],
+            "estimated_prompts": 4,
+            "tasks": [
+                {
+                    "id": "02_01",
+                    "name": "PocketBase Migrations Setup",
+                    "template_id": "PT057",
+                    "description": "Create pb_migrations/ and pb_hooks/ folders, deploy.sh script for VPS sync",
+                    "output": "Backend folder structure ready, deploy.sh created"
+                },
+                {
+                    "id": "02_02",
+                    "name": "Create Collections",
+                    "template_id": "PT004",
+                    "description": "Define all collections with their fields via JS migration files in pb_migrations/",
+                    "output": "All collections created with correct field types"
+                },
+                {
+                    "id": "02_03",
+                    "name": "Define Relations",
+                    "template_id": "PT005",
+                    "description": "Set up relation fields between collections via JS migration files",
+                    "output": "All relations properly linked"
+                },
+                {
+                    "id": "02_04",
+                    "name": "Create Dart Model Classes",
+                    "template_id": "PT006",
+                    "description": "Create typed Dart model classes matching PocketBase collections",
+                    "output": "Model files in lib/models/ with fromJson/toJson"
+                }
+            ],
+            "verification": "Collections visible in PocketBase Admin, model classes compile",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_03",
+            "name": "API Rules",
+            "order": 3,
+            "type": "🔧 BACKEND",
+            "prompt_style": "exact_code",
+            "description": "Set API access rules on all collections for security",
+            "prerequisites": [
+                "PHASE_02"
+            ],
+            "estimated_prompts": 1,
+            "tasks": [
+                {
+                    "id": "03_01",
+                    "name": "Set API Rules",
+                    "template_id": "PT007",
+                    "description": "Configure listRule, viewRule, createRule, updateRule, deleteRule for each collection",
+                    "output": "All collections secured with proper API rules"
+                }
+            ],
+            "verification": "Unauthenticated API calls are rejected, authenticated calls succeed",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_04",
+            "name": "Authentication",
+            "order": 4,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Implement auth flows in Flutter (login, signup, password reset, OAuth)",
+            "prerequisites": [
+                "PHASE_03"
+            ],
+            "estimated_prompts": 7,
+            "tasks": [
+                {
+                    "id": "04_01",
+                    "name": "Auth Service",
+                    "template_id": "PT008",
+                    "description": "Create auth service wrapping PocketBase auth methods",
+                    "output": "Auth service with login, signup, logout, session check"
+                },
+                {
+                    "id": "04_02",
+                    "name": "Login Screen",
+                    "template_id": "PT009",
+                    "description": "Create login screen with email/password",
+                    "output": "Login screen with form validation and error handling"
+                },
+                {
+                    "id": "04_03",
+                    "name": "Signup Screen",
+                    "template_id": "PT010",
+                    "description": "Create signup screen",
+                    "output": "Signup screen with form validation"
+                },
+                {
+                    "id": "04_04",
+                    "name": "Auth State Management",
+                    "template_id": "PT011",
+                    "description": "Create auth provider/notifier for state management",
+                    "output": "Auth state available throughout app"
+                },
+                {
+                    "id": "04_05",
+                    "name": "OAuth Provider",
+                    "template_id": "PT012",
+                    "description": "Add social login (Google/Apple) if required",
+                    "output": "OAuth login working"
+                },
+                {
+                    "id": "04_06",
+                    "name": "Forgot Password",
+                    "template_id": "PT049",
+                    "description": "Create forgot password screen with PocketBase requestPasswordReset",
+                    "output": "Forgot password screen sending reset email via PocketBase"
+                },
+                {
+                    "id": "04_07",
+                    "name": "Email Verification",
+                    "template_id": "PT050",
+                    "description": "Create email verification screen after signup with resend",
+                    "output": "Email verification flow with resend and auto-check"
+                }
+            ],
+            "verification": "Can sign up, log out, log back in. Protected routes redirect to login.",
+            "skip_if": "no auth needed"
+        },
+        {
+            "id": "PHASE_05",
+            "name": "Layout & Navigation",
+            "order": 5,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Set up app layout, navigation shell, and routing with GoRouter",
+            "prerequisites": [
+                "PHASE_04"
+            ],
+            "estimated_prompts": 4,
+            "tasks": [
+                {
+                    "id": "05_01",
+                    "name": "GoRouter Setup",
+                    "template_id": "PT013",
+                    "description": "Configure GoRouter with all routes and auth redirect",
+                    "output": "All routes defined, auth guard working"
+                },
+                {
+                    "id": "05_02",
+                    "name": "App Shell / Scaffold",
+                    "template_id": "PT014",
+                    "description": "Create main scaffold with bottom nav or drawer",
+                    "output": "App shell with navigation working"
+                },
+                {
+                    "id": "05_03",
+                    "name": "Theme Configuration",
+                    "template_id": "PT015",
+                    "description": "Create app theme with colors, typography, component themes",
+                    "output": "Complete theme with light/dark mode support"
+                },
+                {
+                    "id": "05_04",
+                    "name": "Deep Linking",
+                    "template_id": "PT054",
+                    "description": "Configure deep links for email verification, password reset, and entity URLs",
+                    "output": "Deep linking working for all app URLs"
+                }
+            ],
+            "verification": "All routes navigate correctly, auth protected routes redirect, theme applies globally",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_06",
+            "name": "State Management",
+            "order": 6,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Set up state management layer and services",
+            "prerequisites": [
+                "PHASE_05"
+            ],
+            "estimated_prompts": 2,
+            "tasks": [
+                {
+                    "id": "06_01",
+                    "name": "Service Layer",
+                    "template_id": "PT016",
+                    "description": "Create PocketBase service classes for each entity",
+                    "output": "Service files with CRUD methods per entity"
+                },
+                {
+                    "id": "06_02",
+                    "name": "State Providers",
+                    "template_id": "PT017",
+                    "description": "Create state management providers/notifiers",
+                    "output": "Providers wrapping services with loading/error states"
+                }
+            ],
+            "verification": "Services fetch data correctly, providers expose state to UI",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_07",
+            "name": "Core Features (CRUD)",
+            "order": 7,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Build CRUD screens for each entity",
+            "prerequisites": [
+                "PHASE_06"
+            ],
+            "estimated_prompts": "varies (4 per entity: list, detail, create, edit)",
+            "tasks": [
+                {
+                    "id": "07_01",
+                    "name": "List Screen",
+                    "template_id": "PT018",
+                    "description": "Create list/index screen for entity",
+                    "output": "Screen showing list of records with pull-to-refresh"
+                },
+                {
+                    "id": "07_02",
+                    "name": "Detail Screen",
+                    "template_id": "PT019",
+                    "description": "Create detail/view screen for single entity",
+                    "output": "Screen showing all fields of a single record"
+                },
+                {
+                    "id": "07_03",
+                    "name": "Create Form",
+                    "template_id": "PT020",
+                    "description": "Create form for adding new records",
+                    "output": "Form screen with validation and PocketBase submission"
+                },
+                {
+                    "id": "07_04",
+                    "name": "Edit/Delete",
+                    "template_id": "PT021",
+                    "description": "Edit form and delete functionality",
+                    "output": "Edit screen reusing form, delete with confirmation"
+                },
+                {
+                    "id": "07_05",
+                    "name": "Profile & Settings",
+                    "template_id": "PT051",
+                    "description": "Create profile, edit profile, change password, app settings, logout, delete account",
+                    "output": "Profile and settings screens with full account management"
+                }
+            ],
+            "note": "Repeat tasks 07_01 to 07_04 for EACH entity. Task 07_05 (Profile) is done once.",
+            "verification": "Full CRUD cycle works for each entity in the app",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_08",
+            "name": "File Storage",
+            "order": 8,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Implement file upload and display using PocketBase file handling",
+            "prerequisites": [
+                "PHASE_07"
+            ],
+            "estimated_prompts": 2,
+            "tasks": [
+                {
+                    "id": "08_01",
+                    "name": "File Upload Widget",
+                    "template_id": "PT022",
+                    "description": "Create reusable file upload widget with preview and compression",
+                    "output": "Upload widget with image picker, compression, progress"
+                },
+                {
+                    "id": "08_02",
+                    "name": "File Display Widget",
+                    "template_id": "PT023",
+                    "description": "Create file display widgets (image, video, document)",
+                    "output": "Widgets for displaying uploaded files from PocketBase"
+                }
+            ],
+            "verification": "Can upload files, files display correctly from PocketBase URLs",
+            "skip_if": "no file uploads needed"
+        },
+        {
+            "id": "PHASE_09",
+            "name": "Realtime (SSE)",
+            "order": 9,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Implement realtime updates using PocketBase SSE subscriptions",
+            "prerequisites": [
+                "PHASE_07"
+            ],
+            "estimated_prompts": 2,
+            "tasks": [
+                {
+                    "id": "09_01",
+                    "name": "Realtime Service",
+                    "template_id": "PT024",
+                    "description": "Create service for SSE subscriptions to collections",
+                    "output": "Service with subscribe/unsubscribe methods"
+                },
+                {
+                    "id": "09_02",
+                    "name": "Realtime UI Integration",
+                    "template_id": "PT025",
+                    "description": "Connect realtime updates to list screens",
+                    "output": "Lists auto-update when records change"
+                }
+            ],
+            "verification": "Create/update/delete in PocketBase Admin → app updates instantly without refresh",
+            "skip_if": "no realtime needed"
+        },
+        {
+            "id": "PHASE_10",
+            "name": "Server Hooks (pb_hooks)",
+            "order": 10,
+            "type": "🔧 BACKEND",
+            "prompt_style": "exact_code",
+            "description": "Create PocketBase server-side JavaScript hooks for backend logic",
+            "prerequisites": [
+                "PHASE_07"
+            ],
+            "estimated_prompts": 3,
+            "tasks": [
+                {
+                    "id": "10_01",
+                    "name": "Hook Setup",
+                    "template_id": "PT026",
+                    "description": "Create pb_hooks directory and basic hook structure",
+                    "output": "pb_hooks folder with hook JS files"
+                },
+                {
+                    "id": "10_02",
+                    "name": "Business Logic Hooks",
+                    "template_id": "PT027",
+                    "description": "Create hooks for triggers, computed fields, notifications",
+                    "output": "Working hooks that execute on record events"
+                }
+            ],
+            "verification": "Hook triggers on record event, performs expected action",
+            "skip_if": "no backend logic needed"
+        },
+        {
+            "id": "PHASE_11",
+            "name": "UI Polish",
+            "order": 11,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Refine UI with animations, transitions, empty states, loading states",
+            "prerequisites": [
+                "PHASE_07"
+            ],
+            "estimated_prompts": 5,
+            "tasks": [
+                {
+                    "id": "11_01",
+                    "name": "Loading & Empty States",
+                    "template_id": "PT028",
+                    "description": "Create shimmer loaders, skeleton screens, empty state widgets",
+                    "output": "Professional loading and empty states throughout app"
+                },
+                {
+                    "id": "11_02",
+                    "name": "Animations & Transitions",
+                    "template_id": "PT029",
+                    "description": "Add page transitions, hero animations, micro-interactions",
+                    "output": "Smooth transitions throughout app"
+                },
+                {
+                    "id": "11_03",
+                    "name": "Dark Mode",
+                    "template_id": "PT030",
+                    "description": "Implement dark/light mode toggle with persistent preference",
+                    "output": "Dark mode toggleable, persists across sessions"
+                },
+                {
+                    "id": "11_04",
+                    "name": "Responsive Layout",
+                    "template_id": "PT031",
+                    "description": "Make layouts responsive for different screen sizes",
+                    "output": "App works on phones, tablets, landscape"
+                },
+                {
+                    "id": "11_05",
+                    "name": "Splash Screen & App Icon",
+                    "template_id": "PT052",
+                    "description": "Configure and generate app launcher icon and native splash screen",
+                    "output": "App icon in all sizes, native splash screen on both platforms"
+                }
+            ],
+            "verification": "App looks polished on all screen sizes, animations smooth at 60fps",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_12",
+            "name": "Notifications",
+            "order": 12,
+            "type": "📱 FRONTEND + 🔧 BACKEND",
+            "prompt_style": "mixed",
+            "prompt_style_note": "Tasks 12_01, 12_02 = instructions_only (Flutter). Task 12_03 = exact_code (PocketBase hook).",
+            "description": "Implement push notifications via Firebase Cloud Messaging",
+            "prerequisites": [
+                "PHASE_04"
+            ],
+            "estimated_prompts": 3,
+            "tasks": [
+                {
+                    "id": "12_01",
+                    "name": "FCM Setup",
+                    "template_id": "PT032",
+                    "description": "Configure Firebase in Flutter project, permission handling",
+                    "output": "Firebase initialized, notification permissions requested"
+                },
+                {
+                    "id": "12_02",
+                    "name": "Notification Handler",
+                    "template_id": "PT033",
+                    "description": "Handle foreground, background, and tap notifications",
+                    "output": "Notifications handled in all app states"
+                },
+                {
+                    "id": "12_03",
+                    "name": "Server-side Trigger",
+                    "template_id": "PT034",
+                    "description": "PocketBase hook to send FCM on record events",
+                    "output": "Automatic push notification on new record creation"
+                }
+            ],
+            "verification": "Notification received on both foreground and background, tap opens correct screen",
+            "skip_if": "no notifications needed"
+        },
+        {
+            "id": "PHASE_13",
+            "name": "Payments",
+            "order": 13,
+            "type": "📱 FRONTEND + 🔧 BACKEND",
+            "prompt_style": "mixed",
+            "prompt_style_note": "Tasks 13_01, 13_02 = instructions_only (Flutter). Task 13_03 = exact_code (PocketBase webhook hook).",
+            "description": "Implement Stripe payment integration",
+            "prerequisites": [
+                "PHASE_07"
+            ],
+            "estimated_prompts": 3,
+            "tasks": [
+                {
+                    "id": "13_01",
+                    "name": "Stripe Setup",
+                    "template_id": "PT035",
+                    "description": "Configure Stripe in Flutter, create payment service",
+                    "output": "Stripe SDK initialized, payment service ready"
+                },
+                {
+                    "id": "13_02",
+                    "name": "Payment UI",
+                    "template_id": "PT036",
+                    "description": "Create checkout/payment screen",
+                    "output": "Payment form with card input, submit, loading states"
+                },
+                {
+                    "id": "13_03",
+                    "name": "Payment Webhook",
+                    "template_id": "PT037",
+                    "description": "PocketBase hook for Stripe webhook handling",
+                    "output": "Webhook processes payment events, updates records"
+                }
+            ],
+            "verification": "Test payment with Stripe test card succeeds, record updated",
+            "skip_if": "no payments needed"
+        },
+        {
+            "id": "PHASE_14",
+            "name": "Offline & Cache",
+            "order": 14,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Implement local database caching and offline support",
+            "prerequisites": [
+                "PHASE_07"
+            ],
+            "estimated_prompts": 2,
+            "tasks": [
+                {
+                    "id": "14_01",
+                    "name": "Local Database Setup",
+                    "template_id": "PT038",
+                    "description": "Set up Hive/Isar for local caching",
+                    "output": "Local database initialized, adapters registered"
+                },
+                {
+                    "id": "14_02",
+                    "name": "Sync Logic",
+                    "template_id": "PT039",
+                    "description": "Implement cache-first fetching with background sync",
+                    "output": "App loads from cache first, syncs in background"
+                }
+            ],
+            "verification": "App works in airplane mode with cached data, syncs when reconnected",
+            "skip_if": "no offline needed"
+        },
+        {
+            "id": "PHASE_15",
+            "name": "Error Handling",
+            "order": 15,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Global error handling, user-friendly error messages, crash reporting",
+            "prerequisites": [
+                "PHASE_07"
+            ],
+            "estimated_prompts": 3,
+            "tasks": [
+                {
+                    "id": "15_01",
+                    "name": "Error Boundary",
+                    "template_id": "PT040",
+                    "description": "Create global error handler, ErrorWidget override, SnackBar utility",
+                    "output": "Errors caught globally, shown as user-friendly messages"
+                },
+                {
+                    "id": "15_02",
+                    "name": "Error UI Widgets",
+                    "template_id": "PT041",
+                    "description": "Create reusable error display widgets and retry logic",
+                    "output": "Error widgets with retry buttons throughout app"
+                },
+                {
+                    "id": "15_03",
+                    "name": "Analytics & Crash Reporting",
+                    "template_id": "PT053",
+                    "description": "Set up analytics tracking and crash reporting for production monitoring",
+                    "output": "Analytics events tracked, crashes reported to dashboard"
+                }
+            ],
+            "verification": "Force an error (disconnect internet) → user sees friendly message with retry",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_16",
+            "name": "Testing",
+            "order": 16,
+            "type": "📱 FRONTEND",
+            "prompt_style": "instructions_only",
+            "description": "Write widget tests and integration tests",
+            "prerequisites": [
+                "PHASE_07"
+            ],
+            "estimated_prompts": 3,
+            "tasks": [
+                {
+                    "id": "16_01",
+                    "name": "Unit Tests",
+                    "template_id": "PT042",
+                    "description": "Test model classes and service methods",
+                    "output": "Unit tests for models and services"
+                },
+                {
+                    "id": "16_02",
+                    "name": "Widget Tests",
+                    "template_id": "PT043",
+                    "description": "Test key widgets render correctly",
+                    "output": "Widget tests for critical screens"
+                },
+                {
+                    "id": "16_03",
+                    "name": "Integration Tests",
+                    "template_id": "PT044",
+                    "description": "Test end-to-end flows (login, CRUD)",
+                    "output": "Integration test for main user flows"
+                }
+            ],
+            "verification": "flutter test passes with 0 failures",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_17",
+            "name": "Security Audit",
+            "order": 17,
+            "type": "🔧 BACKEND",
+            "prompt_style": "exact_code",
+            "description": "Review and harden all security measures",
+            "prerequisites": [
+                "PHASE_16"
+            ],
+            "estimated_prompts": 1,
+            "tasks": [
+                {
+                    "id": "17_01",
+                    "name": "Security Review",
+                    "template_id": "PT045",
+                    "description": "Audit API rules, auth flows, data validation, sensitive data handling",
+                    "output": "Security checklist completed, all issues fixed"
+                }
+            ],
+            "verification": "All API rules verified, no public write access, auth hardened",
+            "skip_if": "never"
+        },
+        {
+            "id": "PHASE_18",
+            "name": "Deployment",
+            "order": 18,
+            "type": "📱 FRONTEND + 🔧 BACKEND",
+            "prompt_style": "mixed",
+            "prompt_style_note": "Tasks 18_01, 18_02, 18_04 = instructions_only (Flutter builds). Tasks 18_03, 18_05 = exact_code (PocketBase production config + verification).",
+            "description": "Build release versions and deploy",
+            "prerequisites": [
+                "PHASE_17"
+            ],
+            "estimated_prompts": 5,
+            "tasks": [
+                {
+                    "id": "18_01",
+                    "name": "Android Build",
+                    "template_id": "PT046",
+                    "description": "Configure signing, build release APK/AAB",
+                    "output": "Signed APK/AAB ready for Play Store"
+                },
+                {
+                    "id": "18_02",
+                    "name": "iOS Build",
+                    "template_id": "PT047",
+                    "description": "Configure provisioning, build release IPA",
+                    "output": "Signed IPA ready for App Store"
+                },
+                {
+                    "id": "18_03",
+                    "name": "PocketBase Production Config",
+                    "template_id": "PT048",
+                    "description": "Harden PocketBase for production (backups, SMTP, rate limiting)",
+                    "output": "PocketBase production-ready"
+                },
+                {
+                    "id": "18_04",
+                    "name": "Force Update & Version Check",
+                    "template_id": "PT055",
+                    "description": "App version checking and force update mechanism via PocketBase config",
+                    "output": "Version check on app start, force/optional update dialogs"
+                },
+                {
+                    "id": "18_05",
+                    "name": "Backend Verification",
+                    "template_id": "PT059",
+                    "description": "SSH into VPS and verify all collections, hooks, rules, CRUD working",
+                    "output": "Backend fully verified on VPS — all collections, hooks, API rules secured"
+                }
+            ],
+            "verification": "Release builds install and run correctly on real devices",
+            "skip_if": "never"
+        }
+    ],
+    "phase_dependencies": {
+        "PHASE_00": [],
+        "PHASE_01": [
+            "PHASE_00"
+        ],
+        "PHASE_02": [
+            "PHASE_01"
+        ],
+        "PHASE_03": [
+            "PHASE_02"
+        ],
+        "PHASE_04": [
+            "PHASE_03"
+        ],
+        "PHASE_05": [
+            "PHASE_04"
+        ],
+        "PHASE_06": [
+            "PHASE_05"
+        ],
+        "PHASE_07": [
+            "PHASE_06"
+        ],
+        "PHASE_08": [
+            "PHASE_07"
+        ],
+        "PHASE_09": [
+            "PHASE_07"
+        ],
+        "PHASE_10": [
+            "PHASE_07"
+        ],
+        "PHASE_11": [
+            "PHASE_07"
+        ],
+        "PHASE_12": [
+            "PHASE_04"
+        ],
+        "PHASE_13": [
+            "PHASE_07"
+        ],
+        "PHASE_14": [
+            "PHASE_07"
+        ],
+        "PHASE_15": [
+            "PHASE_07"
+        ],
+        "PHASE_16": [
+            "PHASE_07"
+        ],
+        "PHASE_17": [
+            "PHASE_16"
+        ],
+        "PHASE_18": [
+            "PHASE_17"
+        ]
+    },
+    "feature_to_phases": {
+        "file_uploads": [
+            "PHASE_08"
+        ],
+        "realtime": [
+            "PHASE_09"
+        ],
+        "server_hooks": [
+            "PHASE_10"
+        ],
+        "push_notifications": [
+            "PHASE_12"
+        ],
+        "payments": [
+            "PHASE_13"
+        ],
+        "offline_support": [
+            "PHASE_14"
+        ],
+        "google_oauth": [
+            "PHASE_04"
+        ],
+        "apple_signin": [
+            "PHASE_04"
+        ],
+        "forgot_password": [
+            "PHASE_04"
+        ],
+        "email_verification": [
+            "PHASE_04"
+        ],
+        "user_profile": [
+            "PHASE_07"
+        ],
+        "splash_icon": [
+            "PHASE_11"
+        ],
+        "analytics": [
+            "PHASE_15"
+        ],
+        "deep_linking": [
+            "PHASE_05"
+        ],
+        "force_update": [
+            "PHASE_18"
+        ],
+        "environment_config": [
+            "PHASE_01"
+        ]
+    }
+}

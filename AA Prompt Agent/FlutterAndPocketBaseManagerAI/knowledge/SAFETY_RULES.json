@@ -1,0 +1,326 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "purpose": "Safety rules and protection phrases for Flutter/Dart/PocketBase prompts",
+        "usage": "Manager AI injects relevant rules into every generated prompt"
+    },
+    "scope_protection": [
+        {
+            "id": "SP001",
+            "name": "Single File Lock",
+            "phrase": "Create ONLY {filename}. Do not modify any other files.",
+            "when_to_use": "Creating a new isolated widget, service, or model"
+        },
+        {
+            "id": "SP002",
+            "name": "Multi-File Lock",
+            "phrase": "Only modify these files: {file_list}. Do not touch any other files.",
+            "when_to_use": "When a task needs changes in 2-3 known files"
+        },
+        {
+            "id": "SP003",
+            "name": "Folder Scope",
+            "phrase": "All new files must go in {folder_path}. Do not create files elsewhere.",
+            "when_to_use": "When creating multiple related files in one folder"
+        },
+        {
+            "id": "SP004",
+            "name": "Widget Tree Protection",
+            "phrase": "Do NOT restructure the existing widget tree. Only add/modify the specified widget.",
+            "when_to_use": "When modifying existing screens"
+        },
+        {
+            "id": "SP005",
+            "name": "Route Protection",
+            "phrase": "Do NOT change existing routes in the GoRouter configuration. Only add the new route.",
+            "when_to_use": "When adding new screens/routes"
+        }
+    ],
+    "behavior_protection": [
+        {
+            "id": "BP001",
+            "name": "Preserve Existing",
+            "phrase": "Keep all existing functionality working. Do NOT break anything that currently works.",
+            "when_to_use": "Always when modifying existing files"
+        },
+        {
+            "id": "BP002",
+            "name": "No Code Removal",
+            "phrase": "Do NOT remove any existing code, widgets, imports, or comments unless explicitly asked.",
+            "when_to_use": "Always when modifying files"
+        },
+        {
+            "id": "BP003",
+            "name": "Pattern Consistency",
+            "phrase": "Follow the exact same patterns used in {reference_file}. Match naming, structure, and error handling.",
+            "when_to_use": "When creating siblings of existing files"
+        },
+        {
+            "id": "BP004",
+            "name": "State Management Lock",
+            "phrase": "Use {state_management_approach} ONLY. Do NOT mix with setState, BLoC, or other approaches.",
+            "when_to_use": "Any prompt that involves state"
+        },
+        {
+            "id": "BP005",
+            "name": "Navigation Lock",
+            "phrase": "Use GoRouter for ALL navigation. Do NOT use Navigator.push or Navigator.pop directly.",
+            "when_to_use": "When the project uses GoRouter"
+        },
+        {
+            "id": "BP006",
+            "name": "Theme Lock",
+            "phrase": "Use Theme.of(context) for ALL colors and text styles. Do NOT hardcode colors or font sizes.",
+            "when_to_use": "Any UI work"
+        }
+    ],
+    "uncertainty_rules": [
+        {
+            "id": "UR001",
+            "name": "No Guessing",
+            "phrase": "If you are unsure about ANY requirement, stop and ask before coding.",
+            "when_to_use": "When instructions may be ambiguous"
+        },
+        {
+            "id": "UR002",
+            "name": "Verify Existence",
+            "phrase": "Before importing {file}, verify it exists. If it doesn't exist, inform me instead of creating it.",
+            "when_to_use": "When referencing files that may not exist yet"
+        },
+        {
+            "id": "UR003",
+            "name": "API Verification",
+            "phrase": "Verify all PocketBase SDK methods exist in the pocketbase package before using them. Do NOT invent methods.",
+            "when_to_use": "Any PocketBase SDK usage"
+        },
+        {
+            "id": "UR004",
+            "name": "Package Version Check",
+            "phrase": "Use API compatible with the package versions in pubspec.yaml. Do NOT use deprecated or future APIs.",
+            "when_to_use": "When using external packages"
+        }
+    ],
+    "type_safety": [
+        {
+            "id": "TS001",
+            "name": "No Dynamic",
+            "phrase": "Use strict Dart types. No 'dynamic' unless absolutely unavoidable. Prefer typed models.",
+            "when_to_use": "Always"
+        },
+        {
+            "id": "TS002",
+            "name": "Null Safety",
+            "phrase": "Handle ALL nullable values. Use null checks (if != null), default values (??), or conditional access (?.) — never use ! without guaranteed non-null.",
+            "when_to_use": "Always"
+        },
+        {
+            "id": "TS003",
+            "name": "Model Classes",
+            "phrase": "Create proper Dart model classes with fromJson/toJson. Do NOT use raw Map<String, dynamic> in UI code.",
+            "when_to_use": "Data handling"
+        },
+        {
+            "id": "TS004",
+            "name": "Enum Usage",
+            "phrase": "Use Dart enums for fixed value sets (status, category, role). DO NOT use String constants.",
+            "when_to_use": "When dealing with fixed options"
+        }
+    ],
+    "error_handling": [
+        {
+            "id": "EH001",
+            "name": "Try-Catch Required",
+            "phrase": "Wrap ALL PocketBase calls in try-catch. Handle ClientException specifically.",
+            "when_to_use": "Any PocketBase API call"
+        },
+        {
+            "id": "EH002",
+            "name": "UI Error States",
+            "phrase": "Handle ALL states: loading (CircularProgressIndicator), error (error message widget), empty (empty state widget), data (actual content).",
+            "when_to_use": "Any screen that fetches data"
+        },
+        {
+            "id": "EH003",
+            "name": "Async Context Safety",
+            "phrase": "After any await, check 'if (!mounted) return;' before using context in StatefulWidgets.",
+            "when_to_use": "Any async operation in StatefulWidget"
+        },
+        {
+            "id": "EH004",
+            "name": "Network Error",
+            "phrase": "Handle network errors gracefully. Show user-friendly message, not stack traces.",
+            "when_to_use": "Any network call"
+        }
+    ],
+    "pocketbase_rules": [
+        {
+            "id": "PB001",
+            "name": "API Rules Required",
+            "phrase": "Set API rules on EVERY collection: listRule, viewRule, createRule, updateRule, deleteRule. Never leave a collection with empty rules (that means public access).",
+            "when_to_use": "Creating/modifying PocketBase collections"
+        },
+        {
+            "id": "PB002",
+            "name": "v0.23+ API",
+            "phrase": "Use PocketBase v0.23+ API with $app. Do NOT use legacy 'dao' API.",
+            "when_to_use": "Any pb_hooks or backend code"
+        },
+        {
+            "id": "PB003",
+            "name": "Auth Record Check",
+            "phrase": "Always check @request.auth.id in API rules. Use '@request.auth.id = user_id' for owner-only access.",
+            "when_to_use": "Setting up collection security"
+        },
+        {
+            "id": "PB004",
+            "name": "Expand Relations",
+            "phrase": "Use expand parameter for relation fields. Do NOT make separate API calls for related records.",
+            "when_to_use": "Fetching records with relations"
+        },
+        {
+            "id": "PB005",
+            "name": "File URL Pattern",
+            "phrase": "Use pb.files.getUrl(record, filename) to get file URLs. Do NOT construct URLs manually.",
+            "when_to_use": "Displaying uploaded files"
+        }
+    ],
+    "flutter_rules": [
+        {
+            "id": "FL001",
+            "name": "Widget Extraction",
+            "phrase": "If a widget has more than 5 levels of nesting, extract inner widgets into named private methods (_buildX) or separate widget classes.",
+            "when_to_use": "Any UI building"
+        },
+        {
+            "id": "FL002",
+            "name": "Const Constructors",
+            "phrase": "Use const constructors wherever possible for performance. Mark widgets as const when all parameters are compile-time constants.",
+            "when_to_use": "Any widget creation"
+        },
+        {
+            "id": "FL003",
+            "name": "Key Properties",
+            "phrase": "Add Key to ALL list items (ListView.builder, Column children generated from data). Use ValueKey with unique identifier.",
+            "when_to_use": "Any list rendering"
+        },
+        {
+            "id": "FL004",
+            "name": "Dispose Resources",
+            "phrase": "Dispose ALL controllers (TextEditingController, AnimationController, ScrollController) in dispose() method.",
+            "when_to_use": "Any StatefulWidget with controllers"
+        },
+        {
+            "id": "FL005",
+            "name": "Responsive Design",
+            "phrase": "Use MediaQuery, LayoutBuilder, or Flex widgets for responsive layout. Do NOT hardcode widths/heights for screen-dependent elements.",
+            "when_to_use": "Any screen layout"
+        }
+    ],
+    "verification_rules": [
+        {
+            "id": "VR001",
+            "name": "Analyze Before Confirm",
+            "phrase": "Run 'flutter analyze' and fix ALL issues before confirming prompt completion.",
+            "when_to_use": "End of every prompt"
+        },
+        {
+            "id": "VR002",
+            "name": "Test After Change",
+            "phrase": "Run 'flutter test' after changes. Fix any broken tests before confirming.",
+            "when_to_use": "End of every prompt when tests exist"
+        },
+        {
+            "id": "VR003",
+            "name": "Self-Check",
+            "phrase": "Recheck EVERY requirement listed above. Is each one implemented? If ANY is missing, implement it before confirming.",
+            "when_to_use": "End of every prompt"
+        }
+    ],
+    "task_type_safety_mapping": {
+        "new_widget": [
+            "SP001",
+            "TS001",
+            "TS002",
+            "FL001",
+            "FL002",
+            "EH002",
+            "VR001"
+        ],
+        "modify_widget": [
+            "SP002",
+            "BP001",
+            "BP002",
+            "SP004",
+            "TS002",
+            "EH003",
+            "VR001"
+        ],
+        "new_service": [
+            "SP001",
+            "TS001",
+            "TS003",
+            "EH001",
+            "EH004",
+            "UR003",
+            "VR001"
+        ],
+        "modify_service": [
+            "SP002",
+            "BP001",
+            "BP002",
+            "EH001",
+            "VR001"
+        ],
+        "new_model": [
+            "SP001",
+            "TS001",
+            "TS003",
+            "TS004",
+            "VR001"
+        ],
+        "pocketbase_collection": [
+            "PB001",
+            "PB002",
+            "PB003"
+        ],
+        "pocketbase_hook": [
+            "PB002",
+            "UR003",
+            "VR001"
+        ],
+        "auth_feature": [
+            "SP002",
+            "BP001",
+            "EH001",
+            "EH003",
+            "PB003",
+            "VR001"
+        ],
+        "ui_screen": [
+            "SP001",
+            "BP006",
+            "EH002",
+            "FL001",
+            "FL005",
+            "VR001"
+        ],
+        "refactor": [
+            "SP002",
+            "BP001",
+            "BP002",
+            "BP003",
+            "VR001",
+            "VR002"
+        ],
+        "navigation": [
+            "BP005",
+            "SP005",
+            "VR001"
+        ],
+        "state_management": [
+            "BP004",
+            "TS001",
+            "VR001"
+        ]
+    }
+}

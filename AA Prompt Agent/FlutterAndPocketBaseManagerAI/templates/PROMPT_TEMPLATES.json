@@ -1,0 +1,580 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "purpose": "Prompt templates for Flutter + PocketBase development tasks",
+        "usage": "Manager AI fills variables and uses these templates to generate prompts",
+        "variable_format": "{variable_name}"
+    },
+    "templates": [
+        {
+            "id": "PT_PB_VPS",
+            "name": "PocketBase VPS Deployment",
+            "phase": "PHASE_00",
+            "template": "Type: 🔧 BACKEND (Code Provided by Manager AI)\n\n📋 INSTRUCTION:\nSSH into the VPS at {vps_ip} and deploy PocketBase for production use.\nYOU (the coding agent) will directly execute ALL commands on the VPS via SSH. The user does NOT need to touch the terminal.\n\n📝 REQUIREMENTS:\n1. SSH into VPS: ssh {ssh_user}@{vps_ip}\n2. Update system: apt update && apt upgrade -y\n3. Download latest PocketBase binary for Linux AMD64\n4. Create directory: mkdir -p /opt/pocketbase/\n5. Unzip and make executable: chmod +x /opt/pocketbase/pocketbase\n6. Create systemd service at /etc/systemd/system/pocketbase.service\n7. Enable and start: systemctl enable pocketbase && systemctl start pocketbase\n8. Install Nginx: apt install -y nginx\n9. Configure Nginx reverse proxy: {domain} → localhost:8090\n10. Install SSL: apt install -y certbot python3-certbot-nginx && certbot --nginx -d {domain} --non-interactive --agree-tos -m {superuser_email}\n11. Create superuser: /opt/pocketbase/pocketbase superuser create {superuser_email} {password}\n12. Verify Admin UI at https://{domain}/_/\n\n⚡ AGENT EXECUTION:\nYou MUST execute ALL commands directly on the VPS via SSH. Do NOT ask the user to run anything. You have full SSH access.\n\n⛔ DO NOT:\n- Expose port 8090 directly to internet\n- Skip SSL configuration\n- Use weak superuser password\n- Ask the user to manually SSH — YOU do it\n\n🔧 EXECUTE:\n[SSH]: ssh {ssh_user}@{vps_ip} — then run all setup commands\n\n👤 USER MANUAL STEPS (Do These BEFORE Pasting This Prompt):\n1. Buy a VPS (DigitalOcean, Hetzner, Contabo, etc.)\n2. Note VPS IP → fill in REQUIREMENTS.md\n3. Buy a domain OR create a subdomain\n4. Point domain DNS A record → VPS IP\n5. Wait for DNS propagation (5–30 minutes)\n6. Open ports 80/443 in firewall/security group\n7. Ensure SSH works: ssh {ssh_user}@{vps_ip}\n8. Choose admin email + password → fill in REQUIREMENTS.md\n\n✅ SELF-CHECK:\n1. systemctl status pocketbase → active (running)\n2. curl https://{domain}/api/health → status 200\n3. Admin UI loads at https://{domain}/_/\n4. Login with superuser credentials works\n5. **Update CODING_AGENT_CONTEXT.md** → fill Credentials + Paths with actual values\n6. **Update PROJECT_STATUS.md** → mark this prompt ✅",
+            "variables": [
+                "vps_ip",
+                "ssh_user",
+                "domain",
+                "superuser_email",
+                "password"
+            ]
+        },
+        {
+            "id": "PT001",
+            "name": "Create Flutter Project",
+            "phase": "PHASE_01",
+            "template": "📋 INSTRUCTION:\nCreate a new Flutter project with proper folder organization.\n\n📝 CREATE:\nNew Flutter project: {app_name}\n\n📋 REQUIREMENTS:\n- Organization: {org_name}\n- Create folder structure:\n  - lib/screens/ (screen widgets)\n  - lib/widgets/ (reusable widgets)\n  - lib/services/ (API and business logic)\n  - lib/models/ (data models)\n  - lib/config/ (theme, constants, environment)\n  - lib/providers/ (state management)\n  - lib/utils/ (helper functions)\n\n🔧 EXECUTE:\n[CLI]: flutter create --org {org_name} {app_name}\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Run flutter run → app launches with default counter screen\n3. All folders created under lib/",
+            "variables": [
+                "app_name",
+                "org_name"
+            ]
+        },
+        {
+            "id": "PT002",
+            "name": "Configure Dependencies",
+            "phase": "PHASE_01",
+            "template": "📋 INSTRUCTION:\nAdd all required packages to pubspec.yaml for the project.\n\n📝 MODIFY:\nFile: pubspec.yaml\n\n📋 REQUIREMENTS:\nAdd these dependencies:\n{dependency_list}\n\n⛔ DO NOT:\n- Remove any existing dependencies\n- Change the Flutter SDK version constraint\n\n🔧 EXECUTE:\n[CLI]: {pub_add_commands}\n\n✅ SELF-CHECK:\n1. Run flutter pub get → resolves without errors\n2. Run flutter analyze → 0 issues\n3. All packages listed in pubspec.yaml",
+            "variables": [
+                "dependency_list",
+                "pub_add_commands"
+            ]
+        },
+        {
+            "id": "PT003",
+            "name": "PocketBase SDK Connection",
+            "phase": "PHASE_01",
+            "template": "📋 INSTRUCTION:\nCreate PocketBase client service and environment configuration.\n\n📝 CREATE:\nFile: lib/services/pocketbase_service.dart\nFile: lib/config/env.dart\n\n📋 REQUIREMENTS:\n- PocketBase URL: {pocketbase_url}\n- Create singleton PocketBase client instance\n- Environment config with base URL\n- Health check method to verify connection\n- Handle connection errors gracefully\n\n⛔ DO NOT:\n- Hardcode URLs (use config file)\n- Skip error handling on connection\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Health check returns 200 from PocketBase server\n3. PocketBase client accessible from service",
+            "variables": [
+                "pocketbase_url"
+            ]
+        },
+        {
+            "id": "PT004",
+            "name": "Create PocketBase Collections",
+            "phase": "PHASE_02",
+            "template": "🛠️ TYPE: BACKEND (Code Provided by Manager AI)\n\n📝 INSTRUCTION:\nCreate PocketBase collections by saving the migration files below.\nThe Manager AI has written the EXACT migration code for your project.\nYou do NOT need to write any code. Just create the files exactly as shown.\n\n💡 CONTEXT:\nMigration files define database collections (tables). Each .js file creates one collection.\nFiles go in pb_migrations/ folder in your project root.\nAfter saving, run deploy.sh to push to VPS.\n\n📄 CREATE FILES:\n[Manager AI provides exact migration code blocks here when generating the prompt]\n\n{migration_code}\n\n🚫 DO NOT:\n- Modify the provided code in any way\n- Change file names or paths\n- Write your own migration code\n- Skip any file\n\n🚀 DEPLOY:\n[CLI]: bash deploy.sh\n\n✅ SELF-CHECK:\n1. All migration files created in pb_migrations/\n2. deploy.sh ran without errors\n3. curl https://{domain}/api/health → 200\n4. Confirm: 'Collections deployed. [X] migration files saved and synced.'",
+            "variables": [
+                "migration_code",
+                "domain"
+            ]
+        },
+        {
+            "id": "PT005",
+            "name": "Define Collection Relations",
+            "phase": "PHASE_02",
+            "template": "🛠️ TYPE: BACKEND (Code Provided by Manager AI)\n\n📝 INSTRUCTION:\nAdd relation fields between collections by saving the migration file below.\nThe Manager AI has written the exact code. Save it as-is.\n\n💡 CONTEXT:\nRelation fields link one collection to another (like foreign keys).\nThis migration adds relation fields to collections that already exist.\n\n📄 CREATE FILE:\n[Manager AI provides exact migration code here]\n\n{relation_migration_code}\n\n🚫 DO NOT:\n- Modify the provided code\n- Write your own relation code\n\n🚀 DEPLOY:\n[CLI]: bash deploy.sh\n\n✅ SELF-CHECK:\n1. File saved at correct path in pb_migrations/\n2. deploy.sh ran without errors\n3. curl with ?expand=relation_field returns related data\n4. Confirm: 'Relations deployed. [X] relation fields added.'",
+            "variables": [
+                "relation_migration_code",
+                "domain"
+            ]
+        },
+        {
+            "id": "PT006",
+            "name": "Create Dart Model Classes",
+            "phase": "PHASE_02",
+            "template": "📋 INSTRUCTION:\nCreate typed Dart model classes matching PocketBase collections.\n\n📊 BACKEND SCHEMA (from backend prompts):\n{collection_schema}\n\n📝 CREATE:\n{model_file_paths}\n\n📋 REQUIREMENTS:\nFor each model class:\n- Match field names and types EXACTLY to the PocketBase collection schema above\n- All fields with proper Dart types (String, int, bool, DateTime)\n- factory fromJson(Map<String, dynamic> json) constructor\n- Map<String, dynamic> toJson() method\n- Handle nullable fields correctly\n- Include id, created, updated from PocketBase base fields\n- Relation fields use String type (store record ID)\n\nModels needed:\n{model_definitions}\n\n⛔ DO NOT:\n- Use dynamic type for any field\n- Skip null handling for optional fields\n- Forget fromJson/toJson\n- Use field names different from the PocketBase collection\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. All model files created in lib/models/\n3. Every PocketBase collection has a corresponding model\n4. Every field in BACKEND SCHEMA has a matching Dart field",
+            "variables": [
+                "collection_schema",
+                "model_file_paths",
+                "model_definitions"
+            ]
+        },
+        {
+            "id": "PT007",
+            "name": "Set API Rules",
+            "phase": "PHASE_03",
+            "template": "🛠️ TYPE: BACKEND (Code Provided by Manager AI)\n\n📝 INSTRUCTION:\nSet API security rules for all collections by saving the migration file below.\nThe Manager AI has written the exact code. Save it as-is.\n\n💡 CONTEXT:\nAPI rules control who can read, create, update, delete records.\nWithout rules = anyone can do anything = app hacked.\n\n📄 CREATE FILE:\n[Manager AI provides exact migration code here]\n\n{rules_migration_code}\n\n🚫 DO NOT:\n- Modify the provided code\n- Leave any collection without rules\n\n🚀 DEPLOY:\n[CLI]: bash deploy.sh\n\n✅ SELF-CHECK:\n1. File saved at correct path in pb_migrations/\n2. deploy.sh ran without errors\n3. curl WITHOUT auth → 403\n4. curl WITH auth → 200\n5. Confirm: 'API rules deployed. [X] collections secured.'",
+            "variables": [
+                "rules_migration_code",
+                "domain"
+            ]
+        },
+        {
+            "id": "PT008",
+            "name": "Auth Service",
+            "phase": "PHASE_04",
+            "template": "📋 INSTRUCTION:\nCreate authentication service wrapping PocketBase auth methods.\n\n📝 CREATE:\nFile: lib/services/auth_service.dart\n\n📋 REQUIREMENTS:\n- login(email, password): Authenticate via PocketBase authWithPassword\n- signup(email, password, {extra_fields}): Create account via PocketBase create + authWithPassword\n- logout(): Clear auth store\n- isLoggedIn: Check if valid token exists in pb.authStore\n- currentUser: Get current authenticated user record\n- refreshSession(): Refresh auth token\n- Use PocketBase client from pocketbase_service.dart\n- Handle all error cases: wrong credentials, network error, account exists\n\n⛔ DO NOT:\n- Store passwords locally\n- Skip error handling\n- Create duplicate PocketBase client instances\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. All methods handle errors with try-catch\n3. Auth store persistence works (token saved)",
+            "variables": [
+                "extra_fields"
+            ]
+        },
+        {
+            "id": "PT009",
+            "name": "Login Screen",
+            "phase": "PHASE_04",
+            "template": "📋 INSTRUCTION:\nCreate login screen with email and password.\n\n📝 CREATE:\nFile: lib/screens/auth/login_screen.dart\n\n📋 REQUIREMENTS:\n- Email TextField with email keyboard type and validation\n- Password TextField with obscureText toggle\n- Login button with loading state\n- Link to signup screen\n- Error message display (SnackBar or inline)\n- Form validation before submission\n- Navigate to home on successful login\n- Handle states: idle, loading, error\n\n🎨 STYLING:\n{styling_requirements}\n\n📦 USE:\n- Auth service from lib/services/auth_service.dart\n- Theme from lib/config/theme.dart\n\n⛔ DO NOT:\n- Skip form validation\n- Show raw error messages to user\n- Forget loading state on button\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Login with valid credentials → navigates to home\n3. Login with wrong password → shows error message\n4. Submit empty form → shows validation errors",
+            "variables": [
+                "styling_requirements"
+            ]
+        },
+        {
+            "id": "PT010",
+            "name": "Signup Screen",
+            "phase": "PHASE_04",
+            "template": "📋 INSTRUCTION:\nCreate signup/registration screen.\n\n📝 CREATE:\nFile: lib/screens/auth/signup_screen.dart\n\n📋 REQUIREMENTS:\n- Email field with validation\n- Password field with strength indicator\n- Confirm password field with match validation\n- {additional_fields}\n- Signup button with loading state\n- Link to login screen\n- Navigate to home after successful signup\n- Handle: account already exists, weak password, network error\n\n🎨 STYLING:\n- Match login screen design\n{styling_requirements}\n\n📦 USE:\n- Auth service from lib/services/auth_service.dart\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Signup with valid data → account created in PocketBase\n3. Signup with existing email → error message\n4. Password mismatch → validation error",
+            "variables": [
+                "additional_fields",
+                "styling_requirements"
+            ]
+        },
+        {
+            "id": "PT011",
+            "name": "Auth State Management",
+            "phase": "PHASE_04",
+            "template": "📋 INSTRUCTION:\nCreate auth state management for use throughout the app.\n\n📝 CREATE:\nFile: lib/providers/auth_provider.dart\n\n📋 REQUIREMENTS:\n- Using {state_management} approach\n- Expose: isLoggedIn, currentUser, isLoading\n- Methods: login, signup, logout, checkAuth\n- Listen to PocketBase authStore changes\n- Auto-refresh token on app start\n- Notify UI on auth state changes\n\n📦 USE:\n- Auth service from lib/services/auth_service.dart\n- {state_management} package\n\n⛔ DO NOT:\n- Use a different state management approach\n- Create duplicate auth state\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Auth state updates when user logs in/out\n3. App restart → auth state restored from PocketBase authStore",
+            "variables": [
+                "state_management"
+            ]
+        },
+        {
+            "id": "PT012",
+            "name": "OAuth Provider Setup",
+            "phase": "PHASE_04",
+            "template": "📋 INSTRUCTION:\nAdd {oauth_provider} OAuth login to the app.\n\n📝 MODIFY:\nFile: lib/services/auth_service.dart\nFile: lib/screens/auth/login_screen.dart\n\n📋 REQUIREMENTS:\n- Add loginWith{oauth_provider}() method to auth service\n- Use PocketBase authWithOAuth2 method\n- Add {oauth_provider} sign-in button to login screen\n- Handle OAuth callback/redirect\n- Platform-specific config: {platform_config}\n\n📦 USE:\n- {oauth_package} package\n\n⛔ DO NOT:\n- Break existing email/password login\n- Modify other auth methods\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. OAuth button appears on login screen\n3. Clicking OAuth button opens provider consent screen\n4. After consent → user authenticated and navigated to home",
+            "variables": [
+                "oauth_provider",
+                "platform_config",
+                "oauth_package"
+            ]
+        },
+        {
+            "id": "PT013",
+            "name": "GoRouter Setup",
+            "phase": "PHASE_05",
+            "template": "📋 INSTRUCTION:\nConfigure GoRouter with all application routes and auth redirect.\n\n📝 CREATE:\nFile: lib/config/router.dart\n\n📋 REQUIREMENTS:\n- Define routes:\n{route_definitions}\n- Auth redirect: unauthenticated users → login screen\n- Auth redirect: authenticated users on login → home screen\n- 404 / error route handling\n\n📦 USE:\n- GoRouter package\n- Auth provider from lib/providers/auth_provider.dart\n\n⛔ DO NOT:\n- Use Navigator.push directly anywhere\n- Skip auth redirect logic\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Navigate to each route → correct screen renders\n3. Access protected route without auth → redirected to login\n4. Access login while authenticated → redirected to home",
+            "variables": [
+                "route_definitions"
+            ]
+        },
+        {
+            "id": "PT014",
+            "name": "App Shell / Scaffold",
+            "phase": "PHASE_05",
+            "template": "📋 INSTRUCTION:\nCreate the main app shell with navigation.\n\n📝 CREATE:\nFile: lib/screens/shell/app_shell.dart\n\n📋 REQUIREMENTS:\n- {navigation_type}: {navigation_items}\n- Active item highlighting\n- GoRouter ShellRoute integration\n- Each tab preserves its navigation state\n- {additional_shell_requirements}\n\n🎨 STYLING:\n{styling_requirements}\n\n⛔ DO NOT:\n- Hardcode colors (use Theme)\n- Skip active state indication\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. All navigation items work and switch screens\n3. Active item is visually highlighted\n4. Back button works correctly on each tab",
+            "variables": [
+                "navigation_type",
+                "navigation_items",
+                "additional_shell_requirements",
+                "styling_requirements"
+            ]
+        },
+        {
+            "id": "PT015",
+            "name": "Theme Configuration",
+            "phase": "PHASE_05",
+            "template": "📋 INSTRUCTION:\nCreate comprehensive app theme with all design tokens.\n\n📝 CREATE:\nFile: lib/config/theme.dart\n\n📋 REQUIREMENTS:\n- AppTheme class with static lightTheme and darkTheme\n- Color scheme:\n{color_scheme}\n- Typography: {font_family} font family\n- Component themes: InputDecoration, Button, Card, AppBar, BottomNavigationBar\n- Border radius standards: {border_radius}\n- Elevation standards\n- Text theme with all text styles\n\n⛔ DO NOT:\n- Use Colors.red, Colors.blue etc. directly (define named constants)\n- Skip dark theme\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Set theme in MaterialApp → all screens use it\n3. Toggle dark mode → all screens switch correctly",
+            "variables": [
+                "color_scheme",
+                "font_family",
+                "border_radius"
+            ]
+        },
+        {
+            "id": "PT016",
+            "name": "Service Layer",
+            "phase": "PHASE_06",
+            "template": "📋 INSTRUCTION:\nCreate PocketBase service class for {entity_name} entity.\n\n📊 BACKEND SCHEMA (from backend prompts):\nCollection: '{collection_name}'\n{collection_fields}\n\n📝 CREATE:\nFile: lib/services/{entity_name}_service.dart\n\n📋 REQUIREMENTS:\n- getAll(): Fetch all records from '{collection_name}' collection, return List<{model_class}>\n- getById(String id): Fetch single record with expand for relations\n- create({model_class} item): Create new record\n- update(String id, {model_class} item): Update existing record\n- delete(String id): Delete record\n- Pagination support (page, perPage)\n- Filter/sort support\n- All methods wrapped in try-catch\n- Use {model_class} model from lib/models/\n- Use EXACTLY the field names from BACKEND SCHEMA above\n\n📦 USE:\n- PocketBase client from lib/services/pocketbase_service.dart\n- {model_class} from lib/models/{model_file}\n\n⛔ DO NOT:\n- Return raw Map<String, dynamic> (use typed models)\n- Skip error handling\n- Create new PocketBase client instance\n- Use field names different from BACKEND SCHEMA\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. getAll() returns typed List from PocketBase\n3. create() creates record visible in Admin UI\n4. All fields match the collection schema exactly",
+            "variables": [
+                "entity_name",
+                "collection_name",
+                "collection_fields",
+                "model_class",
+                "model_file"
+            ]
+        },
+        {
+            "id": "PT017",
+            "name": "State Providers",
+            "phase": "PHASE_06",
+            "template": "📋 INSTRUCTION:\nCreate state management provider for {entity_name}.\n\n📝 CREATE:\nFile: lib/providers/{entity_name}_provider.dart\n\n📋 REQUIREMENTS:\n- Using {state_management} approach\n- Expose: items list, isLoading, error, selectedItem\n- Methods: fetchAll, fetchById, create, update, delete\n- Handle loading/error/success states\n- Notify UI on state changes\n- Refresh support (pull-to-refresh)\n\n📦 USE:\n- {entity_name}_service from lib/services/\n- {state_management} package\n\n⛔ DO NOT:\n- Call PocketBase directly (use service layer)\n- Mix state management approaches\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Provider exposes loading state during fetch\n3. Error state set when service throws\n4. Items list updates after create/delete",
+            "variables": [
+                "entity_name",
+                "state_management"
+            ]
+        },
+        {
+            "id": "PT018",
+            "name": "List Screen",
+            "phase": "PHASE_07",
+            "template": "📋 INSTRUCTION:\nCreate list/index screen for {entity_name}.\n\n📊 BACKEND SCHEMA (from backend prompts):\nCollection: '{collection_name}'\n{collection_fields}\n\n📝 CREATE:\nFile: lib/screens/{entity_name}/list_{entity_name}_screen.dart\n\n📋 REQUIREMENTS:\n- Display list of {entity_name} records\n- Show fields: {display_fields}\n- Pull-to-refresh\n- Loading state: shimmer/skeleton\n- Empty state: message + illustration\n- Error state: message + retry button\n- Tap item → navigate to detail screen\n- FAB or button to navigate to create screen\n- {additional_list_requirements}\n\n🎨 STYLING:\n{styling_requirements}\n\n📦 USE:\n- {entity_name}_provider from lib/providers/\n- GoRouter for navigation\n\n⛔ DO NOT:\n- Fetch data directly from PocketBase (use provider)\n- Skip loading/error/empty states\n- Hardcode colors (use Theme)\n- Use field names that don't exist in BACKEND SCHEMA\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Screen shows list of records from PocketBase\n3. Pull-to-refresh works\n4. Empty state shows when no records\n5. Tap item navigates to detail\n6. All displayed fields match BACKEND SCHEMA field names",
+            "variables": [
+                "entity_name",
+                "collection_name",
+                "collection_fields",
+                "display_fields",
+                "additional_list_requirements",
+                "styling_requirements"
+            ]
+        },
+        {
+            "id": "PT019",
+            "name": "Detail Screen",
+            "phase": "PHASE_07",
+            "template": "📋 INSTRUCTION:\nCreate detail screen for single {entity_name} record.\n\n📝 CREATE:\nFile: lib/screens/{entity_name}/detail_{entity_name}_screen.dart\n\n📋 REQUIREMENTS:\n- Receive record ID from route parameter\n- Display all fields: {display_fields}\n- {relation_displays}\n- Edit button → navigate to edit screen\n- Delete button with confirmation dialog\n- Loading/error states\n- Back navigation\n\n📦 USE:\n- {entity_name}_provider\n- GoRouter\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Screen loads record by ID\n3. All fields display correctly\n4. Edit button navigates to edit form\n5. Delete removes record and navigates back",
+            "variables": [
+                "entity_name",
+                "display_fields",
+                "relation_displays"
+            ]
+        },
+        {
+            "id": "PT020",
+            "name": "Create Form",
+            "phase": "PHASE_07",
+            "template": "📋 INSTRUCTION:\nCreate form screen for adding new {entity_name} records.\n\n📊 BACKEND SCHEMA (from backend prompts):\nCollection: '{collection_name}'\n{collection_fields}\n\n📝 CREATE:\nFile: lib/screens/{entity_name}/create_{entity_name}_screen.dart\n\n📋 REQUIREMENTS:\n- Form fields MUST match BACKEND SCHEMA above:\n{form_fields}\n- Validation rules:\n{validation_rules}\n- Submit button with loading state\n- On success: navigate back and refresh list\n- On error: show error message\n- Keyboard handling: correct input types, dismiss on tap outside\n\n📦 USE:\n- {entity_name}_provider for submission\n- {model_class} model\n\n⛔ DO NOT:\n- Submit without validation\n- Show raw error messages\n- Add form fields that don't exist in BACKEND SCHEMA\n- Miss required fields from BACKEND SCHEMA\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Submit valid form → record created in PocketBase Admin\n3. Submit invalid form → validation errors shown\n4. After creation → navigated back, list shows new record\n5. Every required field from BACKEND SCHEMA has a form input",
+            "variables": [
+                "entity_name",
+                "collection_name",
+                "collection_fields",
+                "form_fields",
+                "validation_rules",
+                "model_class"
+            ]
+        },
+        {
+            "id": "PT021",
+            "name": "Edit/Delete Form",
+            "phase": "PHASE_07",
+            "template": "📋 INSTRUCTION:\nCreate edit screen and delete functionality for {entity_name}.\n\n📊 BACKEND SCHEMA (from backend prompts):\nCollection: '{collection_name}'\n{collection_fields}\n\n📝 CREATE:\nFile: lib/screens/{entity_name}/edit_{entity_name}_screen.dart\n\n📋 REQUIREMENTS:\n- Load existing record data into form fields\n- Same fields and validation as create form (MUST match BACKEND SCHEMA)\n- Pre-populate all fields with current values\n- Save button: update record, navigate back\n- Delete button: show confirmation dialog, delete, navigate back\n- Handle concurrent edit conflicts\n\n📦 USE:\n- {entity_name}_provider\n- Same form structure as create screen\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Fields pre-populated with current data\n3. Save → record updated in PocketBase\n4. Delete → record removed, navigated to list\n5. All fields match BACKEND SCHEMA exactly",
+            "variables": [
+                "entity_name",
+                "collection_name",
+                "collection_fields"
+            ]
+        },
+        {
+            "id": "PT022",
+            "name": "File Upload Widget",
+            "phase": "PHASE_08",
+            "template": "📋 INSTRUCTION:\nCreate reusable file upload widget for PocketBase.\n\n📝 CREATE:\nFile: lib/widgets/file_upload_widget.dart\n\n📋 REQUIREMENTS:\n- Support file types: {file_types}\n- Image picker (camera + gallery)\n- Image compression before upload (max {max_width}px, quality {quality}%)\n- Upload progress indicator\n- Preview of selected file\n- Remove/replace selected file\n- Returns file path/bytes for PocketBase record creation\n- Max file size: {max_size}MB\n\n📦 USE:\n- image_picker package\n- flutter_image_compress package (if images)\n\n⛔ DO NOT:\n- Upload directly to PocketBase (return file for form submission)\n- Skip compression for images\n- Allow files exceeding max size\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Can select image from gallery → preview shows\n3. Can take photo from camera → preview shows\n4. Can remove selected file\n5. Oversized file → error message",
+            "variables": [
+                "file_types",
+                "max_width",
+                "quality",
+                "max_size"
+            ]
+        },
+        {
+            "id": "PT023",
+            "name": "File Display Widget",
+            "phase": "PHASE_08",
+            "template": "📋 INSTRUCTION:\nCreate file display widgets for PocketBase-hosted files.\n\n📝 CREATE:\nFile: lib/widgets/pb_image.dart\nFile: lib/widgets/pb_video_player.dart (if video support needed)\n\n📋 REQUIREMENTS:\n- Construct file URL using PocketBase SDK: pb.files.getUrl(record, filename)\n- Image widget with: loading placeholder, error placeholder, cached\n- Thumbnail support with thumb parameter\n- {additional_media_requirements}\n\n⛔ DO NOT:\n- Construct file URLs manually (use SDK method)\n- Skip loading/error placeholders\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Images load from PocketBase\n3. Thumbnail renders correctly\n4. Missing image shows error placeholder",
+            "variables": [
+                "additional_media_requirements"
+            ]
+        },
+        {
+            "id": "PT024",
+            "name": "Realtime Service",
+            "phase": "PHASE_09",
+            "template": "📋 INSTRUCTION:\nCreate realtime subscription service for PocketBase SSE.\n\n📝 CREATE:\nFile: lib/services/realtime_service.dart\n\n📋 REQUIREMENTS:\n- subscribe(collection, callback): Subscribe to collection changes via SSE\n- unsubscribe(collection): Unsubscribe from collection\n- Handle events: create, update, delete\n- Auto-reconnect on connection loss\n- Clean up subscriptions on dispose\n- Use PocketBase realtime.subscribe() method\n\n📦 USE:\n- PocketBase client from pocketbase_service.dart\n\n⛔ DO NOT:\n- Create custom WebSocket connections (use PocketBase SDK)\n- Skip cleanup on dispose (memory leak)\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Subscribe to collection → callback fires on new record in Admin\n3. Unsubscribe → no more callbacks\n4. Connection drop → auto-reconnects",
+            "variables": []
+        },
+        {
+            "id": "PT025",
+            "name": "Realtime UI Integration",
+            "phase": "PHASE_09",
+            "template": "📋 INSTRUCTION:\nConnect realtime updates to {entity_name} list screen.\n\n📝 MODIFY:\nFile: lib/providers/{entity_name}_provider.dart\nFile: lib/screens/{entity_name}/list_{entity_name}_screen.dart\n\n📋 REQUIREMENTS:\n- Subscribe to '{collection_name}' collection changes on screen init\n- On create event → add new item to list\n- On update event → update existing item in list\n- On delete event → remove item from list\n- Unsubscribe on screen dispose\n- Show subtle animation when list updates\n\n⛔ DO NOT:\n- Break existing manual fetch functionality\n- Skip unsubscribe on dispose\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Open list screen → add record in PocketBase Admin → appears instantly\n3. Update record in Admin → list reflects change\n4. Delete in Admin → item removed from list\n5. Navigate away → subscription cleaned up",
+            "variables": [
+                "entity_name",
+                "collection_name"
+            ]
+        },
+        {
+            "id": "PT026",
+            "name": "PocketBase Hooks Setup",
+            "phase": "PHASE_10",
+            "template": "📋 INSTRUCTION:\nSet up PocketBase hooks directory and create initial hook.\n\n📝 CREATE:\nFile: pb_hooks/{hook_filename}.pb.js\n\n📋 REQUIREMENTS:\n- Use PocketBase v0.23+ $app API (NOT legacy dao)\n- Hook type: {hook_type} for '{collection_name}' collection\n- Logic:\n{hook_logic}\n\nPocketBase hook reference:\n- onRecordAfterCreateSuccess(e) — after record created\n- onRecordAfterUpdateSuccess(e) — after record updated\n- onRecordAfterDeleteSuccess(e) — after record deleted\n- e.record — the affected record\n- $app.findRecordById(collection, id) — lookup record\n\n⛔ DO NOT:\n- Use legacy dao API (deprecated in v0.23+)\n- Use e.dao (use $app instead)\n- Skip error handling in hook\n\n✅ SELF-CHECK:\n1. Restart PocketBase → hook loaded without errors\n2. Trigger hook by creating/updating record → expected action occurs\n3. Check PocketBase logs for any errors",
+            "variables": [
+                "hook_filename",
+                "hook_type",
+                "collection_name",
+                "hook_logic"
+            ]
+        },
+        {
+            "id": "PT027",
+            "name": "Business Logic Hook",
+            "phase": "PHASE_10",
+            "template": "📋 INSTRUCTION:\nCreate PocketBase hook for {hook_purpose}.\n\n📝 CREATE:\nFile: pb_hooks/{hook_filename}.pb.js\n\n📋 REQUIREMENTS:\n{hook_requirements}\n\n⛔ DO NOT:\n- Use deprecated PocketBase APIs\n- Skip error handling\n- Block the hook with long-running operations (use cronAdd for scheduled tasks)\n\n✅ SELF-CHECK:\n1. Restart PocketBase → no errors logged\n2. Trigger the hook → expected behavior occurs\n3. Verify side effects (records created/updated, notifications sent, etc.)",
+            "variables": [
+                "hook_purpose",
+                "hook_filename",
+                "hook_requirements"
+            ]
+        },
+        {
+            "id": "PT028",
+            "name": "Loading & Empty States",
+            "phase": "PHASE_11",
+            "template": "📋 INSTRUCTION:\nCreate loading and empty state widgets for the app.\n\n📝 CREATE:\nFile: lib/widgets/shimmer_loader.dart\nFile: lib/widgets/empty_state.dart\n\n📋 REQUIREMENTS:\n- Shimmer/skeleton loading that matches list item layout\n- Empty state widget with: icon/illustration, message, optional action button\n- Reusable across all list screens\n- Uses app theme colors\n\n🎨 STYLING:\n{styling_requirements}\n\n⛔ DO NOT:\n- Use CircularProgressIndicator alone (use shimmer skeleton)\n- Hardcode text strings (accept as parameters)\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Shimmer renders during loading\n3. Empty state shows when list is empty\n4. Both respect current theme (light/dark)",
+            "variables": [
+                "styling_requirements"
+            ]
+        },
+        {
+            "id": "PT029",
+            "name": "Animations & Transitions",
+            "phase": "PHASE_11",
+            "template": "📋 INSTRUCTION:\nAdd animations and transitions throughout the app.\n\n📝 MODIFY/CREATE:\n{animation_files}\n\n📋 REQUIREMENTS:\n- Page transitions: {page_transition_type}\n- List item animations: staggered fade-in on load\n- Hero animations on images/avatars between list and detail\n- Micro-interactions: button press feedback, toggle animations\n- All animations at 60fps\n\n📦 USE:\n- Flutter built-in animations (AnimatedContainer, Hero, etc.)\n- {animation_packages} (if needed)\n\n⛔ DO NOT:\n- Add animations that block user interaction\n- Use durations longer than 400ms for transitions\n- Skip animation cleanup (dispose controllers)\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Page transitions smooth\n3. List items animate in on load\n4. No jank or dropped frames",
+            "variables": [
+                "animation_files",
+                "page_transition_type",
+                "animation_packages"
+            ]
+        },
+        {
+            "id": "PT030",
+            "name": "Dark Mode",
+            "phase": "PHASE_11",
+            "template": "📋 INSTRUCTION:\nImplement dark/light mode toggle with persistent preference.\n\n📝 CREATE/MODIFY:\nFile: lib/providers/theme_provider.dart\nFile: lib/widgets/theme_toggle.dart\n\n📋 REQUIREMENTS:\n- Theme provider: manages ThemeMode (light/dark/system)\n- Persist preference using SharedPreferences\n- Toggle widget: sun/moon icon button\n- App respects system theme by default\n- All custom colors defined for both themes\n\n📦 USE:\n- shared_preferences package\n- Theme from lib/config/theme.dart\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Toggle → theme switches immediately\n3. Close app, reopen → theme preference preserved\n4. All screens look correct in both themes",
+            "variables": []
+        },
+        {
+            "id": "PT031",
+            "name": "Responsive Layout",
+            "phase": "PHASE_11",
+            "template": "📋 INSTRUCTION:\nMake app layouts responsive for different screen sizes.\n\n📝 MODIFY:\n{responsive_files}\n\n📋 REQUIREMENTS:\n- Phone portrait: single column layout\n- Phone landscape: adapted layout (no overflow)\n- Tablet: multi-column or rail navigation\n- Use LayoutBuilder or MediaQuery for breakpoints\n- Touch targets minimum 48x48dp\n- Text scales appropriately\n\n⛔ DO NOT:\n- Hardcode widths/heights for screen-dependent elements\n- Skip landscape testing\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Test on small phone (360px width) → no overflow\n3. Test on tablet (768px width) → appropriate layout\n4. Rotate to landscape → no crashes or overflow",
+            "variables": [
+                "responsive_files"
+            ]
+        },
+        {
+            "id": "PT032",
+            "name": "FCM Setup",
+            "phase": "PHASE_12",
+            "template": "📋 INSTRUCTION:\nConfigure Firebase Cloud Messaging in the Flutter app.\n\n📝 CREATE/MODIFY:\nFile: lib/services/notification_service.dart\nFile: android/app/google-services.json (copy from provided path)\nFile: ios/Runner/GoogleService-Info.plist (copy from provided path)\n\n📋 REQUIREMENTS:\n- Initialize Firebase in main.dart\n- Request notification permissions (iOS)\n- Get and store FCM token\n- Handle foreground notifications (show in-app)\n- Handle background notifications\n- Handle notification tap → navigate to correct screen\n\n📦 USE:\n- firebase_core, firebase_messaging packages\n- flutter_local_notifications for foreground display\n\n🔧 EXECUTE:\n[CLI]: flutter pub add firebase_core firebase_messaging flutter_local_notifications\n[CLI]: flutterfire configure\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. App asks for notification permission on first launch\n3. FCM token printed in console\n4. Send test notification from Firebase Console → received",
+            "variables": []
+        },
+        {
+            "id": "PT033",
+            "name": "Notification Handler",
+            "phase": "PHASE_12",
+            "template": "📋 INSTRUCTION:\nImplement full notification handling for all app states.\n\n📝 MODIFY:\nFile: lib/services/notification_service.dart\n\n📋 REQUIREMENTS:\n- Foreground: Show local notification with title, body\n- Background: System notification displayed automatically\n- Tap handling: Parse notification data → navigate to correct screen using GoRouter\n- Notification channels (Android): Create channel with proper importance\n- Badge count management\n- Token refresh handling → update in PocketBase user record\n\n⛔ DO NOT:\n- Show duplicate notifications\n- Skip navigation on tap\n- Forget to handle token refresh\n\n✅ SELF-CHECK:\n1. App in foreground → notification received and shown\n2. App in background → system notification shown\n3. Tap notification → correct screen opens\n4. Token refresh → token updated in PocketBase",
+            "variables": []
+        },
+        {
+            "id": "PT034",
+            "name": "Notification Server Hook",
+            "phase": "PHASE_12",
+            "template": "📋 INSTRUCTION:\nCreate PocketBase hook to send push notifications via FCM.\n\n📝 CREATE:\nFile: pb_hooks/send_notification.pb.js\n\n📋 REQUIREMENTS:\n- Trigger: onRecordAfterCreateSuccess for '{trigger_collection}'\n- Build FCM payload: title, body, data (record ID)\n- Send to FCM HTTP v1 API at https://fcm.googleapis.com/v1/projects/{project}/messages:send\n- Target: topic '{topic_name}' or specific user tokens\n- Include record ID in data payload for deep linking\n- Use PocketBase v0.23+ $app API\n\n⛔ DO NOT:\n- Use legacy FCM API\n- Skip error handling on FCM call\n- Use dao API (deprecated)\n\n✅ SELF-CHECK:\n1. Restart PocketBase → hook loaded\n2. Create record in trigger collection → push notification received on device\n3. Tap notification → navigates to record detail",
+            "variables": [
+                "trigger_collection",
+                "topic_name",
+                "project"
+            ]
+        },
+        {
+            "id": "PT035",
+            "name": "Stripe Setup",
+            "phase": "PHASE_13",
+            "template": "📋 INSTRUCTION:\nConfigure Stripe payment integration.\n\n📝 CREATE:\nFile: lib/services/payment_service.dart\n\n📋 REQUIREMENTS:\n- Initialize Stripe SDK with publishable key\n- Create payment intent method (calls PocketBase hook / endpoint)\n- Handle payment sheet presentation\n- Handle success / failure / cancel states\n\n📦 USE:\n- flutter_stripe package\n\n🔧 EXECUTE:\n[CLI]: flutter pub add flutter_stripe\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Stripe SDK initialized without errors",
+            "variables": []
+        },
+        {
+            "id": "PT036",
+            "name": "Payment UI",
+            "phase": "PHASE_13",
+            "template": "📋 INSTRUCTION:\nCreate checkout/payment screen.\n\n📝 CREATE:\nFile: lib/screens/payment/checkout_screen.dart\n\n📋 REQUIREMENTS:\n- Display order/item summary\n- Payment button with loading state\n- Success: confirmation screen + update record in PocketBase\n- Failure: error message with retry option\n- Cancel: return to previous screen\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Stripe test card (4242 4242 4242 4242) → payment succeeds\n3. Declined card → error message shown\n4. After success → record updated in PocketBase",
+            "variables": []
+        },
+        {
+            "id": "PT037",
+            "name": "Payment Webhook Hook",
+            "phase": "PHASE_13",
+            "template": "📋 INSTRUCTION:\nCreate PocketBase hook/route for Stripe webhook handling.\n\n📝 CREATE:\nFile: pb_hooks/stripe_webhook.pb.js\n\n📋 REQUIREMENTS:\n- Register custom API route: POST /api/stripe/webhook\n- Verify Stripe webhook signature\n- Handle events: payment_intent.succeeded, payment_intent.failed\n- Update relevant records in PocketBase on success\n- Use PocketBase v0.23+ $app API\n\n⛔ DO NOT:\n- Skip webhook signature verification\n- Use legacy dao API\n\n✅ SELF-CHECK:\n1. Restart PocketBase → route registered\n2. Stripe test webhook → PocketBase record updated\n3. Invalid signature → rejected",
+            "variables": []
+        },
+        {
+            "id": "PT038",
+            "name": "Local Database Setup",
+            "phase": "PHASE_14",
+            "template": "📋 INSTRUCTION:\nSet up local database for offline caching.\n\n📝 CREATE:\nFile: lib/services/local_storage_service.dart\n\n📋 REQUIREMENTS:\n- Using {local_db} package\n- Initialize database in main.dart\n- Register type adapters for model classes\n- CRUD operations for local cache\n- Clear cache method\n- Storage size limit\n\n📦 USE:\n- {local_db} package\n\n🔧 EXECUTE:\n[CLI]: flutter pub add {local_db}\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Can save and retrieve records locally\n3. App cold start → data loads from local cache",
+            "variables": [
+                "local_db"
+            ]
+        },
+        {
+            "id": "PT039",
+            "name": "Sync Logic",
+            "phase": "PHASE_14",
+            "template": "📋 INSTRUCTION:\nImplement cache-first fetching with background sync.\n\n📝 MODIFY:\nFile: lib/services/{entity_name}_service.dart\n\n📋 REQUIREMENTS:\n- Fetch flow: Load from local cache first → display immediately\n- Background: Fetch from PocketBase → compare with cache → update if changed\n- Offline: If PocketBase unreachable, show cached data\n- Online: Queue creates/updates made offline, sync when connected\n- Connectivity check before network calls\n\n⛔ DO NOT:\n- Show loading spinner when cache has data\n- Delete cache on every app start\n- Skip conflict resolution\n\n✅ SELF-CHECK:\n1. Load data → cache populated\n2. Enable airplane mode → data still shows from cache\n3. Disable airplane mode → new data syncs",
+            "variables": [
+                "entity_name"
+            ]
+        },
+        {
+            "id": "PT040",
+            "name": "Global Error Handler",
+            "phase": "PHASE_15",
+            "template": "📋 INSTRUCTION:\nCreate global error handling for the app.\n\n📝 CREATE/MODIFY:\nFile: lib/utils/error_handler.dart\nFile: lib/main.dart\n\n📋 REQUIREMENTS:\n- Zone-based error catching in main.dart (runZonedGuarded)\n- FlutterError.onError override for widget errors\n- Custom ErrorWidget.builder for red screen replacement\n- AppException class hierarchy (NetworkException, AuthException, etc.)\n- SnackBar helper for showing errors to user\n- Error logging (debugPrint in dev, crash reporting in prod)\n\n⛔ DO NOT:\n- Show stack traces to users\n- Swallow errors silently\n- Remove existing error handling\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Force network error → user-friendly message shown\n3. Widget error → custom error widget (not red screen)\n4. Errors logged to console in debug mode",
+            "variables": []
+        },
+        {
+            "id": "PT041",
+            "name": "Error UI Widgets",
+            "phase": "PHASE_15",
+            "template": "📋 INSTRUCTION:\nCreate reusable error display widgets.\n\n📝 CREATE:\nFile: lib/widgets/error_widget.dart\nFile: lib/widgets/retry_widget.dart\n\n📋 REQUIREMENTS:\n- ErrorDisplayWidget: icon + message + optional retry button\n- RetryWidget: wraps any async operation with error/retry UX\n- Use across all screens that fetch data\n- Matches app theme\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Error widget renders with message and retry button\n3. Retry button re-triggers the operation",
+            "variables": []
+        },
+        {
+            "id": "PT042",
+            "name": "Unit Tests",
+            "phase": "PHASE_16",
+            "template": "📋 INSTRUCTION:\nWrite unit tests for model classes and services.\n\n📝 CREATE:\n{test_file_paths}\n\n📋 REQUIREMENTS:\n- Test model fromJson/toJson with valid data\n- Test model handles null/missing fields\n- Test service methods with mocked PocketBase client\n- Test error handling (network error, not found)\n- Minimum {test_count} test cases\n\n📦 USE:\n- flutter_test package\n- mockito or mocktail for mocking\n\n🔧 EXECUTE:\n[CLI]: flutter test\n\n✅ SELF-CHECK:\n1. Run flutter test → all pass\n2. No skipped tests\n3. Core logic paths covered",
+            "variables": [
+                "test_file_paths",
+                "test_count"
+            ]
+        },
+        {
+            "id": "PT043",
+            "name": "Widget Tests",
+            "phase": "PHASE_16",
+            "template": "📋 INSTRUCTION:\nWrite widget tests for critical screens.\n\n📝 CREATE:\n{test_file_paths}\n\n📋 REQUIREMENTS:\n- Test login screen: renders fields, validates, shows error\n- Test list screen: renders items, shows empty state, shows loading\n- Test form screen: validates fields, submits\n- Mock providers/services\n\n🔧 EXECUTE:\n[CLI]: flutter test\n\n✅ SELF-CHECK:\n1. Run flutter test → all pass\n2. No skipped tests\n3. Critical user-facing screens tested",
+            "variables": [
+                "test_file_paths"
+            ]
+        },
+        {
+            "id": "PT044",
+            "name": "Integration Tests",
+            "phase": "PHASE_16",
+            "template": "📋 INSTRUCTION:\nWrite integration test for main user flow.\n\n📝 CREATE:\nFile: integration_test/app_test.dart\n\n📋 REQUIREMENTS:\n- Test flow: Login → Navigate to list → Create record → Verify in list → Delete → Verify removed\n- Use integration_test package\n- Real app with test PocketBase instance\n\n🔧 EXECUTE:\n[CLI]: flutter test integration_test/app_test.dart\n\n✅ SELF-CHECK:\n1. Integration test runs end-to-end\n2. All assertions pass\n3. Test cleans up test data",
+            "variables": []
+        },
+        {
+            "id": "PT045",
+            "name": "Security Audit",
+            "phase": "PHASE_17",
+            "template": "📋 INSTRUCTION:\nPerform security audit on the entire application.\n\n📋 REQUIREMENTS:\nVerify each item:\n\n**PocketBase API Rules:**\n- [ ] Every collection has API rules set\n- [ ] No collection allows public create/update/delete\n- [ ] Owner-only access uses @request.auth.id = user_id\n- [ ] Admin-only operations require admin auth\n\n**Authentication:**\n- [ ] Passwords never stored in plain text client-side\n- [ ] Auth tokens stored securely (PocketBase authStore)\n- [ ] Session refresh works\n- [ ] Logout clears all local data\n\n**Data Handling:**\n- [ ] No sensitive data in console logs (production)\n- [ ] No API keys in source code (use environment config)\n- [ ] User input validated and sanitized\n- [ ] File uploads restricted by type and size\n\n**Network:**\n- [ ] All API calls use HTTPS\n- [ ] SSL certificate valid on PocketBase server\n\n✅ SELF-CHECK:\n1. All checklist items verified and passing\n2. Any issues found → fix immediately\n3. Confirm: 'Security audit complete. All checks pass.'",
+            "variables": []
+        },
+        {
+            "id": "PT046",
+            "name": "Android Build",
+            "phase": "PHASE_18",
+            "template": "📋 INSTRUCTION:\nBuild release Android APK/AAB.\n\n📋 REQUIREMENTS:\n- Configure signing key in android/key.properties\n- Update android/app/build.gradle for release signing\n- Set proper app version in pubspec.yaml\n- Update app launcher icon\n- Build release APK and AAB\n\n🔧 EXECUTE:\n[CLI]: flutter build apk --release\n[CLI]: flutter build appbundle --release\n\n✅ SELF-CHECK:\n1. Release APK builds without errors\n2. Install APK on real device → app runs correctly\n3. All features work in release mode\n4. App icon and splash screen correct",
+            "variables": []
+        },
+        {
+            "id": "PT047",
+            "name": "iOS Build",
+            "phase": "PHASE_18",
+            "template": "📋 INSTRUCTION:\nBuild release iOS IPA.\n\n📋 REQUIREMENTS:\n- Configure Bundle ID in Xcode\n- Set up provisioning profile and certificates\n- Update app version in pubspec.yaml\n- Update app icon (Assets.xcassets)\n- Archive and export IPA\n\n🔧 EXECUTE:\n[CLI]: flutter build ios --release\n\n✅ SELF-CHECK:\n1. iOS build completes without errors\n2. Archive succeeds in Xcode\n3. App runs on real iOS device\n4. All features work in release mode",
+            "variables": []
+        },
+        {
+            "id": "PT048",
+            "name": "PocketBase Production Config",
+            "phase": "PHASE_18",
+            "template": "📋 INSTRUCTION:\nHarden PocketBase configuration for production.\n\n📋 REQUIREMENTS:\n- Configure SMTP settings for email verification and password reset\n- Set up automated backups (daily cron job backing up pb_data)\n- Configure rate limiting\n- Review and tighten all API rules one final time\n- Set proper CORS origins (only your app's domains/IPs)\n- Enable PocketBase logs collection\n- Set up health monitoring\n\n✅ SELF-CHECK:\n1. SMTP: Send test email → received\n2. Backup: Run backup command → pb_data backed up\n3. Rate limiting: Rapid requests → throttled after limit\n4. CORS: Request from unknown origin → rejected\n5. Health: curl /api/health → 200\n6. Confirm: 'PocketBase production-ready. All checks pass.'",
+            "variables": []
+        },
+        {
+            "id": "PT049",
+            "name": "Forgot Password Screen",
+            "phase": "PHASE_04",
+            "template": "📋 INSTRUCTION:\nCreate forgot password / password reset screen.\n\n📝 CREATE:\nFile: lib/screens/auth/forgot_password_screen.dart\n\n📋 REQUIREMENTS:\n- Email input field with validation\n- Submit button with loading state\n- Call PocketBase requestPasswordReset(email) method\n- Success state: Show 'Check your email' message with icon\n- Error state: Show error (email not found, network error)\n- Back to login link\n- Handle states: idle, loading, success, error\n\n🎨 STYLING:\n- Match login/signup screen design\n{styling_requirements}\n\n📦 USE:\n- PocketBase client from lib/services/pocketbase_service.dart\n- Theme from lib/config/theme.dart\n\n⛔ DO NOT:\n- Skip form validation\n- Show raw error messages to user\n- Forget loading state on button\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Submit valid email → PocketBase sends reset email\n3. Submit invalid email → shows error\n4. Submit empty → shows validation error\n5. After success → shows confirmation message",
+            "variables": [
+                "styling_requirements"
+            ]
+        },
+        {
+            "id": "PT050",
+            "name": "Email Verification Screen",
+            "phase": "PHASE_04",
+            "template": "📋 INSTRUCTION:\nCreate email verification screen shown after signup.\n\n📝 CREATE:\nFile: lib/screens/auth/email_verification_screen.dart\n\n📋 REQUIREMENTS:\n- Display 'Verify your email' message with envelope icon\n- Show the email address the verification was sent to\n- Resend verification button with cooldown timer (60 seconds)\n- Call PocketBase requestVerification(email) for resend\n- Check verification status periodically or on button tap\n- Once verified → navigate to home screen\n- Skip button if email verification is optional\n\n📦 USE:\n- PocketBase client from lib/services/pocketbase_service.dart\n- Auth provider from lib/providers/auth_provider.dart\n\n⛔ DO NOT:\n- Allow spamming resend (enforce cooldown)\n- Skip the verification screen after signup\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. After signup → verification screen appears\n3. Resend button works with cooldown timer\n4. After email verified → navigates to home",
+            "variables": []
+        },
+        {
+            "id": "PT051",
+            "name": "Profile & Settings Screen",
+            "phase": "PHASE_07",
+            "template": "📋 INSTRUCTION:\nCreate user profile screen and settings.\n\n📝 CREATE:\nFile: lib/screens/profile/profile_screen.dart\nFile: lib/screens/profile/edit_profile_screen.dart\n\n📋 REQUIREMENTS:\n- Profile screen showing: avatar, name, email, joined date\n- Edit profile: change name, avatar (using file upload widget if available)\n- Change password section: current password, new password, confirm\n- App settings: theme toggle (dark/light), notification preferences\n- About section: app version, privacy policy link, terms link\n- Logout button with confirmation\n- Delete account button with double confirmation\n- For delete: call PocketBase delete on user record\n\n🎨 STYLING:\n{styling_requirements}\n\n📦 USE:\n- Auth provider from lib/providers/auth_provider.dart\n- File upload widget (if exists) for avatar\n- Theme provider for dark mode toggle\n\n⛔ DO NOT:\n- Allow delete without double confirmation\n- Skip password validation on change password\n- Forget to clear local data on logout/delete\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Profile displays current user data\n3. Edit name → updated in PocketBase\n4. Change password → works with correct current password\n5. Logout → clears session, navigates to login\n6. Delete account → removes user, clears all data",
+            "variables": [
+                "styling_requirements"
+            ]
+        },
+        {
+            "id": "PT052",
+            "name": "Splash Screen & App Icon",
+            "phase": "PHASE_11",
+            "template": "📋 INSTRUCTION:\nConfigure app launcher icon and native splash screen.\n\n📝 MODIFY:\nFile: pubspec.yaml\n\n📋 REQUIREMENTS:\n- Add flutter_launcher_icons package configuration in pubspec.yaml\n- Set icon path to {icon_path}\n- Configure for both Android and iOS\n- Add flutter_native_splash package configuration in pubspec.yaml\n- Set splash background color: {splash_bg_color}\n- Set splash image: {splash_image_path}\n- Configure for both Android and iOS\n- Generate icons and splash assets\n\n🔧 EXECUTE (in order):\n1. flutter pub add --dev flutter_launcher_icons flutter_native_splash\n2. dart run flutter_launcher_icons\n3. dart run flutter_native_splash:create\n\n⛔ DO NOT:\n- Use low-resolution icon (minimum 1024x1024)\n- Skip iOS icon configuration\n- Forget to run the generators after configuration\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Android: check android/app/src/main/res/ for icon files in all densities\n3. iOS: check ios/Runner/Assets.xcassets/AppIcon.appiconset/ for icons\n4. Run app → splash screen shows correctly\n5. App icon appears in launcher",
+            "variables": [
+                "icon_path",
+                "splash_bg_color",
+                "splash_image_path"
+            ]
+        },
+        {
+            "id": "PT053",
+            "name": "Analytics & Crash Reporting",
+            "phase": "PHASE_15",
+            "template": "📋 INSTRUCTION:\nSet up analytics tracking and crash reporting for production monitoring.\n\n📝 CREATE:\nFile: lib/services/analytics_service.dart\n\n📋 REQUIREMENTS:\n- Initialize {analytics_provider} in main.dart\n- Track screen views: log screen name on each navigation\n- Track key user actions: login, signup, create record, purchase\n- Set up crash reporting with {crash_provider}\n- Auto-capture unhandled exceptions (integrate with existing error handler)\n- Log user ID after login (for crash filtering by user)\n- Respect user privacy: don't log sensitive data (passwords, tokens)\n- Disable analytics in debug mode\n\n📦 USE:\n- {analytics_package} package\n- {crash_package} package\n- Error handler from lib/utils/error_handler.dart\n\n🔧 EXECUTE:\n[CLI]: flutter pub add {analytics_package} {crash_package}\n\n⛔ DO NOT:\n- Log passwords, tokens, or personal data to analytics\n- Enable analytics in debug mode (only production)\n- Skip crash reporting — critical for production\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Navigate between screens → screen views logged\n3. Force an exception → crash report captured\n4. Check analytics dashboard → events appearing",
+            "variables": [
+                "analytics_provider",
+                "crash_provider",
+                "analytics_package",
+                "crash_package"
+            ]
+        },
+        {
+            "id": "PT054",
+            "name": "Deep Linking Configuration",
+            "phase": "PHASE_05",
+            "template": "📋 INSTRUCTION:\nConfigure deep linking for the app to handle external URLs.\n\n📝 MODIFY:\nFile: android/app/src/main/AndroidManifest.xml\nFile: ios/Runner/Runner.entitlements\nFile: lib/config/router.dart\n\n📋 REQUIREMENTS:\n- Android: Add intent-filter for app links with scheme {url_scheme} and host {domain}\n- iOS: Add Associated Domains entitlement for {domain}\n- GoRouter: Handle deep link paths:\n  - /verify-email?token=xxx → email verification screen\n  - /reset-password?token=xxx → password reset screen\n  - /{entity}/{id} → entity detail screen\n- Handle app launch via deep link\n- Handle deep link while app is running\n- Fallback: unknown paths → home screen\n\n📦 USE:\n- GoRouter (already configured) — add deep link route handling\n- app_links package for platform-specific setup\n\n🔧 EXECUTE:\n[CLI]: flutter pub add app_links\n\n⛔ DO NOT:\n- Break existing navigation\n- Skip iOS Associated Domains setup\n- Forget to handle deep links when app is already open\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Test deep link: adb shell am start -d {url_scheme}://{domain}/test\n3. Deep link opens correct screen\n4. App killed → deep link launches app and navigates correctly",
+            "variables": [
+                "url_scheme",
+                "domain",
+                "entity"
+            ]
+        },
+        {
+            "id": "PT055",
+            "name": "Force Update & Version Check",
+            "phase": "PHASE_18",
+            "template": "📋 INSTRUCTION:\nImplement app version checking and force update mechanism.\n\n📝 CREATE:\nFile: lib/services/version_service.dart\nFile: lib/widgets/update_dialog.dart\n\n📋 REQUIREMENTS:\n- Create 'app_config' collection in PocketBase with fields: min_version (text), latest_version (text), update_url (text), force_update (bool)\n- On app start: fetch app_config from PocketBase\n- Compare current app version (from package_info_plus) with min_version\n- If current < min_version AND force_update is true → show blocking update dialog (cannot dismiss)\n- If current < latest_version → show optional update dialog (can dismiss)\n- Update button opens store URL (Play Store / App Store)\n- Cache version check result for 24 hours\n\n📦 USE:\n- package_info_plus package\n- url_launcher package\n- PocketBase client from lib/services/pocketbase_service.dart\n\n🔧 EXECUTE:\n[CLI]: flutter pub add package_info_plus url_launcher\n\n⛔ DO NOT:\n- Skip this for production apps\n- Allow dismissing force update dialog\n- Check version on every screen (only on app start)\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Set min_version higher than current → force update dialog appears\n3. Force update dialog cannot be dismissed\n4. Set latest_version higher → optional update dialog appears\n5. Optional dialog can be dismissed",
+            "variables": []
+        },
+        {
+            "id": "PT056",
+            "name": "Environment Configuration",
+            "phase": "PHASE_01",
+            "template": "📋 INSTRUCTION:\nSet up multi-environment configuration for dev, staging, and production.\n\n📝 CREATE:\nFile: lib/config/env.dart\n\n📋 REQUIREMENTS:\n- Define Environment enum: dev, staging, production\n- Environment config class with: pocketbaseUrl, appName, debugMode\n- Dev: http://localhost:8090 (local PocketBase)\n- Staging: https://staging.{domain} (if applicable)\n- Production: https://{domain}\n- Use --dart-define=ENV=dev|staging|prod to switch environments\n- Default to production if no flag provided\n- Enable debug logging only in dev mode\n- Print current environment on app start (dev only)\n\n📦 USE:\n- String.fromEnvironment for compile-time configuration\n\n⛔ DO NOT:\n- Hardcode production URLs in multiple files\n- Ship debug logging in production\n- Use .env files (use dart-define for Flutter)\n\n🔧 EXECUTE:\n[CLI]: flutter run --dart-define=ENV=dev (for development)\n[CLI]: flutter build apk --dart-define=ENV=prod (for production)\n\n✅ SELF-CHECK:\n1. Run flutter analyze → 0 issues\n2. Run with --dart-define=ENV=dev → connects to localhost\n3. Run with --dart-define=ENV=prod → connects to production URL\n4. No environment flag → defaults to production",
+            "variables": [
+                "domain"
+            ]
+        },
+        {
+            "id": "PT057",
+            "name": "PocketBase Migrations Setup",
+            "phase": "PHASE_02",
+            "template": "🛠️ TYPE: BACKEND (Code Provided by Manager AI)\n\n📝 INSTRUCTION:\nSet up the PocketBase project structure and deploy script.\nThe Manager AI provides the exact deploy.sh code below. Save it as-is.\n\n💡 CONTEXT:\nThis creates the folder structure for backend files and the one-command deploy script.\nAll future migration files go in pb_migrations/.\nAll future hook files go in pb_hooks/.\ndeploy.sh syncs everything to VPS via rsync.\n\n📄 CREATE FOLDERS:\nmkdir -p pb_migrations\nmkdir -p pb_hooks\n\n📄 CREATE FILE: deploy.sh\n\n```bash\n#!/bin/bash\n# Deploy PocketBase backend to VPS\n# Usage: bash deploy.sh\nrsync -avz --delete --exclude 'pb_data' ./pb_migrations ./pb_hooks {ssh_user}@{vps_ip}:/opt/pocketbase/\nssh {ssh_user}@{vps_ip} 'systemctl restart pocketbase'\necho \"✅ Deployed. PocketBase restarted on VPS.\"\n```\n\n[CLI]: chmod +x deploy.sh\n\n🚫 DO NOT:\n- Modify the deploy script\n- Include pb_data in sync (that's the database)\n\n✅ SELF-CHECK:\n1. pb_migrations/ folder exists\n2. pb_hooks/ folder exists\n3. deploy.sh is executable\n4. Confirm: 'Backend structure ready. deploy.sh created.'",
+            "variables": [
+                "vps_ip",
+                "ssh_user"
+            ]
+        },
+        {
+            "id": "PT058",
+            "name": "PocketBase JS Hooks Deep Dive",
+            "phase": "PHASE_10",
+            "template": "🛠️ TYPE: BACKEND (Code Provided by Manager AI)\n\n📝 INSTRUCTION:\nCreate PocketBase hooks for server-side logic by saving the .pb.js files below.\nThe Manager AI has written the exact hook code for your project. Save as-is.\n\n💡 CONTEXT:\nHooks are JavaScript files that run ON THE SERVER inside PocketBase.\nThey fire when records are created/updated/deleted, on schedules (cron), or as custom API routes.\nFiles go in pb_hooks/ folder. Must end in .pb.js (not .js, not .ts).\nPocketBase has its own JS engine — no npm, no require(), no Node.js.\n\n📄 CREATE FILES:\n[Manager AI provides exact hook code blocks here]\n\n{hook_code}\n\n🔑 AVAILABLE GLOBALS in hooks:\n- $app: Main app instance\n- $app.dao(): Database queries\n- $http.send(): Make HTTP calls\n- $security: Hashing, tokens\n- e.record: The record being created/updated\n- e.auth: The authenticated user\n\n🚫 DO NOT:\n- Modify the provided code\n- Use npm packages (won't work)\n- Forget to run deploy.sh after saving\n\n🚀 DEPLOY:\n[CLI]: bash deploy.sh\n\n✅ SELF-CHECK:\n1. All .pb.js files saved in pb_hooks/\n2. deploy.sh ran without errors\n3. journalctl -u pocketbase shows hooks loaded\n4. Confirm: 'Hooks deployed. [X] hook files. All loaded.'",
+            "variables": [
+                "hook_code"
+            ]
+        },
+        {
+            "id": "PT059",
+            "name": "Backend Verification",
+            "phase": "PHASE_18",
+            "template": "📋 INSTRUCTION:\nSSH into VPS and verify the entire PocketBase backend is correctly set up.\n\n🧒 WHAT IS THIS? (Read first):\nAfter all migration files have been written and applied, this is the FINAL verification step.\nYou check that EVERY collection, relation, API rule, and hook is working correctly on the VPS.\nThis replaces the old 'local to production sync' — everything was built directly on the VPS.\n\n📝 STEP BY STEP:\n\nStep 1: SSH into VPS\nssh {ssh_user}@{vps_ip}\n\nStep 2: Verify PocketBase is running\nsudo systemctl status pocketbase\ncurl https://{domain}/api/health\n\nStep 3: List all migrations applied\nls -la /opt/pocketbase/pb_migrations/\nCount should match total migration files written.\n\nStep 4: Verify all collections exist\ncurl -s https://{domain}/api/collections -H 'Authorization: Bearer ADMIN_TOKEN' | python3 -m json.tool\nCheck each collection from PROJECT_REPORT.md is present.\n\nStep 5: Test API rules\n# Without auth — must be 403\ncurl -s -o /dev/null -w '%{http_code}' https://{domain}/api/collections/{collection}/records\n# With auth — must be 200\ncurl -s -o /dev/null -w '%{http_code}' https://{domain}/api/collections/{collection}/records -H 'Authorization: Bearer USER_TOKEN'\n\nStep 6: Verify hooks loaded\njournalctl -u pocketbase -n 50 | grep -i hook\nShould show hooks loaded on startup.\n\nStep 7: Test CRUD\n# Create a test record\ncurl -X POST https://{domain}/api/collections/{collection}/records -H 'Authorization: Bearer TOKEN' -H 'Content-Type: application/json' -d '{\"field\": \"test_value\"}'\n# Read it back\ncurl https://{domain}/api/collections/{collection}/records -H 'Authorization: Bearer TOKEN'\n# Delete test record\ncurl -X DELETE https://{domain}/api/collections/{collection}/records/{record_id} -H 'Authorization: Bearer TOKEN'\n\n⚡ FINAL CHECKLIST:\n- [ ] PocketBase running (systemctl status)\n- [ ] Health check 200\n- [ ] All collections exist\n- [ ] API rules blocking unauthenticated access\n- [ ] Relations expandable\n- [ ] Hooks loaded\n- [ ] CRUD operations working\n- [ ] SSL active (https://)\n\n⛔ DO NOT:\n- Skip any verification step\n- Leave test records in the database\n- Consider the backend 'done' without testing rules\n\n✅ SELF-CHECK:\n1. All checks above pass\n2. Zero errors in journalctl logs\n3. Confirm: 'Backend fully verified on VPS. [X] collections, [Y] hooks, all rules secured. Production ready.'",
+            "variables": [
+                "vps_ip",
+                "ssh_user",
+                "domain"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+Analyzing JayGanga Books...                                     
+
+warning - The value of the field '_bookService' isn't used - lib\screens\book\edit_book_screen.dart:21:21 - unused_field
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\screens\book\edit_book_screen.dart:169:15 - deprecated_member_use
+  error - The method 'getData' isn't defined for the type 'BookFormState' - lib\screens\sell\sell_book_screen.dart:56:41 - undefined_method
+   info - The private field _removedPhotos could be 'final' - lib\widgets\sell\book_form.dart:47:16 - prefer_final_fields
+  error - Undefined name '_existingPhotos' - lib\widgets\sell\book_form.dart:91:5 - undefined_identifier
+  error - Undefined name '_existingPhotos' - lib\widgets\sell\book_form.dart:92:19 - undefined_identifier
+warning - The declaration '_buildExistingPhoto' isn't referenced - lib\widgets\sell\book_form.dart:263:10 - unused_element
+  error - Undefined name '_existingPhotos' - lib\widgets\sell\book_form.dart:277:17 - undefined_identifier
+warning - The declaration '_buildNewPhoto' isn't referenced - lib\widgets\sell\book_form.dart:288:10 - unused_element
+  error - Undefined name '_newPhotos' - lib\widgets\sell\book_form.dart:300:43 - undefined_identifier
+warning - The declaration '_buildAddButton' isn't referenced - lib\widgets\sell\book_form.dart:309:10 - unused_element
+warning - The value of the local variable 'picker' isn't used - lib\widgets\sell\book_form.dart:313:18 - unused_local_variable
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\widgets\sell\book_form.dart:390:61 - deprecated_member_use
+  error - Directives must appear before any declarations - lib\widgets\sell\photo_picker.dart:10:1 - directive_after_declaration
+  error - Directives must appear before any declarations - lib\widgets\sell\photo_picker.dart:11:1 - directive_after_declaration
+  error - Directives must appear before any declarations - lib\widgets\sell\photo_picker.dart:12:1 - directive_after_declaration
+warning - Dead code - lib\widgets\shared\book_list_tile.dart:34:45 - dead_code
+warning - The left operand can't be null, so the right operand is never executed - lib\widgets\shared\book_list_tile.dart:34:48 - dead_null_aware_expression
+  error - The method 'getDateTimeValue' isn't defined for the type 'RecordModel' - lib\widgets\shared\book_list_tile.dart:35:26 - undefined_method
+  error - The method 'getDateTimeValue' isn't defined for the type 'RecordModel' - lib\widgets\shared\book_list_tile.dart:36:25 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\widgets\shared\book_list_tile.dart:85:57 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\widgets\shared\book_list_tile.dart:150:46 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\widgets\shared\book_list_tile.dart:150:136 - deprecated_member_use
+

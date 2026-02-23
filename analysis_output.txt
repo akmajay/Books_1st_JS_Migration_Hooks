@@ -1,0 +1,20 @@
+Analyzing JayGanga Books...                                     
+
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:7:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:9:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:11:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:14:5 - avoid_print
+warning - Unused import: 'dart:convert' - bin\verify_schema.dart:2:8 - unused_import
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:8:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:13:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:15:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:22:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:23:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:24:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:27:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:29:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:32:5 - avoid_print
+  error - The named parameter 'defaultValue' isn't defined - lib\providers\search_provider.dart:75:49 - undefined_named_parameter
+  error - The named parameter 'defaultValue' isn't defined - lib\providers\search_provider.dart:76:49 - undefined_named_parameter
+warning - The value of the local variable 'pb' isn't used - scripts\seed_data.dart:5:9 - unused_local_variable
+

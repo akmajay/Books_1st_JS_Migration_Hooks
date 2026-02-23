@@ -1,0 +1,37 @@
+Analyzing JayGanga Books...                                     
+
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:7:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:9:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:11:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:14:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:6:3 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:9:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:11:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:13:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:17:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:23:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:25:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:29:5 - avoid_print
+warning - The value of the local variable 'r3' isn't used - bin\debug_api.dart:30:11 - unused_local_variable
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:35:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:37:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:41:5 - avoid_print
+warning - The value of the local variable 'r4' isn't used - bin\debug_api.dart:42:11 - unused_local_variable
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:47:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:49:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_remote_schema.dart:6:3 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_remote_schema.dart:14:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_remote_schema.dart:18:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_remote_schema.dart:21:5 - avoid_print
+warning - Unused import: 'dart:convert' - bin\verify_schema.dart:2:8 - unused_import
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:8:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:13:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:15:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:22:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:23:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:24:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:27:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:29:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:32:5 - avoid_print
+warning - The value of the local variable 'pb' isn't used - scripts\seed_data.dart:5:9 - unused_local_variable
+

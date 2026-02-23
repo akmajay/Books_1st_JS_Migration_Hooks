@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.jayganga.books",
+            "sha256_cert_fingerprints": [
+                "F9:63:01:2B:95:27:93:F8:70:81:D8:BD:7A:5A:FA:31:92:F7:46:81:EE:EC:36:F5:34:2C:44:37:60:46:49:1E"
+            ]
+        }
+    }
+]

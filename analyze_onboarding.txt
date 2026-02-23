@@ -1,0 +1,10 @@
+Analyzing JayGanga Books...                                     
+
+warning - The value of the field '_selectedSchoolId' isn't used - lib\screens\auth\steps\academic_profile_step.dart:36:11 - unused_field
+  error - The named parameter 'limit' isn't defined - lib\screens\auth\steps\academic_profile_step.dart:61:9 - undefined_named_parameter
+  error - The argument type 'BorderSide' can't be assigned to the parameter type 'BoxBorder?'.  - lib\screens\auth\steps\academic_profile_step.dart:153:21 - argument_type_not_assignable
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\screens\auth\steps\academic_profile_step.dart:255:7 - deprecated_member_use
+   info - Don't use 'BuildContext's across async gaps - lib\screens\auth\steps\location_step.dart:91:28 - use_build_context_synchronously
+warning - Unused import: 'dart:io' - lib\screens\auth\steps\notification_step.dart:3:8 - unused_import
+   info - Don't invoke 'print' in production code - lib\services\auth_service.dart:135:7 - avoid_print
+

@@ -1,0 +1,54 @@
+Analyzing JayGanga Books...                                     
+
+   info - Don't invoke 'print' in production code - bin\check_auth.dart:7:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_auth.dart:10:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_auth.dart:11:5 - avoid_print
+warning - The receiver can't be null, so the null-aware operator '?.' is unnecessary - bin\check_auth.dart:11:54 - invalid_null_aware_operator
+   info - Don't invoke 'print' in production code - bin\check_auth.dart:12:5 - avoid_print
+  error - The getter 'authProviders' isn't defined for the type 'AuthMethodsList' - bin\check_auth.dart:13:21 - undefined_getter
+   info - Don't invoke 'print' in production code - bin\check_auth.dart:14:7 - avoid_print
+  error - The getter 'authProviders' isn't defined for the type 'AuthMethodsList' - bin\check_auth.dart:16:33 - undefined_getter
+   info - Don't invoke 'print' in production code - bin\check_auth.dart:17:9 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_auth.dart:18:9 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_auth.dart:22:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:7:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:10:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:12:11 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:13:11 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:14:11 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:15:11 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:16:11 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:17:11 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:19:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:20:11 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_auth.dart:23:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\test_pb.dart:7:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\test_pb.dart:12:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\test_pb.dart:25:9 - avoid_print
+   info - Don't invoke 'print' in production code - bin\test_pb.dart:43:9 - avoid_print
+   info - Don't invoke 'print' in production code - bin\test_pb.dart:47:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\test_pb.dart:65:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\test_pb.dart:69:10 - avoid_print
+   info - Don't invoke 'print' in production code - bin\test_pb.dart:74:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\test_pb.dart:76:5 - avoid_print
+  error - Undefined name 'http' - lib\screens\book\book_detail_screen.dart:55:13 - undefined_identifier
+  error - The method 'SellerCard' isn't defined for the type '_BookDetailScreenState' - lib\screens\book\book_detail_screen.dart:101:19 - undefined_method
+  error - The method 'SimilarBooksSection' isn't defined for the type '_BookDetailScreenState' - lib\screens\book\book_detail_screen.dart:109:17 - undefined_method
+  error - Undefined name 'LoginGate' - lib\screens\book\book_detail_screen.dart:151:27 - undefined_identifier
+  error - The method 'push' isn't defined for the type 'BuildContext' - lib\screens\book\book_detail_screen.dart:152:37 - undefined_method
+  error - The method 'BookActionBar' isn't defined for the type '_BookDetailScreenState' - lib\screens\book\book_detail_screen.dart:176:28 - undefined_method
+warning - Unused import: 'package:flutter/foundation.dart' - lib\screens\book\edit_book_screen.dart:1:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\screens\report\report_screen.dart:120:67 - deprecated_member_use
+warning - The value of the local variable 'pb' isn't used - lib\screens\sell\sell_book_screen.dart:24:13 - unused_local_variable
+warning - Unused import: 'package:flutter/foundation.dart' - lib\services\book_service.dart:1:8 - unused_import
+   info - Don't invoke 'print' in production code - lib\services\chat_service.dart:51:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\services\seeding_service.dart:16:5 - avoid_print
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\widgets\sell\book_form.dart:90:13 - deprecated_member_use
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\widgets\sell\book_form.dart:113:19 - deprecated_member_use
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\widgets\sell\book_form.dart:145:19 - deprecated_member_use
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\widgets\sell\book_form.dart:173:13 - deprecated_member_use
+warning - Unused import: 'dart:io' - scripts\seed_data.dart:2:8 - unused_import
+warning - The value of the local variable 'pb' isn't used - scripts\seed_data.dart:5:9 - unused_local_variable
+   info - Don't invoke 'print' in production code - scripts\seed_data.dart:12:5 - avoid_print
+   info - Don't invoke 'print' in production code - scripts\seed_data.dart:21:5 - avoid_print
+

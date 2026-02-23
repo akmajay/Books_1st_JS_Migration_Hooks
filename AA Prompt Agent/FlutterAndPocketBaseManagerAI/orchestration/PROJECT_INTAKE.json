@@ -1,0 +1,476 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "purpose": "Define how to analyze user's project description and extract requirements for Flutter + PocketBase",
+        "usage": "Manager AI uses this during initjp and startjp to understand what the user wants to build"
+    },
+    "intake_questions": {
+        "essential": [
+            {
+                "id": "Q01",
+                "question": "What type of app are you building?",
+                "options": [
+                    "Mobile app (Android)",
+                    "Mobile app (iOS)",
+                    "Mobile app (both Android + iOS)",
+                    "Mobile + Web",
+                    "Web only"
+                ],
+                "maps_to": "platform",
+                "required": true
+            },
+            {
+                "id": "Q02",
+                "question": "Describe your app in 1-2 sentences",
+                "maps_to": "description",
+                "required": true
+            },
+            {
+                "id": "Q03",
+                "question": "What are the main features?",
+                "maps_to": "features",
+                "required": true
+            },
+            {
+                "id": "Q04",
+                "question": "Does it need user authentication?",
+                "options": [
+                    "Yes - Email/Password",
+                    "Yes - Google OAuth",
+                    "Yes - Apple Sign-In",
+                    "Yes - Multiple methods",
+                    "No"
+                ],
+                "maps_to": "auth_required",
+                "required": true
+            }
+        ],
+        "technical": [
+            {
+                "id": "Q05",
+                "question": "State management preference?",
+                "options": [
+                    "Provider",
+                    "Riverpod",
+                    "BLoC",
+                    "No preference"
+                ],
+                "maps_to": "state_management",
+                "default": "Provider"
+            },
+            {
+                "id": "Q06",
+                "question": "UI style preference?",
+                "options": [
+                    "Material Design",
+                    "Custom/Premium",
+                    "Minimal/Clean"
+                ],
+                "maps_to": "ui_style",
+                "default": "Material Design"
+            }
+        ],
+        "features": [
+            {
+                "id": "Q07",
+                "question": "Need file uploads (images/videos/documents)?",
+                "options": [
+                    "Yes",
+                    "No"
+                ],
+                "maps_to": "needs_storage",
+                "triggers_phase": "PHASE_08"
+            },
+            {
+                "id": "Q08",
+                "question": "Need realtime updates (live feed, chat, sync)?",
+                "options": [
+                    "Yes",
+                    "No"
+                ],
+                "maps_to": "needs_realtime",
+                "triggers_phase": "PHASE_09"
+            },
+            {
+                "id": "Q09",
+                "question": "Need payments (Stripe)?",
+                "options": [
+                    "Yes",
+                    "No"
+                ],
+                "maps_to": "needs_payments",
+                "triggers_phase": "PHASE_13"
+            },
+            {
+                "id": "Q10",
+                "question": "Need push notifications (FCM)?",
+                "options": [
+                    "Yes",
+                    "No"
+                ],
+                "maps_to": "needs_notifications",
+                "triggers_phase": "PHASE_12"
+            },
+            {
+                "id": "Q11",
+                "question": "Need offline support / local caching?",
+                "options": [
+                    "Yes",
+                    "No"
+                ],
+                "maps_to": "needs_offline",
+                "triggers_phase": "PHASE_14"
+            },
+            {
+                "id": "Q12",
+                "question": "Need server-side logic (hooks, triggers)?",
+                "options": [
+                    "Yes",
+                    "No"
+                ],
+                "maps_to": "needs_hooks",
+                "triggers_phase": "PHASE_10"
+            },
+            {
+                "id": "Q13",
+                "question": "Need GPS / location services?",
+                "options": [
+                    "Yes",
+                    "No"
+                ],
+                "maps_to": "needs_location"
+            },
+            {
+                "id": "Q14",
+                "question": "Need camera access?",
+                "options": [
+                    "Yes",
+                    "No"
+                ],
+                "maps_to": "needs_camera"
+            }
+        ]
+    },
+    "feature_extraction": {
+        "description": "How to extract features from natural language project description",
+        "keywords_to_features": {
+            "auth_indicators": [
+                "login",
+                "signup",
+                "sign up",
+                "register",
+                "account",
+                "user",
+                "authentication",
+                "auth",
+                "password",
+                "email",
+                "social login",
+                "google login",
+                "apple login",
+                "sign in"
+            ],
+            "crud_indicators": [
+                "create",
+                "add",
+                "new",
+                "edit",
+                "update",
+                "delete",
+                "remove",
+                "list",
+                "view",
+                "manage",
+                "save",
+                "post",
+                "publish",
+                "submit"
+            ],
+            "realtime_indicators": [
+                "live",
+                "realtime",
+                "real-time",
+                "instant",
+                "chat",
+                "messaging",
+                "notification",
+                "sync",
+                "collaborative",
+                "multiplayer",
+                "feed",
+                "stream",
+                "live updates"
+            ],
+            "storage_indicators": [
+                "upload",
+                "image",
+                "photo",
+                "file",
+                "attachment",
+                "media",
+                "avatar",
+                "document",
+                "pdf",
+                "video",
+                "camera",
+                "gallery"
+            ],
+            "payment_indicators": [
+                "payment",
+                "pay",
+                "checkout",
+                "subscription",
+                "billing",
+                "stripe",
+                "purchase",
+                "order",
+                "cart",
+                "pricing",
+                "premium"
+            ],
+            "notification_indicators": [
+                "notification",
+                "push notification",
+                "alert",
+                "fcm",
+                "firebase",
+                "notify",
+                "reminder",
+                "announcement"
+            ],
+            "offline_indicators": [
+                "offline",
+                "cache",
+                "local",
+                "no internet",
+                "sync",
+                "low bandwidth",
+                "2G",
+                "3G",
+                "hive",
+                "isar"
+            ],
+            "location_indicators": [
+                "location",
+                "gps",
+                "map",
+                "geolocation",
+                "coordinates",
+                "nearby",
+                "distance",
+                "latitude",
+                "longitude"
+            ],
+            "hook_indicators": [
+                "trigger",
+                "automated",
+                "cron",
+                "scheduled",
+                "server-side",
+                "backend logic",
+                "webhook",
+                "auto-delete",
+                "auto-cleanup",
+                "computed",
+                "aggregate"
+            ]
+        },
+        "entity_extraction": {
+            "description": "Extract data entities (PocketBase collections) from description",
+            "patterns": [
+                "users can have many [entity]",
+                "each [entity] belongs to a user",
+                "[entity] with [attributes]",
+                "list of [entities]",
+                "[entity] can be [action]ed",
+                "users can [action] [entities]"
+            ],
+            "example": {
+                "input": "Users can create blog posts with title and content. Posts can have multiple comments. Users can upload profile pictures.",
+                "entities": [
+                    {
+                        "name": "users",
+                        "type": "auth_collection",
+                        "extra_fields": [
+                            "avatar"
+                        ]
+                    },
+                    {
+                        "name": "posts",
+                        "fields": [
+                            "title",
+                            "content",
+                            "media"
+                        ],
+                        "belongs_to": "users"
+                    },
+                    {
+                        "name": "comments",
+                        "fields": [
+                            "text"
+                        ],
+                        "belongs_to": [
+                            "posts",
+                            "users"
+                        ]
+                    }
+                ],
+                "features_detected": {
+                    "auth": true,
+                    "storage": true,
+                    "realtime": false,
+                    "payments": false,
+                    "notifications": false,
+                    "offline": false
+                }
+            }
+        }
+    },
+    "project_analysis_template": {
+        "description": "Structure output from project analysis",
+        "output_format": {
+            "project_summary": "Brief description of what we're building",
+            "platform": "android | ios | both | web | all",
+            "state_management": "Provider | Riverpod | BLoC",
+            "pocketbase_url": "From REQUIREMENTS.md",
+            "auth_type": "email | google | apple | multiple | none",
+            "entities": [
+                {
+                    "name": "entity_name",
+                    "collection_type": "base | auth",
+                    "fields": [
+                        {
+                            "name": "field_name",
+                            "type": "text|number|bool|date|select|relation|file",
+                            "required": true
+                        }
+                    ],
+                    "relationships": [
+                        "belongs_to: other_entity"
+                    ],
+                    "features": [
+                        "list",
+                        "create",
+                        "edit",
+                        "delete",
+                        "detail"
+                    ]
+                }
+            ],
+            "features": {
+                "auth": true,
+                "storage": false,
+                "realtime": false,
+                "hooks": false,
+                "notifications": false,
+                "payments": false,
+                "offline": false,
+                "location": false,
+                "camera": false
+            },
+            "phases_to_include": [
+                "PHASE_00",
+                "PHASE_01",
+                "..."
+            ],
+            "estimated_prompts": 25,
+            "ui_requirements": {
+                "theme": "dark | light | both",
+                "style": "Description of visual style"
+            }
+        }
+    },
+    "complexity_assessment": {
+        "scoring": {
+            "simple": {
+                "score_range": [
+                    0,
+                    15
+                ],
+                "criteria": [
+                    "1-2 entity types",
+                    "Basic CRUD",
+                    "Simple auth (email only)",
+                    "No realtime/payments/hooks"
+                ],
+                "estimated_prompts": "15-25"
+            },
+            "medium": {
+                "score_range": [
+                    16,
+                    35
+                ],
+                "criteria": [
+                    "2-4 entity types",
+                    "CRUD with relations",
+                    "Auth with OAuth",
+                    "File uploads",
+                    "Some realtime or notifications"
+                ],
+                "estimated_prompts": "25-40"
+            },
+            "complex": {
+                "score_range": [
+                    36,
+                    100
+                ],
+                "criteria": [
+                    "5+ entity types",
+                    "Complex relations",
+                    "Payments",
+                    "Heavy realtime",
+                    "Offline support",
+                    "Multiple hooks"
+                ],
+                "estimated_prompts": "40-60+"
+            }
+        },
+        "feature_scores": {
+            "basic_auth": 3,
+            "google_oauth": 5,
+            "apple_signin": 5,
+            "crud_per_entity": 4,
+            "file_uploads": 5,
+            "realtime_basic": 5,
+            "realtime_chat": 10,
+            "push_notifications": 6,
+            "payments_onetime": 8,
+            "payments_subscription": 12,
+            "offline_cache": 6,
+            "offline_sync": 10,
+            "server_hooks": 4,
+            "location_services": 5,
+            "camera_access": 3
+        }
+    },
+    "validation": {
+        "required_information": [
+            "What the app does (description)",
+            "Who uses it (user types)",
+            "Core features (what can users do)",
+            "Data entities (what data is managed)"
+        ],
+        "clarification_triggers": [
+            {
+                "condition": "No entities identified",
+                "ask": "What kind of data will users create or manage in this app?"
+            },
+            {
+                "condition": "Unclear auth needs",
+                "ask": "Do users need to create accounts, or is this a public app?"
+            },
+            {
+                "condition": "Vague features",
+                "ask": "Can you list 3-5 specific things a user can do in this app?"
+            },
+            {
+                "condition": "Missing user flows",
+                "ask": "Walk me through what happens when a user first opens the app"
+            },
+            {
+                "condition": "Missing PocketBase details",
+                "ask": "Do you have a VPS ready for PocketBase? What domain will you use?"
+            }
+        ]
+    }
+}

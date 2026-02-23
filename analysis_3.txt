@@ -1,0 +1,818 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.66 available)
+  app_links 6.4.1 (7.0.0 available)
+  characters 1.4.0 (1.4.1 available)
+  confetti 0.7.0 (0.8.0 available)
+  connectivity_plus 6.1.5 (7.0.0 available)
+  firebase_core 3.15.2 (4.4.0 available)
+  firebase_core_web 2.24.1 (3.4.0 available)
+  firebase_messaging 15.2.10 (16.1.1 available)
+  firebase_messaging_platform_interface 4.6.10 (4.7.6 available)
+  firebase_messaging_web 3.10.10 (4.1.2 available)
+  flutter_local_notifications 18.0.1 (20.1.0 available)
+  flutter_local_notifications_linux 5.0.0 (7.0.0 available)
+  flutter_local_notifications_platform_interface 8.0.0 (10.0.0 available)
+  flutter_slidable 3.1.2 (4.0.3 available)
+  geocoding 3.0.0 (4.0.0 available)
+  geocoding_android 3.3.1 (5.0.0 available)
+  geocoding_platform_interface 3.2.0 (5.0.0 available)
+  go_router 14.8.1 (17.1.0 available)
+  google_fonts 6.3.3 (8.0.1 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.7 available)
+  google_sign_in_ios 5.9.0 (6.3.0 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.0 available)
+  intl 0.19.0 (0.20.2 available)
+  matcher 0.12.17 (0.12.18 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.17.0 (1.18.1 available)
+  mobile_scanner 6.0.11 (7.1.4 available)
+  share_plus 10.1.4 (12.0.1 available)
+  share_plus_platform_interface 5.0.2 (6.1.0 available)
+  test_api 0.7.7 (0.7.9 available)
+  timezone 0.10.1 (0.11.0 available)
+  url_launcher_ios 6.4.0 (6.4.1 available)
+Got dependencies!
+34 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Analyzing JayGanga Books...                                     
+
+warning - The label 'detail' isn't used - lib\controllers\paginated_controller.dart:77:9 - unused_label
+  error - Expected to find ';' - lib\controllers\paginated_controller.dart:77:28 - expected_token
+  error - Expected an identifier - lib\controllers\paginated_controller.dart:77:29 - missing_identifier
+  error - Unexpected text ',' - lib\controllers\paginated_controller.dart:77:29 - unexpected_token
+warning - The label 'type' isn't used - lib\controllers\paginated_controller.dart:78:9 - unused_label
+  error - Expected to find ';' - lib\controllers\paginated_controller.dart:78:25 - expected_token
+  error - Expected an identifier - lib\controllers\paginated_controller.dart:78:32 - missing_identifier
+  error - Expected to find ';' - lib\controllers\paginated_controller.dart:78:32 - expected_token
+  error - Unexpected text ',' - lib\controllers\paginated_controller.dart:78:32 - unexpected_token
+  error - Expected an identifier - lib\controllers\paginated_controller.dart:79:7 - missing_identifier
+  error - Unexpected text ')' - lib\controllers\paginated_controller.dart:79:7 - unexpected_token
+   info - Unnecessary empty statement - lib\controllers\paginated_controller.dart:79:8 - empty_statements
+warning - The label 'detail' isn't used - lib\controllers\paginated_controller.dart:129:9 - unused_label
+  error - Expected to find ';' - lib\controllers\paginated_controller.dart:129:28 - expected_token
+  error - Expected an identifier - lib\controllers\paginated_controller.dart:129:29 - missing_identifier
+  error - Unexpected text ',' - lib\controllers\paginated_controller.dart:129:29 - unexpected_token
+warning - The label 'type' isn't used - lib\controllers\paginated_controller.dart:130:9 - unused_label
+  error - Expected to find ';' - lib\controllers\paginated_controller.dart:130:25 - expected_token
+  error - Expected an identifier - lib\controllers\paginated_controller.dart:130:32 - missing_identifier
+  error - Expected to find ';' - lib\controllers\paginated_controller.dart:130:32 - expected_token
+  error - Unexpected text ',' - lib\controllers\paginated_controller.dart:130:32 - unexpected_token
+  error - Expected an identifier - lib\controllers\paginated_controller.dart:131:7 - missing_identifier
+  error - Unexpected text ')' - lib\controllers\paginated_controller.dart:131:7 - unexpected_token
+   info - Unnecessary empty statement - lib\controllers\paginated_controller.dart:131:8 - empty_statements
+warning - The declaration '<unnamed>' isn't referenced - lib\providers\notification_provider.dart:9:7 - unused_element
+  error - Expected a class member - lib\providers\notification_provider.dart:65:7 - expected_class_member
+  error - Expected an identifier - lib\providers\notification_provider.dart:65:13 - missing_identifier
+   info - Missing type annotation - lib\providers\notification_provider.dart:65:14 - strict_top_level_inference
+  error - Undefined name '_subscription' - lib\providers\notification_provider.dart:71:5 - undefined_identifier
+  error - Undefined name '_pb' - lib\providers\notification_provider.dart:72:5 - undefined_identifier
+  error - Undefined name '_auth' - lib\providers\notification_provider.dart:73:60 - undefined_identifier
+  error - Undefined name '_controller' - lib\providers\notification_provider.dart:74:9 - undefined_identifier
+  error - Undefined name '_unreadCount' - lib\providers\notification_provider.dart:75:49 - undefined_identifier
+  error - The function 'notifyListeners' isn't defined - lib\providers\notification_provider.dart:76:9 - undefined_function
+  error - Undefined name '_auth' - lib\providers\notification_provider.dart:77:67 - undefined_identifier
+  error - Undefined name '_controller' - lib\providers\notification_provider.dart:78:9 - undefined_identifier
+  error - The function '_updateUnreadCount' isn't defined - lib\providers\notification_provider.dart:79:9 - undefined_function
+  error - Undefined name '_pb' - lib\providers\notification_provider.dart:85:5 - undefined_identifier
+  error - Undefined name '_subscription' - lib\providers\notification_provider.dart:86:5 - undefined_identifier
+  error - Undefined name '_pb' - lib\providers\notification_provider.dart:91:13 - undefined_identifier
+  error - Undefined name 'notifications' - lib\providers\notification_provider.dart:99:20 - undefined_identifier
+  error - Undefined name '_pb' - lib\providers\notification_provider.dart:104:15 - undefined_identifier
+  error - Undefined name '_controller' - lib\providers\notification_provider.dart:106:7 - undefined_identifier
+  error - Undefined name '_unreadCount' - lib\providers\notification_provider.dart:107:7 - undefined_identifier
+  error - The function 'notifyListeners' isn't defined - lib\providers\notification_provider.dart:108:7 - undefined_function
+  error - Undefined name '_auth' - lib\providers\notification_provider.dart:117:5 - undefined_identifier
+  error - Undefined name '_onAuthChanged' - lib\providers\notification_provider.dart:117:26 - undefined_identifier
+  error - Invalid context for 'super' invocation - lib\providers\notification_provider.dart:118:5 - super_in_invalid_context
+  error - Expected a method, getter, setter or operator declaration - lib\providers\notification_provider.dart:120:1 - expected_executable
+  error - Undefined name 'PocketBaseService' - lib\providers\search_provider.dart:11:37 - undefined_identifier
+  error - The returned type 'SearchScreen' isn't returnable from a 'Widget' function, as required by the closure's context - lib\router\app_router.dart:130:46 - return_of_invalid_type_from_closure
+  error - The returned type 'ChatListScreen' isn't returnable from a 'Widget' function, as required by the closure's context - lib\router\app_router.dart:158:46 - return_of_invalid_type_from_closure
+  error - The returned type 'ManageListingsScreen' isn't returnable from a 'Widget' function, as required by the closure's context - lib\router\app_router.dart:172:50 - return_of_invalid_type_from_closure
+  error - The argument type 'ChatDetailScreen' can't be assigned to the parameter type 'Widget'.  - lib\router\app_router.dart:208:18 - argument_type_not_assignable
+  error - The returned type 'NotificationCenterScreen' isn't returnable from a 'Widget' function, as required by the closure's context - lib\router\app_router.dart:227:38 - return_of_invalid_type_from_closure
+  error - The returned type 'WishlistScreen' isn't returnable from a 'Widget' function, as required by the closure's context - lib\router\app_router.dart:239:64 - return_of_invalid_type_from_closure
+warning - Unused import: '../../../utils/validators.dart' - lib\screens\auth\steps\mobile_number_step.dart:4:8 - unused_import
+warning - The value of the field '_serverError' isn't used - lib\screens\auth\steps\mobile_number_step.dart:25:11 - unused_field
+  error - Classes can only extend other classes - lib\screens\chat\chat_detail_screen.dart:6:32 - extends_non_class
+  error - No associated named super constructor parameter - lib\screens\chat\chat_detail_screen.dart:9:33 - super_formal_parameter_without_associated_named
+  error - Undefined class 'State' - lib\screens\chat\chat_detail_screen.dart:12:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\chat\chat_detail_screen.dart:12:27 - override_on_non_overriding_member
+  error - Classes can only extend other classes - lib\screens\chat\chat_detail_screen.dart:15:38 - extends_non_class
+  error - Undefined class 'ChatService' - lib\screens\chat\chat_detail_screen.dart:16:9 - undefined_class
+  error - The method 'ChatService' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:16:36 - undefined_method
+  error - Undefined class 'ScrollController' - lib\screens\chat\chat_detail_screen.dart:17:9 - undefined_class
+  error - The method 'ScrollController' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:17:46 - undefined_method
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\chat\chat_detail_screen.dart:18:35 - non_type_as_type_argument
+  error - Undefined class 'RecordModel' - lib\screens\chat\chat_detail_screen.dart:20:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\chat\chat_detail_screen.dart:25:8 - override_on_non_overriding_member
+  error - The method 'initState' isn't defined in a superclass of '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:26:11 - undefined_super_member
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\chat\chat_detail_screen.dart:33:53 - non_type_as_type_argument
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:34:60 - undefined_identifier
+warning - The method doesn't override an inherited method - lib\screens\chat\chat_detail_screen.dart:42:8 - override_on_non_overriding_member
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:43:42 - undefined_identifier
+  error - The method 'dispose' isn't defined in a superclass of '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:46:11 - undefined_super_member
+  error - The method 'setState' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:50:5 - undefined_method
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:53:55 - undefined_identifier
+  error - The method 'setState' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:54:7 - undefined_method
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:55:37 - undefined_identifier
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:56:40 - undefined_identifier
+  error - Undefined name 'mounted' - lib\screens\chat\chat_detail_screen.dart:58:11 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\chat\chat_detail_screen.dart:58:20 - undefined_identifier
+  error - Undefined class 'RecordModel' - lib\screens\chat\chat_detail_screen.dart:62:22 - undefined_class
+  error - Undefined name 'mounted' - lib\screens\chat\chat_detail_screen.dart:63:10 - undefined_identifier
+  error - The method 'AuthService' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:64:42 - undefined_method
+  error - The method 'setState' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:67:7 - undefined_method
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:69:29 - undefined_identifier
+  error - The method 'setState' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:74:7 - undefined_method
+  error - The method 'AuthService' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:80:56 - undefined_method
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:85:58 - undefined_identifier
+  error - Undefined name 'mounted' - lib\screens\chat\chat_detail_screen.dart:89:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\chat\chat_detail_screen.dart:90:9 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\chat\chat_detail_screen.dart:90:30 - undefined_identifier
+  error - The method 'SnackBar' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:90:52 - undefined_method
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:90:70 - undefined_method
+  error - Undefined class 'XFile' - lib\screens\chat\chat_detail_screen.dart:95:27 - undefined_class
+  error - The method 'AuthService' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:97:56 - undefined_method
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:102:58 - undefined_identifier
+  error - Undefined name 'mounted' - lib\screens\chat\chat_detail_screen.dart:106:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\chat\chat_detail_screen.dart:107:9 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\chat\chat_detail_screen.dart:107:30 - undefined_identifier
+  error - The method 'SnackBar' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:107:52 - undefined_method
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:107:70 - undefined_method
+  error - The method 'AuthService' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:114:56 - undefined_method
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:119:58 - undefined_identifier
+  error - Undefined name 'mounted' - lib\screens\chat\chat_detail_screen.dart:123:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\chat\chat_detail_screen.dart:124:9 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\chat\chat_detail_screen.dart:124:30 - undefined_identifier
+  error - The method 'SnackBar' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:124:52 - undefined_method
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:124:70 - undefined_method
+  error - Undefined name 'widget' - lib\screens\chat\chat_detail_screen.dart:131:41 - undefined_identifier
+  error - Undefined name 'mounted' - lib\screens\chat\chat_detail_screen.dart:134:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\chat\chat_detail_screen.dart:135:9 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\chat\chat_detail_screen.dart:135:30 - undefined_identifier
+  error - The method 'SnackBar' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:135:52 - undefined_method
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:135:70 - undefined_method
+  error - Undefined name 'Curves' - lib\screens\chat\chat_detail_screen.dart:142:90 - undefined_identifier
+  error - Undefined class 'Widget' - lib\screens\chat\chat_detail_screen.dart:147:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\chat\chat_detail_screen.dart:147:10 - override_on_non_overriding_member
+  error - Undefined class 'BuildContext' - lib\screens\chat\chat_detail_screen.dart:147:16 - undefined_class
+  error - The name 'Scaffold' isn't a class - lib\screens\chat\chat_detail_screen.dart:148:38 - creation_with_non_type
+  error - The method 'Center' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:148:53 - undefined_method
+  error - The method 'CircularProgressIndicator' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:148:67 - undefined_method
+  error - The method 'AuthService' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:150:20 - undefined_method
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\chat\chat_detail_screen.dart:151:79 - non_type_as_type_argument
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\chat\chat_detail_screen.dart:151:134 - non_type_as_type_argument
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\chat\chat_detail_screen.dart:152:34 - non_type_as_type_argument
+  error - The method 'Scaffold' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:154:12 - undefined_method
+  error - The method 'AppBar' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:155:15 - undefined_method
+  error - The method 'InkWell' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:157:16 - undefined_method
+  error - The method 'Row' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:159:18 - undefined_method
+  error - The method 'Hero' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:161:15 - undefined_method
+  error - The method 'Material' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:163:24 - undefined_method
+  error - Undefined name 'MaterialType' - lib\screens\chat\chat_detail_screen.dart:164:25 - undefined_identifier
+  error - The method 'CircleAvatar' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:165:26 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\chat\chat_detail_screen.dart:165:68 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:165:102 - undefined_method
+  error - The name 'SizedBox' isn't a class - lib\screens\chat\chat_detail_screen.dart:168:21 - creation_with_non_type
+  error - The method 'Expanded' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:169:15 - undefined_method
+  error - The method 'Column' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:170:24 - undefined_method
+  error - Undefined name 'CrossAxisAlignment' - lib\screens\chat\chat_detail_screen.dart:171:39 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:173:21 - undefined_method
+  error - The name 'TextStyle' isn't a class - lib\screens\chat\chat_detail_screen.dart:173:70 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:174:21 - undefined_method
+  error - The name 'TextStyle' isn't a class - lib\screens\chat\chat_detail_screen.dart:174:66 - creation_with_non_type
+  error - Undefined name 'Colors' - lib\screens\chat\chat_detail_screen.dart:174:97 - undefined_identifier
+  error - Undefined name 'TextOverflow' - lib\screens\chat\chat_detail_screen.dart:174:134 - undefined_identifier
+  error - The method 'PopupMenuButton' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:182:11 - undefined_method
+  error - The name 'PopupMenuItem' isn't a class - lib\screens\chat\chat_detail_screen.dart:184:21 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:184:62 - undefined_method
+  error - The name 'PopupMenuItem' isn't a class - lib\screens\chat\chat_detail_screen.dart:185:21 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:185:65 - undefined_method
+  error - The name 'PopupMenuDivider' isn't a class - lib\screens\chat\chat_detail_screen.dart:186:21 - creation_with_non_type
+  error - The name 'PopupMenuItem' isn't a class - lib\screens\chat\chat_detail_screen.dart:187:21 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:187:58 - undefined_method
+  error - The method 'TextStyle' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:187:84 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\chat\chat_detail_screen.dart:187:101 - undefined_identifier
+  error - The name 'PopupMenuItem' isn't a class - lib\screens\chat\chat_detail_screen.dart:188:21 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:188:59 - undefined_method
+  error - The method 'TextStyle' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:188:86 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\chat\chat_detail_screen.dart:188:103 - undefined_identifier
+  error - The method 'Column' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:200:13 - undefined_method
+  error - The method 'Expanded' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:202:11 - undefined_method
+  error - The method 'Stack' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:203:20 - undefined_method
+  error - The method 'Positioned' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:207:19 - undefined_method
+  error - Undefined name 'FloatingActionButton' - lib\screens\chat\chat_detail_screen.dart:210:28 - undefined_identifier
+  error - The name 'Icon' isn't a class - lib\screens\chat\chat_detail_screen.dart:212:36 - creation_with_non_type
+  error - Undefined name 'Icons' - lib\screens\chat\chat_detail_screen.dart:212:41 - undefined_identifier
+  error - Undefined class 'Widget' - lib\screens\chat\chat_detail_screen.dart:232:3 - undefined_class
+  error - The method 'ListenableBuilder' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:233:12 - undefined_method
+  error - Undefined name 'ListView' - lib\screens\chat\chat_detail_screen.dart:236:16 - undefined_identifier
+  error - Undefined name 'EdgeInsets' - lib\screens\chat\chat_detail_screen.dart:239:26 - undefined_identifier
+  error - The name 'Padding' isn't a class - lib\screens\chat\chat_detail_screen.dart:244:28 - creation_with_non_type
+  error - Undefined name 'EdgeInsets' - lib\screens\chat\chat_detail_screen.dart:245:26 - undefined_identifier
+  error - The method 'Center' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:246:24 - undefined_method
+  error - The method 'CircularProgressIndicator' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:246:38 - undefined_method
+  error - The method 'Column' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:254:20 - undefined_method
+  error - The method 'MessageBubble' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:257:17 - undefined_method
+  error - The method 'DateFormat' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:272:12 - undefined_method
+  error - Undefined class 'Widget' - lib\screens\chat\chat_detail_screen.dart:275:3 - undefined_class
+  error - The method 'DateFormat' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:284:14 - undefined_method
+  error - The method 'Container' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:287:12 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\chat\chat_detail_screen.dart:288:21 - undefined_identifier
+  error - Undefined name 'EdgeInsets' - lib\screens\chat\chat_detail_screen.dart:289:22 - undefined_identifier
+  error - The method 'BoxDecoration' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:290:19 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\chat\chat_detail_screen.dart:290:40 - undefined_identifier
+  error - Undefined name 'BorderRadius' - lib\screens\chat\chat_detail_screen.dart:290:72 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:291:14 - undefined_method
+  error - The method 'TextStyle' isn't defined for the type '_ChatDetailScreenState' - lib\screens\chat\chat_detail_screen.dart:291:32 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\chat\chat_detail_screen.dart:291:49 - undefined_identifier
+  error - Undefined name 'FontWeight' - lib\screens\chat\chat_detail_screen.dart:291:93 - undefined_identifier
+  error - Classes can only extend other classes - lib\screens\chat\chat_list_screen.dart:8:30 - extends_non_class
+  error - No associated named super constructor parameter - lib\screens\chat\chat_list_screen.dart:9:31 - super_formal_parameter_without_associated_named
+  error - Undefined class 'State' - lib\screens\chat\chat_list_screen.dart:12:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\chat\chat_list_screen.dart:12:25 - override_on_non_overriding_member
+  error - Classes can only extend other classes - lib\screens\chat\chat_list_screen.dart:15:36 - extends_non_class
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\chat\chat_list_screen.dart:18:28 - non_type_as_type_argument
+warning - The method doesn't override an inherited method - lib\screens\chat\chat_list_screen.dart:21:8 - override_on_non_overriding_member
+  error - The method 'initState' isn't defined in a superclass of '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:22:11 - undefined_super_member
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\chat\chat_list_screen.dart:30:39 - non_type_as_type_argument
+warning - The method doesn't override an inherited method - lib\screens\chat\chat_list_screen.dart:38:8 - override_on_non_overriding_member
+  error - The method 'dispose' isn't defined in a superclass of '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:43:11 - undefined_super_member
+  error - Undefined class 'RecordModel' - lib\screens\chat\chat_list_screen.dart:46:22 - undefined_class
+  error - Undefined name 'mounted' - lib\screens\chat\chat_list_screen.dart:47:10 - undefined_identifier
+  error - Undefined class 'RecordModel' - lib\screens\chat\chat_list_screen.dart:53:28 - undefined_class
+  error - The method 'showDialog' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:54:29 - undefined_method
+  error - Undefined name 'context' - lib\screens\chat\chat_list_screen.dart:55:16 - undefined_identifier
+  error - The method 'AlertDialog' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:56:29 - undefined_method
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:57:22 - creation_with_non_type
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:58:24 - creation_with_non_type
+  error - The method 'TextButton' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:60:11 - undefined_method
+  error - Undefined name 'Navigator' - lib\screens\chat\chat_list_screen.dart:60:39 - undefined_identifier
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:60:83 - creation_with_non_type
+  error - The method 'TextButton' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:61:11 - undefined_method
+  error - Undefined name 'Navigator' - lib\screens\chat\chat_list_screen.dart:61:39 - undefined_identifier
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:61:82 - creation_with_non_type
+  error - The method 'TextStyle' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:61:104 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\chat\chat_list_screen.dart:61:121 - undefined_identifier
+  error - Undefined class 'Widget' - lib\screens\chat\chat_list_screen.dart:74:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\chat\chat_list_screen.dart:74:10 - override_on_non_overriding_member
+  error - Undefined class 'BuildContext' - lib\screens\chat\chat_list_screen.dart:74:16 - undefined_class
+  error - The method 'Scaffold' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:76:14 - undefined_method
+  error - The method 'AppBar' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:77:17 - undefined_method
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:77:37 - creation_with_non_type
+  error - The method 'Center' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:78:15 - undefined_method
+  error - The method 'Padding' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:79:18 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\chat\chat_list_screen.dart:80:28 - undefined_identifier
+  error - The method 'Column' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:81:20 - undefined_method
+  error - Undefined name 'MainAxisAlignment' - lib\screens\chat\chat_list_screen.dart:82:34 - undefined_identifier
+  error - The method 'Icon' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:84:17 - undefined_method
+  error - Undefined name 'Icons' - lib\screens\chat\chat_list_screen.dart:84:22 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\chat\chat_list_screen.dart:84:66 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\chat\chat_list_screen.dart:85:23 - creation_with_non_type
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:86:23 - creation_with_non_type
+  error - The method 'TextStyle' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:86:64 - undefined_method
+  error - Undefined name 'FontWeight' - lib\screens\chat\chat_list_screen.dart:86:100 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\chat\chat_list_screen.dart:87:23 - creation_with_non_type
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:88:23 - creation_with_non_type
+  error - Undefined name 'TextAlign' - lib\screens\chat\chat_list_screen.dart:88:117 - undefined_identifier
+  error - The method 'TextStyle' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:88:142 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\chat\chat_list_screen.dart:88:159 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\chat\chat_list_screen.dart:89:23 - creation_with_non_type
+  error - The method 'SizedBox' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:90:17 - undefined_method
+  error - The method 'ElevatedButton' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:93:26 - undefined_method
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:95:34 - creation_with_non_type
+  error - The method 'Scaffold' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:105:12 - undefined_method
+  error - The method 'AppBar' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:106:15 - undefined_method
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:107:22 - creation_with_non_type
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\chat\chat_list_screen.dart:109:31 - non_type_as_type_argument
+  error - Undefined name 'EdgeInsets' - lib\screens\chat\chat_list_screen.dart:112:18 - undefined_identifier
+  error - The argument type 'Object?' can't be assigned to the parameter type 'RecordModel'.  - lib\screens\chat\chat_list_screen.dart:115:19 - argument_type_not_assignable
+  error - The property 'id' can't be unconditionally accessed because the receiver can be 'null' - lib\screens\chat\chat_list_screen.dart:116:53 - unchecked_use_of_nullable_value
+  error - Undefined class 'Widget' - lib\screens\chat\chat_list_screen.dart:124:3 - undefined_class
+  error - The method 'Center' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:125:12 - undefined_method
+  error - The method 'Padding' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:126:14 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\chat\chat_list_screen.dart:127:24 - undefined_identifier
+  error - The method 'Column' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:128:16 - undefined_method
+  error - Undefined name 'MainAxisAlignment' - lib\screens\chat\chat_list_screen.dart:129:30 - undefined_identifier
+  error - The method 'Icon' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:131:13 - undefined_method
+  error - Undefined name 'Icons' - lib\screens\chat\chat_list_screen.dart:131:18 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\chat\chat_list_screen.dart:131:57 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\chat\chat_list_screen.dart:132:19 - creation_with_non_type
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:133:19 - creation_with_non_type
+  error - The method 'TextStyle' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:133:55 - undefined_method
+  error - Undefined name 'FontWeight' - lib\screens\chat\chat_list_screen.dart:133:91 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\chat\chat_list_screen.dart:133:115 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\chat\chat_list_screen.dart:134:19 - creation_with_non_type
+  error - The name 'Text' isn't a class - lib\screens\chat\chat_list_screen.dart:135:19 - creation_with_non_type
+  error - Undefined name 'TextAlign' - lib\screens\chat\chat_list_screen.dart:135:96 - undefined_identifier
+  error - The method 'TextStyle' isn't defined for the type '_ChatListScreenState' - lib\screens\chat\chat_list_screen.dart:135:121 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\chat\chat_list_screen.dart:135:138 - undefined_identifier
+  error - The element type 'BookGrid' can't be assigned to the list type 'Widget' - lib\screens\home\home_screen.dart:190:13 - list_element_type_not_assignable
+  error - Classes can only extend other classes - lib\screens\notifications\notification_center_screen.dart:5:40 - extends_non_class
+  error - No associated named super constructor parameter - lib\screens\notifications\notification_center_screen.dart:6:41 - super_formal_parameter_without_associated_named
+  error - Undefined class 'State' - lib\screens\notifications\notification_center_screen.dart:9:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\notifications\notification_center_screen.dart:9:35 - override_on_non_overriding_member
+  error - Classes can only extend other classes - lib\screens\notifications\notification_center_screen.dart:12:46 - extends_non_class
+warning - The method doesn't override an inherited method - lib\screens\notifications\notification_center_screen.dart:14:8 - override_on_non_overriding_member
+  error - The method 'initState' isn't defined in a superclass of '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:15:11 - undefined_super_member
+  error - Undefined name 'WidgetsBinding' - lib\screens\notifications\notification_center_screen.dart:16:5 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\notifications\notification_center_screen.dart:17:7 - undefined_identifier
+  error - Undefined class 'IconData' - lib\screens\notifications\notification_center_screen.dart:21:3 - undefined_class
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:23:34 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:24:32 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:25:37 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:26:37 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:27:37 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:28:43 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:29:33 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:30:33 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:31:35 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:32:23 - undefined_identifier
+  error - Undefined class 'Color' - lib\screens\notifications\notification_center_screen.dart:36:3 - undefined_class
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:38:34 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:39:32 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:40:37 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:41:37 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:42:37 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:43:43 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:44:33 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:45:33 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:46:35 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:47:23 - undefined_identifier
+  error - Undefined class 'Widget' - lib\screens\notifications\notification_center_screen.dart:52:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\notifications\notification_center_screen.dart:52:10 - override_on_non_overriding_member
+  error - Undefined class 'BuildContext' - lib\screens\notifications\notification_center_screen.dart:52:16 - undefined_class
+  error - The method 'Scaffold' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:53:12 - undefined_method
+  error - The method 'AppBar' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:54:15 - undefined_method
+  error - The method 'Text' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:55:16 - undefined_method
+  error - Undefined name 'GoogleFonts' - lib\screens\notifications\notification_center_screen.dart:55:45 - undefined_identifier
+  error - Undefined name 'FontWeight' - lib\screens\notifications\notification_center_screen.dart:55:76 - undefined_identifier
+  error - The method 'TextButton' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:57:11 - undefined_method
+  error - The name 'Text' isn't a class - lib\screens\notifications\notification_center_screen.dart:59:26 - creation_with_non_type
+  error - The method 'Consumer' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:63:13 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\notifications\notification_center_screen.dart:67:22 - undefined_identifier
+  error - The method 'Center' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:68:26 - undefined_method
+  error - The method 'Column' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:69:22 - undefined_method
+  error - Undefined name 'MainAxisAlignment' - lib\screens\notifications\notification_center_screen.dart:70:36 - undefined_identifier
+  error - The method 'Icon' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:72:19 - undefined_method
+  error - Undefined name 'Icons' - lib\screens\notifications\notification_center_screen.dart:72:24 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:72:67 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\notifications\notification_center_screen.dart:73:25 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:74:19 - undefined_method
+  error - Undefined name 'TextAlign' - lib\screens\notifications\notification_center_screen.dart:76:32 - undefined_identifier
+  error - The method 'TextStyle' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:77:28 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:77:45 - undefined_identifier
+  error - The method 'ListTile' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:86:22 - undefined_method
+  error - The method 'CircleAvatar' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:90:26 - undefined_method
+  error - The method 'Icon' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:92:26 - undefined_method
+  error - The method 'Text' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:94:24 - undefined_method
+  error - The method 'TextStyle' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:96:26 - undefined_method
+  error - Undefined name 'FontWeight' - lib\screens\notifications\notification_center_screen.dart:97:42 - undefined_identifier
+  error - Undefined name 'FontWeight' - lib\screens\notifications\notification_center_screen.dart:97:62 - undefined_identifier
+  error - The method 'Column' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:101:27 - undefined_method
+  error - Undefined name 'CrossAxisAlignment' - lib\screens\notifications\notification_center_screen.dart:102:39 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:104:21 - undefined_method
+  error - The name 'TextStyle' isn't a class - lib\screens\notifications\notification_center_screen.dart:104:69 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\notifications\notification_center_screen.dart:105:27 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:106:21 - undefined_method
+  error - Undefined name 'timeago' - lib\screens\notifications\notification_center_screen.dart:107:23 - undefined_identifier
+  error - The method 'TextStyle' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:108:30 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:108:61 - undefined_identifier
+  error - The method 'Container' isn't defined for the type '_NotificationCenterScreenState' - lib\screens\notifications\notification_center_screen.dart:114:23 - undefined_method
+  error - The name 'BoxDecoration' isn't a class - lib\screens\notifications\notification_center_screen.dart:114:72 - creation_with_non_type
+  error - Undefined name 'Colors' - lib\screens\notifications\notification_center_screen.dart:114:93 - undefined_identifier
+  error - Undefined name 'BoxShape' - lib\screens\notifications\notification_center_screen.dart:114:113 - undefined_identifier
+warning - Unused import: '../../models/app_error.dart' - lib\screens\profile\edit_profile_screen.dart:17:8 - unused_import
+   info - The private field _isLoading could be 'final' - lib\screens\profile\edit_profile_screen.dart:38:8 - prefer_final_fields
+warning - The value of the field '_isLoading' isn't used - lib\screens\profile\edit_profile_screen.dart:38:8 - unused_field
+  error - Classes can only extend other classes - lib\screens\profile\manage_listings_screen.dart:5:36 - extends_non_class
+  error - No associated named super constructor parameter - lib\screens\profile\manage_listings_screen.dart:6:37 - super_formal_parameter_without_associated_named
+  error - Undefined class 'State' - lib\screens\profile\manage_listings_screen.dart:9:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\profile\manage_listings_screen.dart:9:31 - override_on_non_overriding_member
+  error - Mixin can only be applied to class - lib\screens\profile\manage_listings_screen.dart:12:42 - mixin_with_non_class_superclass
+  error - Classes can only mix in mixins and classes - lib\screens\profile\manage_listings_screen.dart:12:75 - mixin_of_non_class
+  error - Undefined class 'TabController' - lib\screens\profile\manage_listings_screen.dart:13:8 - undefined_class
+  error - Undefined class 'BookService' - lib\screens\profile\manage_listings_screen.dart:14:9 - undefined_class
+  error - The method 'BookService' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:14:36 - undefined_method
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\manage_listings_screen.dart:16:28 - non_type_as_type_argument
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\manage_listings_screen.dart:17:28 - non_type_as_type_argument
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\manage_listings_screen.dart:18:28 - non_type_as_type_argument
+warning - The method doesn't override an inherited method - lib\screens\profile\manage_listings_screen.dart:21:8 - override_on_non_overriding_member
+  error - The method 'initState' isn't defined in a superclass of '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:22:11 - undefined_super_member
+  error - The method 'TabController' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:23:22 - undefined_method
+  error - The method 'AuthService' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:28:20 - undefined_method
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\manage_listings_screen.dart:30:45 - non_type_as_type_argument
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\manage_listings_screen.dart:35:47 - non_type_as_type_argument
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\manage_listings_screen.dart:40:43 - non_type_as_type_argument
+warning - The method doesn't override an inherited method - lib\screens\profile\manage_listings_screen.dart:47:8 - override_on_non_overriding_member
+  error - The method 'dispose' isn't defined in a superclass of '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:52:11 - undefined_super_member
+  error - The method 'removeItemById' isn't defined for the type 'PaginatedController' - lib\screens\profile\manage_listings_screen.dart:58:25 - undefined_method
+  error - The method 'removeItemById' isn't defined for the type 'PaginatedController' - lib\screens\profile\manage_listings_screen.dart:59:27 - undefined_method
+  error - The method 'removeItemById' isn't defined for the type 'PaginatedController' - lib\screens\profile\manage_listings_screen.dart:60:23 - undefined_method
+  error - Undefined name 'mounted' - lib\screens\profile\manage_listings_screen.dart:61:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\profile\manage_listings_screen.dart:61:20 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\profile\manage_listings_screen.dart:61:41 - undefined_identifier
+  error - The name 'SnackBar' isn't a class - lib\screens\profile\manage_listings_screen.dart:61:69 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:61:87 - undefined_method
+  error - Undefined name 'mounted' - lib\screens\profile\manage_listings_screen.dart:63:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\profile\manage_listings_screen.dart:63:20 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\profile\manage_listings_screen.dart:63:41 - undefined_identifier
+  error - The method 'SnackBar' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:63:63 - undefined_method
+  error - The method 'Text' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:63:81 - undefined_method
+  error - Undefined name 'mounted' - lib\screens\profile\manage_listings_screen.dart:74:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\profile\manage_listings_screen.dart:74:20 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\profile\manage_listings_screen.dart:74:41 - undefined_identifier
+  error - The method 'SnackBar' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:74:63 - undefined_method
+  error - The method 'Text' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:74:81 - undefined_method
+  error - Undefined name 'mounted' - lib\screens\profile\manage_listings_screen.dart:76:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\profile\manage_listings_screen.dart:76:20 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\profile\manage_listings_screen.dart:76:41 - undefined_identifier
+  error - The method 'SnackBar' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:76:63 - undefined_method
+  error - The method 'Text' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:76:81 - undefined_method
+  error - Undefined class 'Widget' - lib\screens\profile\manage_listings_screen.dart:81:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\profile\manage_listings_screen.dart:81:10 - override_on_non_overriding_member
+  error - Undefined class 'BuildContext' - lib\screens\profile\manage_listings_screen.dart:81:16 - undefined_class
+  error - The method 'Scaffold' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:82:12 - undefined_method
+  error - The method 'AppBar' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:83:15 - undefined_method
+  error - The name 'Text' isn't a class - lib\screens\profile\manage_listings_screen.dart:84:22 - creation_with_non_type
+  error - The method 'TabBar' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:85:17 - undefined_method
+  error - The method 'Tab' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:88:13 - undefined_method
+  error - The values in a const list literal must be constants - lib\screens\profile\manage_listings_screen.dart:88:13 - non_constant_list_element
+  error - The method 'Tab' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:89:13 - undefined_method
+  error - The values in a const list literal must be constants - lib\screens\profile\manage_listings_screen.dart:89:13 - non_constant_list_element
+  error - The method 'Tab' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:90:13 - undefined_method
+  error - The values in a const list literal must be constants - lib\screens\profile\manage_listings_screen.dart:90:13 - non_constant_list_element
+  error - The method 'TabBarView' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:94:13 - undefined_method
+  error - Undefined class 'Widget' - lib\screens\profile\manage_listings_screen.dart:105:3 - undefined_class
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\manage_listings_screen.dart:105:41 - non_type_as_type_argument
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\manage_listings_screen.dart:106:30 - non_type_as_type_argument
+  error - Undefined name 'EdgeInsets' - lib\screens\profile\manage_listings_screen.dart:109:16 - undefined_identifier
+  error - The argument type 'Object?' can't be assigned to the parameter type 'RecordModel'.  - lib\screens\profile\manage_listings_screen.dart:112:17 - argument_type_not_assignable
+  error - Undefined name 'context' - lib\screens\profile\manage_listings_screen.dart:113:24 - undefined_identifier
+  error - The property 'id' can't be unconditionally accessed because the receiver can be 'null' - lib\screens\profile\manage_listings_screen.dart:113:51 - unchecked_use_of_nullable_value
+  error - Undefined class 'Widget' - lib\screens\profile\manage_listings_screen.dart:122:3 - undefined_class
+  error - The method 'Center' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:135:12 - undefined_method
+  error - The method 'Column' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:136:14 - undefined_method
+  error - Undefined name 'MainAxisAlignment' - lib\screens\profile\manage_listings_screen.dart:137:28 - undefined_identifier
+  error - The method 'Icon' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:139:11 - undefined_method
+  error - Undefined name 'Icons' - lib\screens\profile\manage_listings_screen.dart:139:16 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\profile\manage_listings_screen.dart:139:61 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\profile\manage_listings_screen.dart:140:17 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:141:11 - undefined_method
+  error - The method 'TextStyle' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:141:32 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\profile\manage_listings_screen.dart:141:49 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\profile\manage_listings_screen.dart:143:19 - creation_with_non_type
+  error - The method 'ElevatedButton' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:144:13 - undefined_method
+  error - Undefined name 'context' - lib\screens\profile\manage_listings_screen.dart:144:45 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_ManageListingsScreenState' - lib\screens\profile\manage_listings_screen.dart:144:78 - undefined_method
+  error - The getter 'totalItems' isn't defined for the type 'PaginatedController<RecordModel>' - lib\screens\profile\seller_profile_screen.dart:228:97 - undefined_getter
+warning - The value of the field '_txnService' isn't used - lib\screens\profile\transactions_list_screen.dart:20:28 - unused_field
+  error - Classes can only extend other classes - lib\screens\profile\wishlist_screen.dart:6:30 - extends_non_class
+  error - No associated named super constructor parameter - lib\screens\profile\wishlist_screen.dart:7:31 - super_formal_parameter_without_associated_named
+  error - Undefined class 'State' - lib\screens\profile\wishlist_screen.dart:10:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\profile\wishlist_screen.dart:10:25 - override_on_non_overriding_member
+  error - Classes can only extend other classes - lib\screens\profile\wishlist_screen.dart:13:36 - extends_non_class
+  error - Undefined class 'PocketBase' - lib\screens\profile\wishlist_screen.dart:14:9 - undefined_class
+   info - Type could be non-nullable - lib\screens\profile\wishlist_screen.dart:14:20 - unnecessary_nullable_for_final_variable_declarations
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\wishlist_screen.dart:17:34 - non_type_as_type_argument
+warning - The method doesn't override an inherited method - lib\screens\profile\wishlist_screen.dart:20:8 - override_on_non_overriding_member
+  error - The method 'initState' isn't defined in a superclass of '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:21:11 - undefined_super_member
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\wishlist_screen.dart:26:39 - non_type_as_type_argument
+warning - The method doesn't override an inherited method - lib\screens\profile\wishlist_screen.dart:39:8 - override_on_non_overriding_member
+  error - The method 'dispose' isn't defined in a superclass of '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:41:11 - undefined_super_member
+  error - The method 'removeItemById' isn't defined for the type 'PaginatedController' - lib\screens\profile\wishlist_screen.dart:47:19 - undefined_method
+  error - Undefined name 'mounted' - lib\screens\profile\wishlist_screen.dart:48:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\profile\wishlist_screen.dart:49:9 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\profile\wishlist_screen.dart:49:30 - undefined_identifier
+  error - The name 'SnackBar' isn't a class - lib\screens\profile\wishlist_screen.dart:49:58 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:49:76 - undefined_method
+  error - Undefined name 'mounted' - lib\screens\profile\wishlist_screen.dart:52:11 - undefined_identifier
+  error - Undefined name 'ScaffoldMessenger' - lib\screens\profile\wishlist_screen.dart:52:20 - undefined_identifier
+  error - Undefined name 'context' - lib\screens\profile\wishlist_screen.dart:52:41 - undefined_identifier
+  error - The method 'SnackBar' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:52:63 - undefined_method
+  error - The method 'Text' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:52:81 - undefined_method
+  error - Undefined class 'Widget' - lib\screens\profile\wishlist_screen.dart:57:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\profile\wishlist_screen.dart:57:10 - override_on_non_overriding_member
+  error - Undefined class 'BuildContext' - lib\screens\profile\wishlist_screen.dart:57:16 - undefined_class
+  error - The method 'Scaffold' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:58:12 - undefined_method
+  error - The method 'AppBar' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:59:15 - undefined_method
+  error - The name 'Text' isn't a class - lib\screens\profile\wishlist_screen.dart:59:35 - creation_with_non_type
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\wishlist_screen.dart:60:31 - non_type_as_type_argument
+  error - Undefined name 'EdgeInsets' - lib\screens\profile\wishlist_screen.dart:63:24 - undefined_identifier
+  error - Undefined class 'Widget' - lib\screens\profile\wishlist_screen.dart:69:3 - undefined_class
+  error - The method 'Center' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:70:12 - undefined_method
+  error - The method 'Column' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:71:14 - undefined_method
+  error - Undefined name 'MainAxisAlignment' - lib\screens\profile\wishlist_screen.dart:72:28 - undefined_identifier
+  error - The method 'Icon' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:74:11 - undefined_method
+  error - Undefined name 'Icons' - lib\screens\profile\wishlist_screen.dart:74:16 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:74:56 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\profile\wishlist_screen.dart:75:17 - creation_with_non_type
+  error - The name 'Text' isn't a class - lib\screens\profile\wishlist_screen.dart:76:17 - creation_with_non_type
+  error - The method 'TextStyle' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:78:20 - undefined_method
+  error - Undefined name 'FontWeight' - lib\screens\profile\wishlist_screen.dart:78:56 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\profile\wishlist_screen.dart:80:17 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:81:11 - undefined_method
+  error - The method 'TextStyle' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:83:20 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:83:37 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\profile\wishlist_screen.dart:85:17 - creation_with_non_type
+  error - The method 'ElevatedButton' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:86:11 - undefined_method
+  error - Undefined name 'context' - lib\screens\profile\wishlist_screen.dart:87:30 - undefined_identifier
+  error - The name 'Text' isn't a class - lib\screens\profile\wishlist_screen.dart:88:26 - creation_with_non_type
+  error - Undefined class 'Widget' - lib\screens\profile\wishlist_screen.dart:95:3 - undefined_class
+  error - Undefined class 'RecordModel' - lib\screens\profile\wishlist_screen.dart:95:29 - undefined_class
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\screens\profile\wishlist_screen.dart:96:32 - non_type_as_type_argument
+  error - The method 'Slidable' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:106:12 - undefined_method
+  error - The method 'ValueKey' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:107:12 - undefined_method
+  error - The method 'ActionPane' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:108:22 - undefined_method
+  error - The name 'DrawerMotion' isn't a class - lib\screens\profile\wishlist_screen.dart:109:23 - creation_with_non_type
+  error - The method 'DismissiblePane' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:110:22 - undefined_method
+  error - The method 'SlidableAction' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:112:11 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:114:30 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:115:30 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\profile\wishlist_screen.dart:116:19 - undefined_identifier
+  error - The method 'Card' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:121:14 - undefined_method
+  error - The method 'RoundedRectangleBorder' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:123:16 - undefined_method
+  error - Undefined name 'BorderRadius' - lib\screens\profile\wishlist_screen.dart:124:25 - undefined_identifier
+  error - The method 'BorderSide' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:125:17 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:125:35 - undefined_identifier
+  error - The method 'InkWell' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:127:16 - undefined_method
+  error - Undefined name 'context' - lib\screens\profile\wishlist_screen.dart:128:24 - undefined_identifier
+  error - Undefined name 'BorderRadius' - lib\screens\profile\wishlist_screen.dart:129:25 - undefined_identifier
+  error - The method 'Padding' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:130:18 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\profile\wishlist_screen.dart:131:28 - undefined_identifier
+  error - The method 'Row' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:132:20 - undefined_method
+  error - The method 'ClipRRect' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:134:17 - undefined_method
+  error - Undefined name 'BorderRadius' - lib\screens\profile\wishlist_screen.dart:135:33 - undefined_identifier
+  error - The method 'CachedNetworkImage' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:137:25 - undefined_method
+  error - Undefined name 'BoxFit' - lib\screens\profile\wishlist_screen.dart:140:32 - undefined_identifier
+  error - The method 'Container' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:141:58 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:141:75 - undefined_identifier
+  error - The method 'Container' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:143:25 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:143:65 - undefined_identifier
+  error - The name 'Icon' isn't a class - lib\screens\profile\wishlist_screen.dart:143:96 - creation_with_non_type
+  error - Undefined name 'Icons' - lib\screens\profile\wishlist_screen.dart:143:101 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:143:120 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\profile\wishlist_screen.dart:145:23 - creation_with_non_type
+  error - The method 'Expanded' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:146:17 - undefined_method
+  error - The method 'Column' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:147:26 - undefined_method
+  error - Undefined name 'CrossAxisAlignment' - lib\screens\profile\wishlist_screen.dart:148:41 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:150:23 - undefined_method
+  error - The name 'TextStyle' isn't a class - lib\screens\profile\wishlist_screen.dart:152:38 - creation_with_non_type
+  error - Undefined name 'FontWeight' - lib\screens\profile\wishlist_screen.dart:152:60 - undefined_identifier
+  error - Undefined name 'TextOverflow' - lib\screens\profile\wishlist_screen.dart:154:35 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\profile\wishlist_screen.dart:156:29 - creation_with_non_type
+  error - The method 'Row' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:157:23 - undefined_method
+  error - The method 'Text' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:159:27 - undefined_method
+  error - The name 'TextStyle' isn't a class - lib\screens\profile\wishlist_screen.dart:161:42 - creation_with_non_type
+  error - Undefined name 'FontWeight' - lib\screens\profile\wishlist_screen.dart:161:64 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:161:88 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\profile\wishlist_screen.dart:164:35 - creation_with_non_type
+  error - The method 'Text' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:165:29 - undefined_method
+  error - The method 'TextStyle' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:167:38 - undefined_method
+  error - Undefined name 'TextDecoration' - lib\screens\profile\wishlist_screen.dart:168:45 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:169:40 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\profile\wishlist_screen.dart:177:31 - creation_with_non_type
+  error - The method 'Container' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:178:25 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\profile\wishlist_screen.dart:179:42 - undefined_identifier
+  error - The method 'BoxDecoration' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:180:39 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:181:36 - undefined_identifier
+  error - Undefined name 'BorderRadius' - lib\screens\profile\wishlist_screen.dart:182:43 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_WishlistScreenState' - lib\screens\profile\wishlist_screen.dart:184:34 - undefined_method
+  error - The name 'TextStyle' isn't a class - lib\screens\profile\wishlist_screen.dart:186:42 - creation_with_non_type
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:186:59 - undefined_identifier
+  error - Undefined name 'FontWeight' - lib\screens\profile\wishlist_screen.dart:186:99 - undefined_identifier
+  error - The name 'Icon' isn't a class - lib\screens\profile\wishlist_screen.dart:193:23 - creation_with_non_type
+  error - Undefined name 'Icons' - lib\screens\profile\wishlist_screen.dart:193:28 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\profile\wishlist_screen.dart:193:56 - undefined_identifier
+  error - Classes can only extend other classes - lib\screens\search\search_screen.dart:7:28 - extends_non_class
+  error - No associated named super constructor parameter - lib\screens\search\search_screen.dart:8:29 - super_formal_parameter_without_associated_named
+  error - Undefined class 'State' - lib\screens\search\search_screen.dart:11:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\search\search_screen.dart:11:23 - override_on_non_overriding_member
+  error - Classes can only extend other classes - lib\screens\search\search_screen.dart:14:34 - extends_non_class
+  error - Undefined class 'TextEditingController' - lib\screens\search\search_screen.dart:15:9 - undefined_class
+  error - The method 'TextEditingController' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:15:51 - undefined_method
+  error - Undefined class 'ScrollController' - lib\screens\search\search_screen.dart:16:9 - undefined_class
+  error - The method 'ScrollController' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:16:46 - undefined_method
+  error - Undefined class 'Timer' - lib\screens\search\search_screen.dart:17:3 - undefined_class
+  error - Undefined class 'SpeechToText' - lib\screens\search\search_screen.dart:18:9 - undefined_class
+  error - Undefined name 'stt' - lib\screens\search\search_screen.dart:18:36 - undefined_identifier
+warning - The method doesn't override an inherited method - lib\screens\search\search_screen.dart:22:8 - override_on_non_overriding_member
+  error - The method 'initState' isn't defined in a superclass of '_SearchScreenState' - lib\screens\search\search_screen.dart:23:11 - undefined_super_member
+warning - The method doesn't override an inherited method - lib\screens\search\search_screen.dart:28:8 - override_on_non_overriding_member
+  error - The method 'dispose' isn't defined in a superclass of '_SearchScreenState' - lib\screens\search\search_screen.dart:32:11 - undefined_super_member
+  error - The method 'Timer' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:39:17 - undefined_method
+  error - Undefined name 'context' - lib\screens\search\search_screen.dart:40:7 - undefined_identifier
+  error - The name 'SearchProvider' isn't a type, so it can't be used as a type argument - lib\screens\search\search_screen.dart:40:20 - non_type_as_type_argument
+  error - The method 'setState' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:48:9 - undefined_method
+  error - The method 'setState' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:50:11 - undefined_method
+  error - The method 'setState' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:58:7 - undefined_method
+  error - Undefined class 'Widget' - lib\screens\search\search_screen.dart:64:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\screens\search\search_screen.dart:64:10 - override_on_non_overriding_member
+  error - Undefined class 'BuildContext' - lib\screens\search\search_screen.dart:64:16 - undefined_class
+  error - The name 'SearchProvider' isn't a type, so it can't be used as a type argument - lib\screens\search\search_screen.dart:65:42 - non_type_as_type_argument
+  error - The method 'Scaffold' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:67:12 - undefined_method
+  error - The method 'AppBar' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:68:15 - undefined_method
+  error - The method 'IconButton' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:72:11 - undefined_method
+  error - The method 'Badge' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:73:19 - undefined_method
+  error - The method 'Text' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:75:22 - undefined_method
+  error - The name 'Icon' isn't a class - lib\screens\search\search_screen.dart:76:28 - creation_with_non_type
+  error - Undefined name 'Icons' - lib\screens\search\search_screen.dart:76:33 - undefined_identifier
+  error - The method 'IconButton' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:80:11 - undefined_method
+  error - The name 'Icon' isn't a class - lib\screens\search\search_screen.dart:81:25 - creation_with_non_type
+  error - Undefined name 'Icons' - lib\screens\search\search_screen.dart:81:30 - undefined_identifier
+  error - The method 'Stack' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:86:13 - undefined_method
+  error - The method 'Expanded' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:91:15 - undefined_method
+  error - The method '_buildResultsView' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:94:23 - undefined_method
+  error - The method 'Positioned' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:98:11 - undefined_method
+  error - Undefined class 'Widget' - lib\screens\search\search_screen.dart:108:3 - undefined_class
+  error - Undefined class 'SearchProvider' - lib\screens\search\search_screen.dart:108:26 - undefined_class
+  error - The method 'Container' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:109:12 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\search\search_screen.dart:111:21 - undefined_identifier
+  error - The method 'BoxDecoration' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:112:19 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\search\search_screen.dart:113:16 - undefined_identifier
+  error - Undefined name 'BorderRadius' - lib\screens\search\search_screen.dart:114:23 - undefined_identifier
+  error - The method 'TextField' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:116:14 - undefined_method
+  error - The method 'InputDecoration' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:119:21 - undefined_method
+  error - The name 'Icon' isn't a class - lib\screens\search\search_screen.dart:121:29 - creation_with_non_type
+  error - Undefined name 'Icons' - lib\screens\search\search_screen.dart:121:34 - undefined_identifier
+  error - The method 'Row' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:122:23 - undefined_method
+  error - Undefined name 'MainAxisSize' - lib\screens\search\search_screen.dart:123:27 - undefined_identifier
+  error - The method 'IconButton' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:126:17 - undefined_method
+  error - The name 'Icon' isn't a class - lib\screens\search\search_screen.dart:127:31 - creation_with_non_type
+  error - Undefined name 'Icons' - lib\screens\search\search_screen.dart:127:36 - undefined_identifier
+  error - The method 'IconButton' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:133:15 - undefined_method
+  error - The method 'Icon' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:134:23 - undefined_method
+  error - Undefined name 'Icons' - lib\screens\search\search_screen.dart:134:43 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\search\search_screen.dart:134:55 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\search\search_screen.dart:134:103 - undefined_identifier
+  error - Undefined name 'InputBorder' - lib\screens\search\search_screen.dart:139:19 - undefined_identifier
+  error - Undefined name 'EdgeInsets' - lib\screens\search\search_screen.dart:140:33 - undefined_identifier
+  error - Undefined class 'Widget' - lib\screens\search\search_screen.dart:148:3 - undefined_class
+  error - Undefined class 'SearchProvider' - lib\screens\search\search_screen.dart:148:30 - undefined_class
+  error - The method 'Container' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:149:12 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\search\search_screen.dart:151:21 - undefined_identifier
+  error - The method 'ListView' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:152:14 - undefined_method
+  error - Undefined name 'Axis' - lib\screens\search\search_screen.dart:153:26 - undefined_identifier
+  error - Undefined name 'EdgeInsets' - lib\screens\search\search_screen.dart:154:24 - undefined_identifier
+  error - Undefined class 'Widget' - lib\screens\search\search_screen.dart:165:3 - undefined_class
+  error - Undefined class 'VoidCallback' - lib\screens\search\search_screen.dart:165:36 - undefined_class
+  error - The method 'Container' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:166:12 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\search\search_screen.dart:167:21 - undefined_identifier
+  error - Undefined name 'EdgeInsets' - lib\screens\search\search_screen.dart:168:22 - undefined_identifier
+  error - The method 'BoxDecoration' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:169:19 - undefined_method
+  error - Undefined name 'Colors' - lib\screens\search\search_screen.dart:169:40 - undefined_identifier
+  error - Undefined name 'BorderRadius' - lib\screens\search\search_screen.dart:169:81 - undefined_identifier
+  error - Undefined name 'Border' - lib\screens\search\search_screen.dart:169:116 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\search\search_screen.dart:169:134 - undefined_identifier
+  error - The method 'Row' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:170:14 - undefined_method
+  error - Undefined name 'MainAxisSize' - lib\screens\search\search_screen.dart:171:23 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:173:11 - undefined_method
+  error - The name 'TextStyle' isn't a class - lib\screens\search\search_screen.dart:173:36 - creation_with_non_type
+  error - Undefined name 'Colors' - lib\screens\search\search_screen.dart:173:67 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\search\search_screen.dart:174:17 - creation_with_non_type
+  error - The method 'InkWell' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:175:11 - undefined_method
+  error - The name 'Icon' isn't a class - lib\screens\search\search_screen.dart:175:49 - creation_with_non_type
+  error - Undefined name 'Icons' - lib\screens\search\search_screen.dart:175:54 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\search\search_screen.dart:175:84 - undefined_identifier
+  error - Undefined class 'Widget' - lib\screens\search\search_screen.dart:181:3 - undefined_class
+  error - Undefined name 'SearchHistoryService' - lib\screens\search\search_screen.dart:182:21 - undefined_identifier
+  error - The method 'ListView' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:183:12 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\search\search_screen.dart:184:22 - undefined_identifier
+  error - The method 'Row' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:187:11 - undefined_method
+  error - Undefined name 'MainAxisAlignment' - lib\screens\search\search_screen.dart:188:32 - undefined_identifier
+  error - The name 'Text' isn't a class - lib\screens\search\search_screen.dart:190:21 - creation_with_non_type
+  error - The method 'TextStyle' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:190:52 - undefined_method
+  error - Undefined name 'FontWeight' - lib\screens\search\search_screen.dart:190:74 - undefined_identifier
+  error - The method 'TextButton' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:191:15 - undefined_method
+  error - The method 'setState' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:191:43 - undefined_method
+  error - Undefined name 'SearchHistoryService' - lib\screens\search\search_screen.dart:191:58 - undefined_identifier
+  error - The name 'Text' isn't a class - lib\screens\search\search_screen.dart:191:109 - creation_with_non_type
+  error - The method 'Wrap' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:194:11 - undefined_method
+  error - The method 'InputChip' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:196:42 - undefined_method
+  error - The method 'Text' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:197:22 - undefined_method
+  error - Undefined name 'context' - lib\screens\search\search_screen.dart:200:17 - undefined_identifier
+  error - The name 'SearchProvider' isn't a type, so it can't be used as a type argument - lib\screens\search\search_screen.dart:200:30 - non_type_as_type_argument
+  error - The method 'setState' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:202:32 - undefined_method
+  error - Undefined name 'SearchHistoryService' - lib\screens\search\search_screen.dart:202:47 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\search\search_screen.dart:205:17 - creation_with_non_type
+  error - The name 'Text' isn't a class - lib\screens\search\search_screen.dart:207:15 - creation_with_non_type
+  error - The method 'TextStyle' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:207:48 - undefined_method
+  error - Undefined name 'FontWeight' - lib\screens\search\search_screen.dart:207:70 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\search\search_screen.dart:208:15 - creation_with_non_type
+  error - The method 'Wrap' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:209:9 - undefined_method
+  error - The method 'ActionChip' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:211:107 - undefined_method
+  error - The method 'Text' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:212:20 - undefined_method
+  error - Undefined name 'context' - lib\screens\search\search_screen.dart:215:15 - undefined_identifier
+  error - The name 'SearchProvider' isn't a type, so it can't be used as a type argument - lib\screens\search\search_screen.dart:215:28 - non_type_as_type_argument
+  error - The name 'SizedBox' isn't a class - lib\screens\search\search_screen.dart:219:15 - creation_with_non_type
+  error - The name 'Text' isn't a class - lib\screens\search\search_screen.dart:220:15 - creation_with_non_type
+  error - The method 'TextStyle' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:220:49 - undefined_method
+  error - Undefined name 'FontWeight' - lib\screens\search\search_screen.dart:220:71 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\search\search_screen.dart:221:15 - creation_with_non_type
+  error - The method 'Wrap' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:222:9 - undefined_method
+  error - The method 'ActionChip' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:224:112 - undefined_method
+  error - The method 'Text' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:225:20 - undefined_method
+  error - Undefined name 'context' - lib\screens\search\search_screen.dart:226:30 - undefined_identifier
+  error - The name 'SearchProvider' isn't a type, so it can't be used as a type argument - lib\screens\search\search_screen.dart:226:43 - non_type_as_type_argument
+  error - Expected a class member - lib\screens\search\search_screen.dart:233:5 - expected_class_member
+   info - Missing type annotation - lib\screens\search\search_screen.dart:233:12 - strict_top_level_inference
+   info - The variable name 'Column' isn't a lowerCamelCase identifier - lib\screens\search\search_screen.dart:233:12 - non_constant_identifier_names
+  error - 'Column' must have a method body because '_SearchScreenState' isn't abstract - lib\screens\search\search_screen.dart:233:12 - concrete_class_with_abstract_member
+   info - Missing type annotation - lib\screens\search\search_screen.dart:234:7 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\screens\search\search_screen.dart:234:15 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\screens\search\search_screen.dart:234:15 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\screens\search\search_screen.dart:234:17 - non_constant_default_value
+  error - The method 'Padding' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:235:9 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\screens\search\search_screen.dart:236:26 - undefined_identifier
+  error - The method 'Row' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:237:18 - undefined_method
+  error - The method 'Text' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:239:15 - undefined_method
+  error - Undefined name 'provider' - lib\screens\search\search_screen.dart:239:23 - undefined_identifier
+  error - The name 'TextStyle' isn't a class - lib\screens\search\search_screen.dart:239:71 - creation_with_non_type
+  error - Undefined name 'FontWeight' - lib\screens\search\search_screen.dart:239:93 - undefined_identifier
+  error - Undefined name 'Colors' - lib\screens\search\search_screen.dart:239:117 - undefined_identifier
+  error - The name 'Spacer' isn't a class - lib\screens\search\search_screen.dart:240:21 - creation_with_non_type
+  error - The method 'IconButton' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:241:15 - undefined_method
+  error - The method 'Icon' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:242:23 - undefined_method
+  error - Undefined name 'provider' - lib\screens\search\search_screen.dart:242:28 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\search\search_screen.dart:242:50 - undefined_identifier
+  error - Undefined name 'Icons' - lib\screens\search\search_screen.dart:242:68 - undefined_identifier
+  error - Undefined name 'provider' - lib\screens\search\search_screen.dart:243:28 - undefined_identifier
+  error - The method 'Expanded' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:248:9 - undefined_method
+  error - Undefined name 'provider' - lib\screens\search\search_screen.dart:250:25 - undefined_identifier
+  error - Undefined name 'provider' - lib\screens\search\search_screen.dart:252:21 - undefined_identifier
+  error - The method 'noSearch' isn't defined for the type 'EmptyStateWidget' - lib\screens\search\search_screen.dart:254:43 - undefined_method
+  error - Undefined name 'provider' - lib\screens\search\search_screen.dart:255:24 - undefined_identifier
+  error - Undefined name 'EdgeInsets' - lib\screens\search\search_screen.dart:257:28 - undefined_identifier
+  error - Undefined name 'provider' - lib\screens\search\search_screen.dart:259:19 - undefined_identifier
+  error - The method 'BookCard' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:260:24 - undefined_method
+  error - Undefined name 'provider' - lib\screens\search\search_screen.dart:262:31 - undefined_identifier
+  error - The method 'BookListTile' isn't defined for the type '_SearchScreenState' - lib\screens\search\search_screen.dart:265:22 - undefined_method
+  error - Undefined name 'context' - lib\screens\search\search_screen.dart:267:30 - undefined_identifier
+  error - The function 'showModalBottomSheet' isn't defined - lib\screens\search\search_screen.dart:281:5 - undefined_function
+  error - Undefined name 'context' - lib\screens\search\search_screen.dart:282:16 - undefined_identifier
+  error - The name 'FilterSheet' isn't a class - lib\screens\search\search_screen.dart:285:35 - creation_with_non_type
+  error - The function 'showModalBottomSheet' isn't defined - lib\screens\search\search_screen.dart:290:5 - undefined_function
+  error - Undefined name 'context' - lib\screens\search\search_screen.dart:291:16 - undefined_identifier
+  error - The name 'SortSheet' isn't a class - lib\screens\search\search_screen.dart:292:35 - creation_with_non_type
+  error - Expected a method, getter, setter or operator declaration - lib\screens\search\search_screen.dart:295:1 - expected_executable
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\widgets\forms\app_chip_selector.dart:43:65 - deprecated_member_use
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\widgets\forms\app_dropdown_field.dart:24:7 - deprecated_member_use
+  error - Classes can only extend other classes - lib\widgets\home\book_grid.dart:8:24 - extends_non_class
+  error - Undefined class 'ScrollController' - lib\widgets\home\book_grid.dart:10:9 - undefined_class
+  error - No associated named super constructor parameter - lib\widgets\home\book_grid.dart:13:11 - super_formal_parameter_without_associated_named
+  error - Undefined class 'State' - lib\widgets\home\book_grid.dart:19:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\widgets\home\book_grid.dart:19:19 - override_on_non_overriding_member
+  error - Classes can only extend other classes - lib\widgets\home\book_grid.dart:22:30 - extends_non_class
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\widgets\home\book_grid.dart:23:28 - non_type_as_type_argument
+  error - Undefined class 'Position' - lib\widgets\home\book_grid.dart:24:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\widgets\home\book_grid.dart:28:8 - override_on_non_overriding_member
+  error - The method 'initState' isn't defined in a superclass of '_BookGridState' - lib\widgets\home\book_grid.dart:29:11 - undefined_super_member
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\widgets\home\book_grid.dart:35:39 - non_type_as_type_argument
+  error - The method 'AuthService' isn't defined for the type '_BookGridState' - lib\widgets\home\book_grid.dart:38:20 - undefined_method
+  error - The method 'AuthService' isn't defined for the type '_BookGridState' - lib\widgets\home\book_grid.dart:39:22 - undefined_method
+  error - Undefined name 'widget' - lib\widgets\home\book_grid.dart:44:17 - undefined_identifier
+  error - Undefined name 'widget' - lib\widgets\home\book_grid.dart:59:13 - undefined_identifier
+  error - Undefined name 'widget' - lib\widgets\home\book_grid.dart:60:24 - undefined_identifier
+  error - Undefined name 'widget' - lib\widgets\home\book_grid.dart:64:54 - undefined_identifier
+  error - Undefined name 'widget' - lib\widgets\home\book_grid.dart:65:40 - undefined_identifier
+  error - Undefined name 'widget' - lib\widgets\home\book_grid.dart:68:38 - undefined_identifier
+  error - Undefined name 'widget' - lib\widgets\home\book_grid.dart:69:44 - undefined_identifier
+  error - Undefined name 'LocationService' - lib\widgets\home\book_grid.dart:86:39 - undefined_identifier
+  error - Undefined name 'LocationService' - lib\widgets\home\book_grid.dart:104:27 - undefined_identifier
+  error - Undefined name 'mounted' - lib\widgets\home\book_grid.dart:105:9 - undefined_identifier
+  error - The method 'setState' isn't defined for the type '_BookGridState' - lib\widgets\home\book_grid.dart:105:18 - undefined_method
+warning - The method doesn't override an inherited method - lib\widgets\home\book_grid.dart:109:8 - override_on_non_overriding_member
+  error - The method 'didUpdateWidget' isn't defined in a superclass of '_BookGridState' - lib\widgets\home\book_grid.dart:110:11 - undefined_super_member
+  error - Undefined name 'widget' - lib\widgets\home\book_grid.dart:111:29 - undefined_identifier
+warning - The method doesn't override an inherited method - lib\widgets\home\book_grid.dart:117:8 - override_on_non_overriding_member
+  error - The method 'dispose' isn't defined in a superclass of '_BookGridState' - lib\widgets\home\book_grid.dart:119:11 - undefined_super_member
+  error - Undefined class 'Widget' - lib\widgets\home\book_grid.dart:123:3 - undefined_class
+warning - The method doesn't override an inherited method - lib\widgets\home\book_grid.dart:123:10 - override_on_non_overriding_member
+  error - Undefined class 'BuildContext' - lib\widgets\home\book_grid.dart:123:16 - undefined_class
+  error - The method 'SliverPadding' isn't defined for the type '_BookGridState' - lib\widgets\home\book_grid.dart:124:12 - undefined_method
+  error - Undefined name 'EdgeInsets' - lib\widgets\home\book_grid.dart:125:22 - undefined_identifier
+  error - The method 'SliverToBoxAdapter' isn't defined for the type '_BookGridState' - lib\widgets\home\book_grid.dart:126:15 - undefined_method
+  error - The name 'RecordModel' isn't a type, so it can't be used as a type argument - lib\widgets\home\book_grid.dart:127:34 - non_type_as_type_argument
+  error - The name 'NeverScrollableScrollPhysics' isn't a class - lib\widgets\home\book_grid.dart:131:26 - creation_with_non_type
+  error - Undefined name 'widget' - lib\widgets\home\book_grid.dart:133:37 - undefined_identifier
+  error - The argument type 'Object?' can't be assigned to the parameter type 'RecordModel'.  - lib\widgets\home\book_grid.dart:136:21 - argument_type_not_assignable
+  error - The method 'AuthService' isn't defined for the type '_BookGridState' - lib\widgets\home\book_grid.dart:137:28 - undefined_method
+  error - The property 'id' can't be unconditionally accessed because the receiver can be 'null' - lib\widgets\home\book_grid.dart:138:45 - unchecked_use_of_nullable_value
+warning - Unused import: '../../utils/input_formatters.dart' - lib\widgets\sell\book_form.dart:8:8 - unused_import
+  error - The method '_buildTextField' isn't defined for the type 'BookFormState' - lib\widgets\sell\book_form.dart:205:13 - undefined_method
+  error - The method '_buildTextField' isn't defined for the type 'BookFormState' - lib\widgets\sell\book_form.dart:206:13 - undefined_method
+  error - The method '_buildTextField' isn't defined for the type 'BookFormState' - lib\widgets\sell\book_form.dart:210:33 - undefined_method
+  error - The method '_buildTextField' isn't defined for the type 'BookFormState' - lib\widgets\sell\book_form.dart:211:33 - undefined_method
+  error - The method '_buildTextField' isn't defined for the type 'BookFormState' - lib\widgets\sell\book_form.dart:214:13 - undefined_method
+  error - The method '_buildTextField' isn't defined for the type 'BookFormState' - lib\widgets\sell\book_form.dart:235:13 - undefined_method
+  error - Target of URI doesn't exist: '../controllers/paginated_controller.dart' - lib\widgets\shared\paginated_list_view.dart:2:8 - uri_does_not_exist
+  error - Undefined class 'PaginatedController' - lib\widgets\shared\paginated_list_view.dart:9:9 - undefined_class
+  error - Undefined class 'PaginatedController' - lib\widgets\shared\paginated_list_view.dart:110:21 - undefined_class
+  error - Undefined class 'PaginatedController' - lib\widgets\shared\paginated_list_view.dart:147:21 - undefined_class
+   info - Unnecessary use of multiple underscores - lib\widgets\shared\paginated_list_view.dart:228:26 - unnecessary_underscores
+   info - Unnecessary use of multiple underscores - lib\widgets\shared\paginated_list_view.dart:235:24 - unnecessary_underscores
+

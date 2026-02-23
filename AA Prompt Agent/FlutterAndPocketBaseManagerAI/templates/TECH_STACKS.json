@@ -1,0 +1,198 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "purpose": "Tech stack configuration for Flutter + PocketBase",
+        "usage": "Manager AI uses this to customize prompts for the stack"
+    },
+    "stacks": {
+        "flutter_pocketbase": {
+            "id": "STACK_FPB",
+            "name": "Flutter + PocketBase",
+            "description": "Cross-platform mobile/web app with self-hosted PocketBase backend",
+            "recommended_for": [
+                "mobile apps",
+                "cross-platform",
+                "self-hosted",
+                "offline-first",
+                "low-cost deployment"
+            ],
+            "packages": {
+                "core": [
+                    "flutter",
+                    "dart"
+                ],
+                "backend_sdk": [
+                    "pocketbase"
+                ],
+                "state_management": {
+                    "provider": [
+                        "provider"
+                    ],
+                    "riverpod": [
+                        "flutter_riverpod",
+                        "riverpod_annotation",
+                        "riverpod_generator"
+                    ],
+                    "bloc": [
+                        "flutter_bloc",
+                        "bloc"
+                    ]
+                },
+                "navigation": [
+                    "go_router"
+                ],
+                "forms": [
+                    "flutter_form_builder",
+                    "form_builder_validators"
+                ],
+                "local_storage": {
+                    "simple": [
+                        "shared_preferences"
+                    ],
+                    "database": [
+                        "hive",
+                        "hive_flutter"
+                    ],
+                    "advanced": [
+                        "isar",
+                        "isar_flutter_libs"
+                    ]
+                },
+                "media": [
+                    "image_picker",
+                    "flutter_image_compress",
+                    "cached_network_image"
+                ],
+                "notifications": [
+                    "firebase_core",
+                    "firebase_messaging",
+                    "flutter_local_notifications"
+                ],
+                "payments": [
+                    "flutter_stripe"
+                ],
+                "auth": {
+                    "google": [
+                        "google_sign_in"
+                    ],
+                    "apple": [
+                        "sign_in_with_apple"
+                    ]
+                },
+                "ui": [
+                    "shimmer",
+                    "flutter_animate",
+                    "lottie"
+                ],
+                "utilities": [
+                    "intl",
+                    "url_launcher",
+                    "connectivity_plus",
+                    "path_provider"
+                ]
+            },
+            "folder_structure": {
+                "lib/": "Dart source code root",
+                "lib/main.dart": "App entry point",
+                "lib/config/": "Theme, router, environment config",
+                "lib/config/theme.dart": "App theme (light + dark)",
+                "lib/config/router.dart": "GoRouter configuration",
+                "lib/config/env.dart": "Environment variables / PocketBase URL",
+                "lib/screens/": "Screen widgets (grouped by feature)",
+                "lib/screens/auth/": "Login, signup, forgot password screens",
+                "lib/screens/shell/": "App shell / scaffold with navigation",
+                "lib/widgets/": "Reusable widgets",
+                "lib/services/": "PocketBase API services, notification service, etc.",
+                "lib/services/pocketbase_service.dart": "PocketBase client singleton",
+                "lib/models/": "Dart model classes (fromJson/toJson)",
+                "lib/providers/": "State management (Provider/Riverpod/BLoC)",
+                "lib/utils/": "Helper functions, formatters, validators",
+                "test/": "Unit and widget tests",
+                "integration_test/": "Integration tests",
+                "assets/": "Images, fonts, icons",
+                "pb_migrations/": "PocketBase JS migration files (collection schemas, relations, API rules)",
+                "pb_hooks/": "PocketBase server-side JavaScript hooks",
+                "deploy.sh": "One-command script to sync backend files to VPS via rsync"
+            },
+            "file_conventions": {
+                "screens": "snake_case_screen.dart",
+                "widgets": "snake_case_widget.dart",
+                "services": "snake_case_service.dart",
+                "models": "snake_case.dart",
+                "providers": "snake_case_provider.dart",
+                "tests": "snake_case_test.dart",
+                "hooks": "hook_name.pb.js",
+                "naming": "Use snake_case for all Dart files"
+            },
+            "patterns": {
+                "pocketbase_init": "PocketBase pb = PocketBase('https://domain.com')",
+                "auth_email": "pb.collection('users').authWithPassword(email, password)",
+                "auth_oauth": "pb.collection('users').authWithOAuth2(provider)",
+                "fetch_records": "pb.collection('name').getFullList()",
+                "fetch_paged": "pb.collection('name').getList(page: 1, perPage: 20)",
+                "fetch_one": "pb.collection('name').getOne(id, expand: 'relation')",
+                "create_record": "pb.collection('name').create(body: {...})",
+                "update_record": "pb.collection('name').update(id, body: {...})",
+                "delete_record": "pb.collection('name').delete(id)",
+                "file_url": "pb.files.getUrl(record, filename, thumb: '100x100')",
+                "realtime_subscribe": "pb.collection('name').subscribe('*', callback)",
+                "realtime_unsubscribe": "pb.collection('name').unsubscribe('*')",
+                "auth_check": "pb.authStore.isValid",
+                "current_user": "pb.authStore.record"
+            },
+            "commands": {
+                "create_project": "flutter create --org {org} {app_name}",
+                "add_package": "flutter pub add {package}",
+                "get_packages": "flutter pub get",
+                "analyze": "flutter analyze",
+                "test": "flutter test",
+                "run_debug": "flutter run",
+                "run_chrome": "flutter run -d chrome",
+                "build_apk": "flutter build apk --release",
+                "build_aab": "flutter build appbundle --release",
+                "build_ios": "flutter build ios --release",
+                "build_web": "flutter build web",
+                "clean": "flutter clean",
+                "doctor": "flutter doctor"
+            },
+            "pocketbase_commands": {
+                "deploy": "bash deploy.sh",
+                "health_check": "curl https://{domain}/api/health",
+                "logs": "ssh {ssh_user}@{vps_ip} journalctl -u pocketbase -n 50",
+                "admin_create": "ssh {ssh_user}@{vps_ip} /opt/pocketbase/pocketbase superuser create {email} {password}"
+            },
+            "api_rules_reference": {
+                "owner_only": "@request.auth.id = user_id",
+                "authenticated": "@request.auth.id != ''",
+                "public_read": "",
+                "no_access": null,
+                "admin_only": "@request.auth.id != '' && @request.auth.role = 'admin'",
+                "own_or_admin": "@request.auth.id = user_id || @request.auth.role = 'admin'"
+            }
+        }
+    },
+    "stack_selection_guide": {
+        "questions": [
+            {
+                "question": "Is this a mobile app?",
+                "yes": "Flutter + PocketBase is the right choice",
+                "no": "Consider if web-only is needed"
+            },
+            {
+                "question": "Do you need self-hosted backend?",
+                "yes": "PocketBase — single binary, easy VPS deploy",
+                "no": "Consider Supabase (hosted) or Firebase"
+            },
+            {
+                "question": "Budget-conscious deployment?",
+                "yes": "PocketBase on $5/mo VPS handles thousands of users",
+                "no": "Either PocketBase or hosted BaaS works"
+            }
+        ],
+        "defaults": {
+            "mobile_app": "flutter_pocketbase",
+            "cross_platform": "flutter_pocketbase",
+            "self_hosted": "flutter_pocketbase"
+        }
+    }
+}

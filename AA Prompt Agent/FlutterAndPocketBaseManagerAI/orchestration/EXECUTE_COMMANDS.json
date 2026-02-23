@@ -1,0 +1,293 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "purpose": "Commands that coding agent should execute — Flutter + PocketBase specific",
+        "usage": "Manager AI includes these in every prompt for automatic execution",
+        "vps_capability": "Coding agent has FULL SSH access to VPS — all server commands are executed directly by the agent via SSH, NOT by the user"
+    },
+    "execution_philosophy": {
+        "principle": "Every prompt must be FULLY EXECUTABLE by the coding agent",
+        "rules": [
+            "Include DESCRIPTION of what to write",
+            "Include EXECUTE command(s)",
+            "Include VERIFY steps",
+            "Agent should not need to ask 'what command?'"
+        ]
+    },
+    "command_library": {
+        "flutter_project": {
+            "create_project": {
+                "description": "Create new Flutter project",
+                "cli": "flutter create --org {org_name} {app_name}",
+                "auto_run": true,
+                "verify": "lib/main.dart exists, flutter run starts"
+            },
+            "add_dependency": {
+                "description": "Add a pub package",
+                "cli": "flutter pub add {package_name}",
+                "auto_run": true,
+                "verify": "Package listed in pubspec.yaml dependencies"
+            },
+            "add_dev_dependency": {
+                "description": "Add a dev dependency",
+                "cli": "flutter pub add --dev {package_name}",
+                "auto_run": true,
+                "verify": "Package listed in pubspec.yaml dev_dependencies"
+            },
+            "get_dependencies": {
+                "description": "Resolve all dependencies",
+                "cli": "flutter pub get",
+                "auto_run": true,
+                "verify": "No dependency conflicts"
+            },
+            "clean_project": {
+                "description": "Clean build artifacts",
+                "cli": "flutter clean && flutter pub get",
+                "auto_run": true,
+                "verify": "Build folder cleared, dependencies resolved"
+            }
+        },
+        "flutter_development": {
+            "analyze": {
+                "description": "Run static analysis",
+                "cli": "flutter analyze",
+                "auto_run": true,
+                "verify": "No issues found (0 issues)"
+            },
+            "test": {
+                "description": "Run all tests",
+                "cli": "flutter test",
+                "auto_run": true,
+                "verify": "All tests pass"
+            },
+            "test_single": {
+                "description": "Run a specific test file",
+                "cli": "flutter test test/{test_file}",
+                "auto_run": true,
+                "verify": "Test passes"
+            },
+            "run_debug": {
+                "description": "Run app in debug mode",
+                "cli": "flutter run",
+                "auto_run": false,
+                "note": "Interactive, user should run in separate terminal"
+            },
+            "run_chrome": {
+                "description": "Run app in Chrome (web)",
+                "cli": "flutter run -d chrome",
+                "auto_run": false,
+                "note": "Interactive, requires Chrome"
+            }
+        },
+        "flutter_build": {
+            "build_apk": {
+                "description": "Build release APK",
+                "cli": "flutter build apk --release",
+                "auto_run": true,
+                "verify": "APK file generated in build/app/outputs/flutter-apk/"
+            },
+            "build_appbundle": {
+                "description": "Build Android App Bundle for Play Store",
+                "cli": "flutter build appbundle --release",
+                "auto_run": true,
+                "verify": "AAB file generated in build/app/outputs/bundle/release/"
+            },
+            "build_ios": {
+                "description": "Build release iOS",
+                "cli": "flutter build ios --release",
+                "auto_run": true,
+                "verify": "Build succeeds without errors"
+            },
+            "build_web": {
+                "description": "Build for web deployment",
+                "cli": "flutter build web",
+                "auto_run": true,
+                "verify": "build/web/ directory created with index.html"
+            }
+        },
+        "pocketbase_setup": {
+            "download_binary": {
+                "description": "Download PocketBase binary (Linux AMD64)",
+                "cli": "wget https://github.com/pocketbase/pocketbase/releases/latest/download/pocketbase_{version}_linux_amd64.zip && unzip pocketbase_*.zip -d /opt/pocketbase/",
+                "auto_run": true,
+                "note": "Coding agent SSHs into VPS and runs directly",
+                "verify": "/opt/pocketbase/pocketbase file exists"
+            },
+            "create_systemd_service": {
+                "description": "Create systemd service for PocketBase",
+                "cli": "Create /etc/systemd/system/pocketbase.service with: ExecStart=/opt/pocketbase/pocketbase serve --http=0.0.0.0:8090",
+                "auto_run": true,
+                "note": "Coding agent SSHs into VPS and runs directly",
+                "verify": "systemctl status pocketbase shows active"
+            },
+            "start_service": {
+                "description": "Start PocketBase service",
+                "cli": "sudo systemctl enable pocketbase && sudo systemctl start pocketbase",
+                "auto_run": true,
+                "note": "Coding agent SSHs into VPS and runs directly",
+                "verify": "Service is running"
+            },
+            "check_health": {
+                "description": "Check PocketBase health",
+                "cli": "curl https://{domain}/api/health",
+                "auto_run": true,
+                "verify": "Returns {\"code\": 200, \"message\": \"API is healthy.\"}"
+            },
+            "create_superuser": {
+                "description": "Create superuser account",
+                "cli": "/opt/pocketbase/pocketbase superuser create {email} {password}",
+                "auto_run": true,
+                "note": "Coding agent SSHs into VPS and runs directly",
+                "verify": "Login at https://{domain}/_/ succeeds"
+            }
+        },
+        "pocketbase_backend": {
+            "deploy_backend": {
+                "description": "Deploy migrations and hooks to VPS via deploy.sh",
+                "cli": "bash deploy.sh",
+                "auto_run": true,
+                "verify": "deploy.sh completes without errors, curl https://{domain}/api/health returns 200"
+            },
+            "check_logs": {
+                "description": "Check PocketBase logs on VPS",
+                "cli": "ssh {ssh_user}@{vps_ip} journalctl -u pocketbase -n 50",
+                "auto_run": true,
+                "note": "Coding agent SSHs into VPS and runs directly",
+                "verify": "No errors in recent logs"
+            }
+        },
+        "nginx_ssl": {
+            "install_nginx": {
+                "description": "Install Nginx",
+                "cli": "sudo apt update && sudo apt install -y nginx",
+                "auto_run": true,
+                "note": "Coding agent SSHs into VPS and runs directly"
+            },
+            "configure_proxy": {
+                "description": "Configure Nginx reverse proxy for PocketBase",
+                "cli": "Create /etc/nginx/sites-available/{domain} with proxy_pass to localhost:8090",
+                "auto_run": true,
+                "note": "Coding agent SSHs into VPS and runs directly",
+                "verify": "nginx -t shows OK"
+            },
+            "install_ssl": {
+                "description": "Install SSL certificate with Certbot",
+                "cli": "sudo apt install -y certbot python3-certbot-nginx && sudo certbot --nginx -d {domain} --non-interactive --agree-tos -m {email}",
+                "auto_run": true,
+                "note": "Coding agent SSHs into VPS and runs directly, requires domain DNS pointing to VPS",
+                "verify": "curl -I https://{domain} shows 200"
+            }
+        },
+        "firebase_setup": {
+            "configure_firebase": {
+                "description": "Configure Firebase for Flutter",
+                "cli": "flutterfire configure",
+                "auto_run": false,
+                "note": "Interactive, requires Firebase CLI login",
+                "verify": "firebase_options.dart generated"
+            },
+            "install_firebase_cli": {
+                "description": "Install Firebase CLI",
+                "cli": "npm install -g firebase-tools",
+                "auto_run": false,
+                "note": "Requires Node.js"
+            }
+        },
+        "splash_and_icon": {
+            "generate_icons": {
+                "description": "Generate app launcher icons for all platforms",
+                "cli": "dart run flutter_launcher_icons",
+                "auto_run": true,
+                "verify": "Icon files generated in android/app/src/main/res/ and ios/Runner/Assets.xcassets/"
+            },
+            "generate_splash": {
+                "description": "Generate native splash screen",
+                "cli": "dart run flutter_native_splash:create",
+                "auto_run": true,
+                "verify": "Splash screen shows on app launch"
+            }
+        },
+        "analytics_setup": {
+            "add_analytics": {
+                "description": "Add analytics and crash reporting packages",
+                "cli": "flutter pub add firebase_analytics firebase_crashlytics",
+                "auto_run": true,
+                "verify": "Packages added to pubspec.yaml"
+            }
+        },
+        "deep_linking": {
+            "add_app_links": {
+                "description": "Add app_links package for deep linking",
+                "cli": "flutter pub add app_links",
+                "auto_run": true,
+                "verify": "Package added to pubspec.yaml"
+            }
+        },
+        "version_check": {
+            "add_version_packages": {
+                "description": "Add version check and URL launcher packages",
+                "cli": "flutter pub add package_info_plus url_launcher",
+                "auto_run": true,
+                "verify": "Packages added to pubspec.yaml"
+            }
+        }
+    },
+    "prompt_execution_format": {
+        "description": "How Manager AI formats the EXECUTE section in prompts",
+        "standard_format": {
+            "template": "───────────────────────────────────────────────────────────\n🔧 EXECUTE:\n[CLI]: Run: {cli_command}\n───────────────────────────────────────────────────────────"
+        },
+        "multiple_commands": {
+            "template": "───────────────────────────────────────────────────────────\n🔧 EXECUTE (in order):\n1. {first_command}\n2. {second_command}\n3. {third_command}\n───────────────────────────────────────────────────────────"
+        },
+        "conditional_commands": {
+            "template": "───────────────────────────────────────────────────────────\n🔧 EXECUTE:\nIF Android: {android_command}\nIF iOS: {ios_command}\nIF Web: {web_command}\n───────────────────────────────────────────────────────────"
+        }
+    },
+    "verification_format": {
+        "template": "───────────────────────────────────────────────────────────\n✅ SELF-CHECK:\n1. {auto_check}: {command}\n2. {manual_check}\n3. Recheck: Is EVERY requirement implemented?\n4. If ANY issue → fix NOW\n\n💬 CONFIRM IN CHAT:\n\"{confirmation_text}\"\n───────────────────────────────────────────────────────────"
+    },
+    "task_type_to_commands": {
+        "new_flutter_project": [
+            "create_project",
+            "add_dependency",
+            "get_dependencies"
+        ],
+        "new_widget": [
+            "analyze"
+        ],
+        "modify_widget": [
+            "analyze"
+        ],
+        "new_service": [
+            "analyze"
+        ],
+        "pocketbase_collection": [
+            "deploy_backend",
+            "check_health"
+        ],
+        "pocketbase_hook": [
+            "deploy_backend",
+            "check_health"
+        ],
+        "after_any_change": [
+            "analyze"
+        ],
+        "after_test_change": [
+            "analyze",
+            "test"
+        ],
+        "before_release": [
+            "build_apk",
+            "build_ios"
+        ],
+        "vps_setup": [
+            "download_binary",
+            "create_systemd_service",
+            "start_service",
+            "configure_proxy",
+            "install_ssl",
+            "create_superuser"
+        ]
+    }
+}

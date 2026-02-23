@@ -1,0 +1,275 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "purpose": "AI IDE limitations and failure modes specific to Flutter/Dart/PocketBase development",
+        "source": "Research from SWE-Bench, Augment Code, community reports, adapted for Flutter ecosystem"
+    },
+    "context_limitations": {
+        "description": "AI models can only see a slice of the codebase at once",
+        "problems": [
+            {
+                "id": "CTX001",
+                "name": "Context Window Overflow",
+                "what_happens": "On multi-file edits, earlier files fall out of memory",
+                "symptoms": [
+                    "Updates some .dart files but misses others",
+                    "Inconsistent widget tree changes across files",
+                    "References to widgets or providers that were 'forgotten'"
+                ],
+                "mitigation": "Work on ONE .dart file at a time, explicitly list all files in scope"
+            },
+            {
+                "id": "CTX002",
+                "name": "Large File Degradation",
+                "what_happens": "Files over 500-800 lines cause quality drops (Flutter widgets nest deeply)",
+                "symptoms": [
+                    "Misses methods at the bottom of file",
+                    "Duplicates widgets that already exist",
+                    "Inconsistent styling within same file"
+                ],
+                "mitigation": "Keep files small (<300 lines), extract widgets into separate files"
+            },
+            {
+                "id": "CTX003",
+                "name": "No Persistent Memory",
+                "what_happens": "Each conversation starts fresh, no learning from previous sessions",
+                "symptoms": [
+                    "Repeats same mistakes",
+                    "Forgets project conventions (Provider vs Riverpod)",
+                    "Different patterns each time"
+                ],
+                "mitigation": "Provide context in every prompt, reference existing files explicitly"
+            },
+            {
+                "id": "CTX004",
+                "name": "Widget Tree Depth Confusion",
+                "what_happens": "Deep widget nesting (common in Flutter) causes AI to lose track of structure",
+                "symptoms": [
+                    "Misplaced widgets in tree",
+                    "Missing closing brackets/parentheses",
+                    "Wrapping widgets in wrong parent"
+                ],
+                "mitigation": "Extract deeply nested widgets into named methods or separate widgets"
+            }
+        ]
+    },
+    "dart_specific_failures": {
+        "description": "Dart/Flutter patterns the AI frequently gets wrong",
+        "problems": [
+            {
+                "id": "DSF001",
+                "name": "BuildContext Misuse",
+                "what_happens": "Uses BuildContext after async gap (common Flutter bug)",
+                "symptoms": [
+                    "Uses context in async callbacks without mounted check",
+                    "Navigator calls after await without checking mounted",
+                    "ScaffoldMessenger calls with stale context"
+                ],
+                "mitigation": "Always include 'if (!mounted) return;' after async operations in StatefulWidgets"
+            },
+            {
+                "id": "DSF002",
+                "name": "State Management Confusion",
+                "what_happens": "Mixes setState, Provider, Riverpod, BLoC in same project",
+                "symptoms": [
+                    "Uses setState when Provider is the project pattern",
+                    "Creates new providers instead of using existing ones",
+                    "Wrong provider scope (too high or too low)"
+                ],
+                "mitigation": "Specify state management approach in EVERY prompt that touches state"
+            },
+            {
+                "id": "DSF003",
+                "name": "Null Safety Errors",
+                "what_happens": "Incorrect null handling in Dart",
+                "symptoms": [
+                    "Uses ! operator unsafely",
+                    "Forgets to handle nullable returns from PocketBase",
+                    "Missing null checks on optional parameters"
+                ],
+                "mitigation": "Require explicit null handling: 'Handle ALL nullable values with null checks or default values'"
+            },
+            {
+                "id": "DSF004",
+                "name": "Import Path Issues",
+                "what_happens": "Wrong import paths, mixing relative and package imports",
+                "symptoms": [
+                    "Uses relative imports when project uses package imports",
+                    "Wrong path separators",
+                    "Importing from wrong barrel file"
+                ],
+                "mitigation": "Specify import style: 'Use package imports: import \"package:app_name/...\"'"
+            }
+        ]
+    },
+    "pocketbase_specific_failures": {
+        "description": "PocketBase patterns the AI frequently gets wrong",
+        "problems": [
+            {
+                "id": "PBF001",
+                "name": "Legacy API Usage",
+                "what_happens": "Uses old PocketBase API (dao) instead of v0.23+ ($app)",
+                "symptoms": [
+                    "References to 'dao' object in hooks",
+                    "Uses deprecated collection methods",
+                    "Wrong event hook signatures"
+                ],
+                "mitigation": "Specify: 'Use PocketBase v0.23+ API with $app, NOT legacy dao'"
+            },
+            {
+                "id": "PBF002",
+                "name": "API Rules Confusion",
+                "what_happens": "Doesn't understand PocketBase API rules syntax",
+                "symptoms": [
+                    "Uses SQL-like WHERE clauses instead of PB filter syntax",
+                    "Missing @request.auth.id checks",
+                    "Leaves collections with no rules (public access)"
+                ],
+                "mitigation": "Always include: 'Set API rules: listRule, viewRule, createRule, updateRule, deleteRule'"
+            },
+            {
+                "id": "PBF003",
+                "name": "SDK Method Hallucination",
+                "what_happens": "Invents PocketBase Dart SDK methods that don't exist",
+                "symptoms": [
+                    "Calls methods not in pocketbase_flutter package",
+                    "Wrong method signatures for CRUD operations",
+                    "Incorrect realtime subscription API"
+                ],
+                "mitigation": "Reference research docs: 'Use SDK patterns from Flutter research document'"
+            }
+        ]
+    },
+    "multi_file_failures": {
+        "description": "Multi-file tasks have dramatically lower success rates",
+        "statistics": {
+            "single_file_success": "50-55%",
+            "multi_file_success": "11-25%",
+            "source": "SWE-Bench Verified and Pro benchmarks"
+        },
+        "problems": [
+            {
+                "id": "MFF001",
+                "name": "Incomplete Refactors",
+                "what_happens": "Renames in some .dart files but not all",
+                "symptoms": [
+                    "Broken imports",
+                    "Undefined references",
+                    "Mixed old/new naming across widgets"
+                ],
+                "mitigation": "Do mapping phase first, get approval, then batched edits"
+            },
+            {
+                "id": "MFF002",
+                "name": "Inconsistent Widget Patterns",
+                "what_happens": "Different approach in different screens",
+                "symptoms": [
+                    "Screen A uses Provider, Screen B uses setState",
+                    "Different error handling patterns per screen",
+                    "Inconsistent navigation approaches"
+                ],
+                "mitigation": "One file at a time with explicit reference to existing patterns: 'Follow pattern from screen_x.dart'"
+            }
+        ]
+    },
+    "hallucinations": {
+        "description": "AI generates plausible but incorrect code",
+        "types": [
+            {
+                "id": "HAL001",
+                "name": "Non-existent Flutter APIs",
+                "what_happens": "Uses Flutter/Dart methods that don't exist",
+                "examples": [
+                    "Calling deprecated Material methods",
+                    "Inventing PocketBase SDK methods",
+                    "Wrong GoRouter syntax for version"
+                ],
+                "mitigation": "Specify exact package versions in pubspec.yaml, ask to verify APIs exist"
+            },
+            {
+                "id": "HAL002",
+                "name": "Confident Wrong Logic",
+                "what_happens": "Syntactically correct but semantically wrong",
+                "examples": [
+                    "Wrong comparison operators in filters",
+                    "Inverted boolean logic in auth checks",
+                    "Race conditions in async Flutter code"
+                ],
+                "mitigation": "Require step-by-step reasoning, test-driven development"
+            },
+            {
+                "id": "HAL003",
+                "name": "Made-up Project Context",
+                "what_happens": "Assumes files/widgets exist that don't",
+                "examples": [
+                    "Importing from non-existent service files",
+                    "Referencing undefined model classes",
+                    "Calling non-existent PocketBase collections"
+                ],
+                "mitigation": "Explicitly state what exists, force 'I don't know' responses"
+            }
+        ]
+    },
+    "destructive_edits": {
+        "description": "AI damages working code while trying to help",
+        "patterns": [
+            {
+                "id": "DES001",
+                "name": "Overzealous Widget Cleanup",
+                "what_happens": "Removes 'unnecessary' widgets that are actually needed",
+                "examples": [
+                    "Removes SafeArea wrapping",
+                    "Deletes error handling widgets",
+                    "Strips key properties from list items"
+                ],
+                "mitigation": "Say 'DO NOT remove any existing widgets or properties'"
+            },
+            {
+                "id": "DES002",
+                "name": "Unwanted Refactoring",
+                "what_happens": "Rewrites working widget tree in different pattern",
+                "examples": [
+                    "Converts StatefulWidget to StatelessWidget",
+                    "Changes from Provider to direct setState",
+                    "Restructures screen layout"
+                ],
+                "mitigation": "Say 'Keep existing widget structure, only add X'"
+            }
+        ]
+    },
+    "language_bias": {
+        "description": "AI performance varies by language",
+        "dart_notes": {
+            "performance": "Medium-Good",
+            "strengths": "Common patterns, good type system, similar to Java/TypeScript",
+            "weaknesses": "Less training data than JS/Python, widget tree complexity, Dart-specific idioms",
+            "mitigation": "Be extra explicit about Dart patterns, null safety, and Flutter widget conventions"
+        }
+    },
+    "human_factor": {
+        "description": "User mistakes that amplify AI failures",
+        "patterns": [
+            {
+                "id": "HF001",
+                "name": "Autopilot Expectation",
+                "what_happens": "Trusting AI output without review",
+                "result": "Bugs ship to production",
+                "mitigation": "Always run flutter analyze, check widget renders"
+            },
+            {
+                "id": "HF002",
+                "name": "Kitchen Sink Prompts",
+                "what_happens": "Asking for entire screen with all features at once",
+                "result": "Partial, broken implementation",
+                "mitigation": "One widget/feature per prompt"
+            },
+            {
+                "id": "HF003",
+                "name": "Vague Instructions",
+                "what_happens": "Not specifying what exactly to do",
+                "result": "AI makes assumptions and guesses wrong",
+                "mitigation": "Be specific about file paths, widget behavior, constraints"
+            }
+        ]
+    }
+}

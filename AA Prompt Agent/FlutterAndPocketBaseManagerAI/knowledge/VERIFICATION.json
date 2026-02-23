@@ -1,0 +1,251 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "purpose": "Verification methods and templates for Flutter + PocketBase development",
+        "usage": "Manager AI includes relevant verification steps in every generated prompt"
+    },
+    "automated_checks": [
+        {
+            "id": "VC001",
+            "name": "Static Analysis",
+            "commands": {
+                "flutter": "flutter analyze",
+                "dart": "dart analyze"
+            },
+            "success_criteria": "No issues found",
+            "failure_action": "Fix all analysis issues before proceeding"
+        },
+        {
+            "id": "VC002",
+            "name": "Widget Test",
+            "commands": {
+                "all": "flutter test",
+                "single": "flutter test test/{test_file}.dart",
+                "verbose": "flutter test --reporter expanded"
+            },
+            "success_criteria": "All tests pass",
+            "failure_action": "Fix failing tests before proceeding"
+        },
+        {
+            "id": "VC003",
+            "name": "Build Check",
+            "commands": {
+                "android": "flutter build apk --debug",
+                "ios": "flutter build ios --debug --no-codesign",
+                "web": "flutter build web"
+            },
+            "success_criteria": "Build completes without errors",
+            "failure_action": "Fix all build errors before proceeding"
+        },
+        {
+            "id": "VC004",
+            "name": "Run Dev",
+            "commands": {
+                "flutter": "flutter run -d chrome",
+                "flutter_android": "flutter run -d emulator",
+                "flutter_ios": "flutter run -d simulator"
+            },
+            "success_criteria": "App launches with no red/yellow error screens",
+            "failure_action": "Fix runtime errors before proceeding"
+        },
+        {
+            "id": "VC005",
+            "name": "Dependency Check",
+            "commands": {
+                "flutter": "flutter pub get",
+                "outdated": "flutter pub outdated"
+            },
+            "success_criteria": "All dependencies resolve without conflicts",
+            "failure_action": "Resolve dependency conflicts"
+        },
+        {
+            "id": "VC006",
+            "name": "PocketBase Health",
+            "commands": {
+                "curl": "curl https://{domain}/api/health",
+                "logs": "ssh {ssh_user}@{vps_ip} journalctl -u pocketbase -n 50"
+            },
+            "success_criteria": "Returns { \"code\": 200, \"message\": \"API is healthy.\" }",
+            "failure_action": "SSH into VPS and check: systemctl status pocketbase, journalctl -u pocketbase -n 50"
+        }
+    ],
+    "manual_verification_templates": {
+        "widget_rendering": {
+            "id": "MV001",
+            "name": "Widget Rendering Check",
+            "steps": [
+                "Run the app on a device/emulator",
+                "Navigate to the screen containing the widget",
+                "Verify: Widget renders without overflow errors",
+                "Verify: All text is visible and not clipped",
+                "Verify: Colors match theme specification",
+                "Verify: Tap/gesture targets are accessible",
+                "Rotate device to landscape and back — no crashes"
+            ]
+        },
+        "form_widget": {
+            "id": "MV002",
+            "name": "Form Validation Check",
+            "steps": [
+                "Open the form screen",
+                "Submit with all fields empty → shows validation errors",
+                "Enter invalid data (wrong email format, short password) → shows specific errors",
+                "Enter valid data → form submits successfully",
+                "Check keyboard: TextInputType matches field type",
+                "Check focus: Tab order moves through fields correctly",
+                "Check: Submit button disabled during loading"
+            ]
+        },
+        "pocketbase_crud": {
+            "id": "MV003",
+            "name": "PocketBase CRUD Check",
+            "steps": [
+                "CREATE: Submit form → record appears in PocketBase Admin UI",
+                "READ: Verify list screen shows the new record",
+                "UPDATE: Edit record → changes reflect in Admin UI and list screen",
+                "DELETE: Delete record → removed from both Admin UI and list screen",
+                "Verify API rules: try accessing without auth → should be rejected"
+            ]
+        },
+        "auth_flow": {
+            "id": "MV004",
+            "name": "Authentication Flow Check",
+            "steps": [
+                "SIGNUP: Create new account → user appears in PocketBase auth collection",
+                "LOGOUT: Log out → redirected to login screen",
+                "LOGIN: Log back in → redirected to home screen",
+                "PERSISTENCE: Close app and reopen → still logged in",
+                "PROTECTION: Try navigating to protected route without auth → redirected to login",
+                "ERROR: Try wrong password → shows error message, not crash"
+            ]
+        },
+        "realtime_sse": {
+            "id": "MV005",
+            "name": "Realtime SSE Check",
+            "steps": [
+                "Subscribe to collection changes in the app",
+                "Open PocketBase Admin UI in browser",
+                "Create a record in Admin → appears in app WITHOUT refresh",
+                "Update the record in Admin → app reflects change instantly",
+                "Delete the record in Admin → app removes it instantly",
+                "Close app → subscription cleaned up (no memory leak)"
+            ]
+        },
+        "file_upload": {
+            "id": "MV006",
+            "name": "File Upload Check",
+            "steps": [
+                "Select a file (image/video/document)",
+                "Upload → progress indicator shown",
+                "After upload → file accessible via PocketBase file URL",
+                "Display uploaded file → renders correctly in app",
+                "Try uploading oversized file → proper error message",
+                "Try uploading wrong format → proper error message"
+            ]
+        },
+        "push_notification": {
+            "id": "MV007",
+            "name": "Push Notification Check",
+            "steps": [
+                "Send test notification via Firebase Console",
+                "Notification appears when app is in foreground → in-app display",
+                "Notification appears when app is in background → system notification",
+                "Tap notification → opens correct screen in app",
+                "Verify payload data is correctly parsed"
+            ]
+        },
+        "offline_mode": {
+            "id": "MV008",
+            "name": "Offline Mode Check",
+            "steps": [
+                "Load data while online → data cached locally",
+                "Enable airplane mode",
+                "Reopen app → cached data displays correctly",
+                "Try creating a record offline → queued or error shown",
+                "Disable airplane mode → data syncs correctly"
+            ]
+        },
+        "responsive_design": {
+            "id": "MV009",
+            "name": "Responsive Design Check",
+            "steps": [
+                "Test on small phone (360px width)",
+                "Test on large phone (428px width)",
+                "Test on tablet (768px width)",
+                "Rotate to landscape → no overflow, layout adapts",
+                "Check: Text scales properly",
+                "Check: Touch targets minimum 48x48dp"
+            ]
+        }
+    },
+    "self_verification_format": {
+        "description": "Standard self-verification block for every prompt",
+        "template": "✅ SELF-CHECK:\nAfter writing this code:\n1. Run `flutter analyze` — must show 0 issues\n2. {task_specific_check}\n3. Recheck: Is EVERY requirement above implemented? (Y/N)\n4. If ANY issue → fix it NOW before confirming\n\n💬 CONFIRM IN CHAT:\n\"Prompt {number} complete. {task_specific_result}. Zero errors.\""
+    },
+    "error_loop": {
+        "description": "What to do when verification fails",
+        "steps": [
+            "Read the exact error message",
+            "Identify which file and line has the issue",
+            "Fix the specific issue",
+            "Run verification again",
+            "Repeat until 0 issues",
+            "Only then confirm completion"
+        ],
+        "max_retries": 5,
+        "escalation": "If 5 attempts fail, stop and report the issue with full error log"
+    },
+    "task_type_to_verification": {
+        "new_widget": [
+            "VC001",
+            "MV001"
+        ],
+        "form_widget": [
+            "VC001",
+            "MV001",
+            "MV002"
+        ],
+        "service_layer": [
+            "VC001",
+            "VC002"
+        ],
+        "pocketbase_collection": [
+            "VC006",
+            "MV003"
+        ],
+        "auth_implementation": [
+            "VC001",
+            "MV004"
+        ],
+        "realtime_feature": [
+            "VC001",
+            "MV005"
+        ],
+        "file_upload": [
+            "VC001",
+            "MV006"
+        ],
+        "notification": [
+            "VC001",
+            "MV007"
+        ],
+        "offline_cache": [
+            "VC001",
+            "MV008"
+        ],
+        "ui_polish": [
+            "VC001",
+            "MV001",
+            "MV009"
+        ],
+        "full_screen": [
+            "VC001",
+            "MV001",
+            "MV002",
+            "MV009"
+        ],
+        "deployment": [
+            "VC003"
+        ]
+    }
+}

@@ -1,0 +1,74 @@
+Analyzing JayGanga Books...                                     
+
+   info - Don't invoke 'print' in production code - bin\check_health.dart:6:3 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_health.dart:10:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_health.dart:12:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_health.dart:14:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_health.dart:15:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_health.dart:21:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_health.dart:30:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_health.dart:43:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_health.dart:48:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_health.dart:51:3 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:7:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:9:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:11:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_schools.dart:14:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_status_val.dart:6:3 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_status_val.dart:12:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_status_val.dart:16:9 - avoid_print
+   info - Don't invoke 'print' in production code - bin\check_status_val.dart:20:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:6:3 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:9:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:11:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:13:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:17:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:23:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:25:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:29:5 - avoid_print
+warning - The value of the local variable 'r3' isn't used - bin\debug_api.dart:30:11 - unused_local_variable
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:35:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:37:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:41:5 - avoid_print
+warning - The value of the local variable 'r4' isn't used - bin\debug_api.dart:42:11 - unused_local_variable
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:47:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_api.dart:49:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:6:3 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:12:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:19:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:21:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:26:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:28:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:30:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:34:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:36:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\debug_fields.dart:38:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_full_data.dart:6:3 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_full_data.dart:16:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_full_data.dart:19:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_full_data.dart:20:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_full_data.dart:21:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_full_data.dart:22:7 - avoid_print
+   info - 'expand' is deprecated and shouldn't be used. This field is superseded by the more generic get<T>(keyPath) method.
+You can access the expanded record models and fields using dot-notation similar to the regular record fields:
+record.get<String>("expand.user.email");
+record.get<RecordModel>("expand.user");
+record.get<List<RecordModel>>("expand.products"); - bin\inspect_full_data.dart:22:34 - deprecated_member_use
+   info - Don't invoke 'print' in production code - bin\inspect_full_data.dart:25:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_remote_schema.dart:6:3 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_remote_schema.dart:14:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_remote_schema.dart:18:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\inspect_remote_schema.dart:21:5 - avoid_print
+warning - Unused import: 'dart:convert' - bin\verify_schema.dart:2:8 - unused_import
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:8:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:13:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:15:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:22:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:23:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:24:5 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:27:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:29:7 - avoid_print
+   info - Don't invoke 'print' in production code - bin\verify_schema.dart:32:5 - avoid_print
+   info - 'baseUrl' is deprecated and shouldn't be used. use baseURL - lib\services\auth_service.dart:37:65 - deprecated_member_use
+warning - The value of the local variable 'pb' isn't used - scripts\seed_data.dart:5:9 - unused_local_variable
+
